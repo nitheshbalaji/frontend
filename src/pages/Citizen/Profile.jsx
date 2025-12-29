@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Profile = () => {
   const navigate = useNavigate();
 
-  // Hide topbar for immersive profile view
+  // Hide topbar only for profile page
   useEffect(() => {
     const topbar = document.querySelector(".topbar");
     if (topbar) topbar.style.display = "none";
@@ -13,7 +13,7 @@ const Profile = () => {
     };
   }, []);
 
-  // Mock data
+  // Mock data (replace with backend later)
   const user = {
     name: "Aparajhitha",
     email: "aparaar62@gmail.com",
@@ -33,22 +33,22 @@ const Profile = () => {
       style={{
         minHeight: "100vh",
         background:
-          "linear-gradient(180deg, #e0e7ff 0%, #f8fafc 60%)",
+          "linear-gradient(180deg, #e0e7ff 0%, #f8fafc 65%)",
         padding: "40px 30px",
       }}
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        {/* ===== HERO PROFILE CARD ===== */}
+        {/* ================= HERO PROFILE ================= */}
         <div
           style={{
             position: "relative",
             background:
               "linear-gradient(135deg, #2563eb, #1e40af)",
-            borderRadius: "22px",
-            padding: "40px",
+            borderRadius: "24px",
+            padding: "45px",
             color: "white",
-            marginBottom: "80px",
-            boxShadow: "0 30px 60px rgba(37,99,235,0.35)",
+            marginBottom: "90px",
+            boxShadow: "0 30px 60px rgba(37,99,235,0.4)",
           }}
         >
           {/* Avatar */}
@@ -56,7 +56,7 @@ const Profile = () => {
             style={{
               position: "absolute",
               bottom: "-45px",
-              left: "40px",
+              left: "45px",
               width: "90px",
               height: "90px",
               borderRadius: "50%",
@@ -67,7 +67,7 @@ const Profile = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+              boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
             }}
           >
             {user.name.charAt(0)}
@@ -79,82 +79,151 @@ const Profile = () => {
           </p>
         </div>
 
-        {/* ===== STATS GRID ===== */}
+        {/* ================= PROFILE HIGHLIGHTS ================= */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "25px",
-            marginBottom: "40px",
+            gap: "26px",
+            marginBottom: "45px",
           }}
         >
-          {/* Complaints */}
+          {/* Complaints Filed */}
           <div
             style={{
+              position: "relative",
+              padding: "28px",
+              borderRadius: "22px",
               background:
-                "linear-gradient(135deg, #dbeafe, #eff6ff)",
-              borderRadius: "18px",
-              padding: "25px",
-              boxShadow: "0 15px 35px rgba(0,0,0,0.08)",
+                "linear-gradient(135deg, #2563eb, #1e40af)",
+              color: "white",
+              boxShadow: "0 20px 45px rgba(37,99,235,0.45)",
+              overflow: "hidden",
             }}
           >
-            <h4>📊 Complaints Filed</h4>
-            <p
+            <div
               style={{
-                fontSize: "42px",
+                position: "absolute",
+                top: "-20px",
+                right: "-20px",
+                fontSize: "90px",
+                opacity: 0.15,
+              }}
+            >
+              📊
+            </div>
+
+            <h4 style={{ marginBottom: "14px", fontSize: "16px" }}>
+              Complaints Filed
+            </h4>
+
+            <div
+              style={{
+                fontSize: "44px",
                 fontWeight: "800",
-                color: "#2563eb",
-                marginTop: "10px",
+                lineHeight: "1",
               }}
             >
               {complaints.length}
+            </div>
+
+            <p style={{ marginTop: "10px", fontSize: "14px", opacity: 0.9 }}>
+              Total issues raised by you
             </p>
           </div>
 
           {/* Email */}
           <div
             style={{
+              padding: "28px",
+              borderRadius: "22px",
               background:
-                "linear-gradient(135deg, #ecfeff, #f0fdfa)",
-              borderRadius: "18px",
-              padding: "25px",
-              boxShadow: "0 15px 35px rgba(0,0,0,0.08)",
+                "linear-gradient(135deg, #ecfeff, #cffafe)",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.1)",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
-            <h4>📧 Email</h4>
-            <p style={{ marginTop: "14px", fontWeight: "500" }}>
+            <div
+              style={{
+                position: "absolute",
+                top: "-18px",
+                right: "-10px",
+                fontSize: "80px",
+                opacity: 0.2,
+              }}
+            >
+              ✉️
+            </div>
+
+            <h4 style={{ marginBottom: "14px" }}>
+              Email Address
+            </h4>
+
+            <p
+              style={{
+                fontWeight: "600",
+                fontSize: "15px",
+                wordBreak: "break-word",
+              }}
+            >
               {user.email}
+            </p>
+
+            <p style={{ marginTop: "10px", fontSize: "13px", color: "#555" }}>
+              Used for notifications
             </p>
           </div>
 
           {/* Phone */}
           <div
             style={{
+              padding: "28px",
+              borderRadius: "22px",
               background:
                 "linear-gradient(135deg, #fff7ed, #ffedd5)",
-              borderRadius: "18px",
-              padding: "25px",
-              boxShadow: "0 15px 35px rgba(0,0,0,0.08)",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.1)",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
-            <h4>📞 Phone</h4>
-            <p style={{ marginTop: "14px", fontWeight: "500" }}>
+            <div
+              style={{
+                position: "absolute",
+                top: "-18px",
+                right: "-10px",
+                fontSize: "80px",
+                opacity: 0.25,
+              }}
+            >
+              📞
+            </div>
+
+            <h4 style={{ marginBottom: "14px" }}>
+              Phone Number
+            </h4>
+
+            <p style={{ fontWeight: "600", fontSize: "16px" }}>
               {user.phone}
+            </p>
+
+            <p style={{ marginTop: "10px", fontSize: "13px", color: "#555" }}>
+              Verified contact
             </p>
           </div>
         </div>
 
-        {/* ===== RECENT COMPLAINTS ===== */}
+        {/* ================= RECENT COMPLAINTS ================= */}
         <div
           style={{
-            background: "rgba(255,255,255,0.75)",
+            background: "rgba(255,255,255,0.8)",
             backdropFilter: "blur(12px)",
-            borderRadius: "22px",
+            borderRadius: "24px",
             padding: "35px",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
+            boxShadow: "0 22px 55px rgba(0,0,0,0.12)",
           }}
         >
-          <h2 style={{ marginBottom: "20px" }}>
+          <h2 style={{ marginBottom: "22px" }}>
             📝 Recent Complaints
           </h2>
 
