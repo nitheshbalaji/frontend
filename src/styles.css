@@ -5,13 +5,15 @@ body {
   background: #f1f3f6;
 }
 
+/* Topbar */
 .topbar {
   height: 55px;
   background: #ffd36a;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px 0 64px; /* 🔥 pushes CityConnect right */
+  padding: 0 20px;
+  font-weight: 600;
 }
 
 .logout-btn {
@@ -28,34 +30,13 @@ body {
   height: calc(100vh - 55px);
 }
 
-/* ==========================
-   CITIZEN SIDEBAR (FIXED)
-   ========================== */
-
-.citizen-sidebar {
+/* Sidebar */
+.sidebar {
   width: 240px;
   background: #2f3b52;
   color: white;
   padding: 20px 0;
-  flex-shrink: 0;
 }
-
-/* Safety net – prevents empty black box */
-.citizen-sidebar:empty {
-  display: none;
-}
-
-/* Layout fix */
-.layout-body {
-  display: flex;
-  height: calc(100vh - 55px);
-}
-
-.content-area {
-  flex: 1;
-  width: 100%;
-}
-
 
 .sidebar-profile {
   text-align: center;
@@ -96,8 +77,9 @@ body {
   background: white;
   padding: 25px;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 /* HOME PAGE */
 .home {
   font-family: "Segoe UI", sans-serif;
@@ -111,19 +93,13 @@ body {
   align-items: center;
   padding: 18px 60px;
   background: white;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
   font-weight: 700;
   font-size: 18px;
   color: #2563eb;
-  margin-left: 40px;
-  transition: all 0.3s ease
-}
-
-.topbar.menu-open .logo {
-  margin-left: 64px; /* moves slightly more */
 }
 
 .home-navbar a {
@@ -144,9 +120,10 @@ body {
   padding: 8px 16px;
   border-radius: 6px;
 }
+
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(37,99,235,0.4);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
 }
 
 .btn-secondary:hover {
@@ -172,8 +149,10 @@ body {
 
 
 .hero-text {
-  flex: 1.4;              /* text dominates */
-  max-width: 560px;       /* 🔥 readable line length */
+  flex: 1.4;
+  /* text dominates */
+  max-width: 560px;
+  /* 🔥 readable line length */
 }
 
 
@@ -207,15 +186,17 @@ body {
 }
 
 .hero-image {
-  flex: 1;                 /* 🔥 takes less space */
+  flex: 1;
+  /* 🔥 takes less space */
   display: flex;
-  justify-content: flex-end;  /* pushes image to right */
+  justify-content: flex-end;
+  /* pushes image to right */
 }
 
 .hero-image img {
   max-width: 420px;
   border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -231,7 +212,7 @@ body {
   background: white;
   padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
 }
 
@@ -260,7 +241,7 @@ body {
   background: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 /* LOGIN PAGE */
@@ -277,7 +258,7 @@ body {
   width: 380px;
   padding: 32px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .login-card h2 {
@@ -375,6 +356,7 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
+
 /* REGISTER PAGE */
 .register-page {
   min-height: 100vh;
@@ -392,7 +374,7 @@ body {
   overflow: hidden;
   backdrop-filter: blur(16px);
   background: rgba(255, 255, 255, 0.65);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
 /* Left Form */
@@ -416,7 +398,7 @@ body {
   margin-bottom: 14px;
   border-radius: 20px;
   border: 1px solid #ccc;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .register-form input:focus {
@@ -446,7 +428,7 @@ body {
 
 /* Right Info */
 .register-info {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -475,10 +457,11 @@ body {
   margin-bottom: 14px;
   border-radius: 20px;
   border: 1px solid #ccc;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   resize: none;
   font-family: inherit;
 }
+
 /* AUTH SHARED (OTP / SET PASSWORD) */
 .auth-page {
   min-height: 100vh;
@@ -493,7 +476,7 @@ body {
   width: 360px;
   padding: 32px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
 .auth-card h2 {
@@ -549,7 +532,7 @@ body {
   width: 360px;
   padding: 32px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   text-align: center;
 }
 
@@ -569,7 +552,8 @@ body {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  letter-spacing: 4px; /* 🔥 OTP look */
+  letter-spacing: 4px;
+  /* 🔥 OTP look */
   text-align: center;
   margin-bottom: 16px;
   border-radius: 8px;
@@ -615,6 +599,7 @@ body {
   font-size: 13px;
   margin-bottom: 10px;
 }
+
 /* ============================
    HAMBURGER MENU (HOME PAGE)
    ============================ */
@@ -630,7 +615,7 @@ body {
   background: white;
   padding: 6px 10px;
   border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .hamburger-icon:hover {
@@ -647,7 +632,7 @@ body {
 .menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 1050;
 }
 
@@ -655,23 +640,20 @@ body {
 .hamburger-menu {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -260px;
+  /* hidden by default */
   width: 260px;
   height: 100vh;
   background: #2f3b52;
-  padding: 70px 0 20px;
-  box-sizing: border-box; /* 🔥 IMPORTANT */
-  overflow-y: auto;       /* 🔥 IMPORTANT */
+  padding-top: 70px;
+  transition: left 0.3s ease;
   z-index: 1101;
 }
 
-
-
 /* When menu is open */
 .hamburger-menu.open {
-  transform: translateX(0);
+  left: 0;
 }
-
 
 /* Menu links */
 .hamburger-menu a,
@@ -686,7 +668,6 @@ body {
   width: 100%;
   text-align: left;
   cursor: pointer;
-  box-sizing: border-box;
 }
 
 /* Hover + active */
@@ -701,48 +682,93 @@ body {
   margin-top: 20px;
   color: #ffb4b4;
 }
-/* ==========================
-   HAMBURGER CLOSE BUTTON
-   ========================== */
 
-.close-btn {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.12);
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
+/* ----------------------------
+   Register Complaint Page
+----------------------------- */
+
+.register-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f5f7fa, #e9eef5);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
 
-.close-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
+.register-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 650px;
+  padding: 35px 40px;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
 }
 
-/* ==========================
-   HERO TRANSITION ON MENU
-   ========================== */
-
-.hero-text {
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+.register-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1f2937;
 }
 
-.menu-open .hero-text {
-  transform: translateX(200px);
+.register-subtitle {
+  margin-top: 5px;
+  margin-bottom: 25px;
+  color: #6b7280;
+  font-size: 14px;
 }
 
-/* Keep image static */
-.hero-image {
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+/* Form */
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #374151;
+  display: block;
+}
 
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #d1d5db;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
 
+/* Focus Effect */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
 
+/* Submit Button */
+
+.submit-btn {
+  margin-top: 12px;
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
