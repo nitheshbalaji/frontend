@@ -132,7 +132,7 @@ const SubmitComplaint = () => {
 
           {/* IMAGE UPLOAD SECTION */}
           <div className="form-group">
-            <label>Upload Image Evidence (Optional)</label>
+            <label>Upload Image Evidence</label>
             <input
               type="file"
               accept="image/*"
