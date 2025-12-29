@@ -1,53 +1,190 @@
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import React, { useEffect } from "react";
 
-export default function Login() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+const Login = () => {
+  // Hide topbar & sidebar on login page
+  useEffect(() => {
+    const sidebar = document.querySelector(".sidebar");
+    const topbar = document.querySelector(".topbar");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    await login();     // DEV login
-    navigate("/");
-  };
+    if (sidebar) sidebar.style.display = "none";
+    if (topbar) topbar.style.display = "none";
+
+    return () => {
+      if (sidebar) sidebar.style.display = "";
+      if (topbar) topbar.style.display = "";
+    };
+  }, []);
 
   return (
-    <div className="auth-bg">
-      <div className="auth-card">
-        <div className="auth-avatar">
-          {/* user icon */}
-          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"
-            />
-          </svg>
+    <div
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg, #7c3aed, #3b82f6, #06b6d4)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "20px",
+      }}
+    >
+      {/* Login Card */}
+      <div
+        style={{
+          width: "380px",
+          background: "rgba(255, 255, 255, 0.85)",
+          backdropFilter: "blur(16px)",
+          borderRadius: "24px",
+          padding: "40px 30px",
+          boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
+          position: "relative",
+        }}
+      >
+        {/* Avatar */}
+        <div
+          style={{
+            width: "90px",
+            height: "90px",
+            borderRadius: "50%",
+            background:
+              "linear-gradient(135deg, #2563eb, #1e40af)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+            fontSize: "36px",
+            fontWeight: "700",
+            position: "absolute",
+            top: "-45px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.35)",
+          }}
+        >
+          👤
         </div>
 
-        <form onSubmit={handleLogin}>
-          <div className="auth-input">
-            <span>👤</span>
-            <input type="email" placeholder="Email ID" />
-          </div>
+        {/* Title */}
+        <h2
+          style={{
+            textAlign: "center",
+            marginTop: "40px",
+            marginBottom: "8px",
+            fontSize: "26px",
+          }}
+        >
+          Welcome Back
+        </h2>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#555",
+            fontSize: "14px",
+            marginBottom: "25px",
+          }}
+        >
+          Login to access your complaint dashboard
+        </p>
 
-          <div className="auth-input">
-            <span>🔒</span>
-            <input type="password" placeholder="Password" />
-          </div>
+        {/* Email */}
+        <div style={{ marginBottom: "16px" }}>
+          <input
+            type="email"
+            placeholder="Email ID"
+            required
+            style={{
+              width: "100%",
+              padding: "14px 16px",
+              borderRadius: "14px",
+              border: "1px solid #c7d2fe",
+              fontSize: "15px",
+              outline: "none",
+            }}
+          />
+        </div>
 
-          <div className="auth-footer">
-            <label>
-              <input type="checkbox" /> Remember me
-            </label>
-            <a href="#">Forgot Password?</a>
-          </div>
+        {/* Password */}
+        <div style={{ marginBottom: "14px" }}>
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            style={{
+              width: "100%",
+              padding: "14px 16px",
+              borderRadius: "14px",
+              border: "1px solid #c7d2fe",
+              fontSize: "15px",
+              outline: "none",
+            }}
+          />
+        </div>
 
-          <button className="auth-btn" type="submit">
-            LOGIN
-          </button>
-        </form>
+        {/* Options */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: "14px",
+            marginBottom: "22px",
+          }}
+        >
+          <label style={{ display: "flex", gap: "6px" }}>
+            <input type="checkbox" />
+            Remember me
+          </label>
+
+          <span
+            style={{
+              color: "#2563eb",
+              cursor: "pointer",
+              fontWeight: "500",
+            }}
+          >
+            Forgot password?
+          </span>
+        </div>
+
+        {/* Login Button */}
+        <button
+          style={{
+            width: "100%",
+            padding: "14px",
+            borderRadius: "999px",
+            border: "none",
+            background:
+              "linear-gradient(135deg, #2563eb, #1e40af)",
+            color: "white",
+            fontSize: "16px",
+            fontWeight: "600",
+            cursor: "pointer",
+            boxShadow: "0 10px 25px rgba(37,99,235,0.5)",
+            transition: "transform 0.2s ease",
+          }}
+          onMouseOver={(e) =>
+            (e.target.style.transform = "translateY(-2px)")
+          }
+          onMouseOut={(e) =>
+            (e.target.style.transform = "translateY(0)")
+          }
+        >
+          🔐 Login
+        </button>
+
+        {/* Footer */}
+        <p
+          style={{
+            marginTop: "22px",
+            fontSize: "13px",
+            color: "#666",
+            textAlign: "center",
+          }}
+        >
+          Secure citizen access portal
+        </p>
       </div>
     </div>
   );
-}
+};
+
+export default Login;
