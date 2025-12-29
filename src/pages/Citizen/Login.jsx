@@ -19,25 +19,37 @@ const Login = () => {
     <div
       style={{
         minHeight: "100vh",
-        backgroundImage:
-          "url('/assets/city-bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        background: "linear-gradient(180deg, #dbeafe, #e0f2fe)",
         position: "relative",
+        overflow: "hidden",
       }}
     >
-      {/* COLOR OVERLAY */}
+      {/* ILLUSTRATED CITY BACKGROUND */}
+      <img
+        src="/assets/public-city-bg.png"
+        alt="Public Services Background"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 0.9,
+        }}
+      />
+
+      {/* Soft overlay for readability */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(135deg, rgba(37,99,235,0.75), rgba(6,182,212,0.75), rgba(253,224,71,0.6))",
-          backdropFilter: "blur(2px)",
+            "linear-gradient(180deg, rgba(219,234,254,0.9), rgba(224,242,254,0.95))",
         }}
       />
 
-      {/* LOGIN CONTAINER */}
+      {/* LOGIN CONTENT */}
       <div
         style={{
           position: "relative",
@@ -52,92 +64,79 @@ const Login = () => {
         <div
           style={{
             width: "420px",
-            background: "rgba(255, 255, 255, 0.85)",
-            backdropFilter: "blur(16px)",
-            borderRadius: "26px",
-            padding: "45px 35px",
-            boxShadow: "0 35px 70px rgba(0,0,0,0.35)",
-            position: "relative",
+            background: "rgba(255,255,255,0.85)",
+            backdropFilter: "blur(18px)",
+            borderRadius: "28px",
+            padding: "42px 36px",
+            boxShadow: "0 40px 80px rgba(0,0,0,0.25)",
           }}
         >
-          {/* Floating Avatar */}
-          <div
-            style={{
-              width: "90px",
-              height: "90px",
-              borderRadius: "50%",
-              background:
-                "linear-gradient(135deg, #2563eb, #1e40af)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              color: "white",
-              fontSize: "34px",
-              position: "absolute",
-              top: "-45px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
-            }}
-          >
-            🏙️
-          </div>
-
           {/* Header */}
           <h2
             style={{
               textAlign: "center",
-              marginTop: "40px",
-              marginBottom: "6px",
+              marginBottom: "8px",
               fontSize: "28px",
+              fontWeight: "700",
             }}
           >
             Citizen Login
           </h2>
+
           <p
             style={{
               textAlign: "center",
-              color: "#444",
+              color: "#555",
               fontSize: "14px",
-              marginBottom: "28px",
+              marginBottom: "30px",
             }}
           >
             Access public services & track your complaints
           </p>
 
           {/* Email */}
-          <input
-            type="email"
-            placeholder="Email ID"
-            required
-            style={{
-              width: "100%",
-              padding: "14px 16px",
-              borderRadius: "14px",
-              border: "1.5px solid #c7d2fe",
-              fontSize: "15px",
-              marginBottom: "16px",
-              outline: "none",
-              background: "rgba(255,255,255,0.95)",
-            }}
-          />
+          <div style={{ marginBottom: "18px" }}>
+            <label style={{ fontSize: "14px", color: "#444" }}>
+              Email
+            </label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              style={{
+                width: "100%",
+                padding: "14px",
+                borderRadius: "12px",
+                border: "1.5px solid #c7d2fe",
+                fontSize: "15px",
+                marginTop: "6px",
+                outline: "none",
+                background: "rgba(255,255,255,0.95)",
+              }}
+            />
+          </div>
 
           {/* Password */}
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            style={{
-              width: "100%",
-              padding: "14px 16px",
-              borderRadius: "14px",
-              border: "1.5px solid #c7d2fe",
-              fontSize: "15px",
-              marginBottom: "14px",
-              outline: "none",
-              background: "rgba(255,255,255,0.95)",
-            }}
-          />
+          <div style={{ marginBottom: "14px" }}>
+            <label style={{ fontSize: "14px", color: "#444" }}>
+              Password
+            </label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              required
+              style={{
+                width: "100%",
+                padding: "14px",
+                borderRadius: "12px",
+                border: "1.5px solid #c7d2fe",
+                fontSize: "15px",
+                marginTop: "6px",
+                outline: "none",
+                background: "rgba(255,255,255,0.95)",
+              }}
+            />
+          </div>
 
           {/* Options */}
           <div
@@ -146,7 +145,7 @@ const Login = () => {
               justifyContent: "space-between",
               alignItems: "center",
               fontSize: "14px",
-              marginBottom: "22px",
+              marginBottom: "26px",
             }}
           >
             <label style={{ display: "flex", gap: "6px" }}>
@@ -178,17 +177,10 @@ const Login = () => {
               fontSize: "16px",
               fontWeight: "600",
               cursor: "pointer",
-              boxShadow: "0 12px 28px rgba(37,99,235,0.45)",
-              transition: "transform 0.2s ease",
+              boxShadow: "0 12px 30px rgba(37,99,235,0.45)",
             }}
-            onMouseOver={(e) =>
-              (e.target.style.transform = "translateY(-2px)")
-            }
-            onMouseOut={(e) =>
-              (e.target.style.transform = "translateY(0)")
-            }
           >
-            🔐 Login to Portal
+            Login
           </button>
 
           {/* Footer */}
@@ -196,11 +188,11 @@ const Login = () => {
             style={{
               marginTop: "22px",
               fontSize: "13px",
-              color: "#555",
+              color: "#666",
               textAlign: "center",
             }}
           >
-            Secure public grievance redressal system
+            Secure Public Complaint Management System
           </p>
         </div>
       </div>
