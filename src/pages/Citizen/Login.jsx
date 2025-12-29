@@ -18,80 +18,57 @@ const Login = () => {
     <div
       style={{
         minHeight: "100vh",
-        position: "relative",
-        overflow: "hidden",
         background:
-          "linear-gradient(135deg, #fbc2eb, #a6c1ee)",
+          "linear-gradient(135deg, #dbeafe, #fef3c7, #e0f2fe)", // same family as register complaint
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      {/* Decorative Pastel Blobs */}
-      <div
-        style={{
-          position: "absolute",
-          width: "420px",
-          height: "420px",
-          background: "#fde68a",
-          borderRadius: "50%",
-          top: "-120px",
-          left: "-120px",
-          filter: "blur(80px)",
-          opacity: 0.6,
-        }}
-      />
-
-      <div
-        style={{
-          position: "absolute",
-          width: "380px",
-          height: "380px",
-          background: "#a5f3fc",
-          borderRadius: "50%",
-          bottom: "-120px",
-          right: "-120px",
-          filter: "blur(90px)",
-          opacity: 0.6,
-        }}
-      />
-
       {/* Login Card */}
       <div
         style={{
           width: "420px",
-          background: "rgba(255,255,255,0.85)",
-          backdropFilter: "blur(18px)",
+          background: "white",
           borderRadius: "20px",
-          padding: "42px",
-          boxShadow: "0 25px 60px rgba(0,0,0,0.25)",
-          zIndex: 2,
+          padding: "40px 36px",
+          boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
+          textAlign: "center",
         }}
       >
-        <h2
+        {/* Avatar Circle */}
+        <div
           style={{
-            textAlign: "center",
-            fontSize: "28px",
-            marginBottom: "6px",
+            width: "80px",
+            height: "80px",
+            borderRadius: "50%",
+            background:
+              "linear-gradient(135deg, #2563eb, #1e40af)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "0 auto 12px",
+            boxShadow: "0 10px 25px rgba(37,99,235,0.4)",
           }}
         >
-          Citizen Login
-        </h2>
+          <span style={{ fontSize: "36px", color: "white" }}>👤</span>
+        </div>
 
-        <p
+        {/* Login Title */}
+        <h2 style={{ marginBottom: "4px" }}>Login</h2>
+        <div
           style={{
-            textAlign: "center",
-            fontSize: "14px",
-            color: "#555",
-            marginBottom: "30px",
+            width: "50px",
+            height: "3px",
+            background: "#2563eb",
+            margin: "0 auto 24px",
+            borderRadius: "999px",
           }}
-        >
-          Smart Public Complaint Management System
-        </p>
+        />
 
         {/* Email */}
-        <div style={{ marginBottom: "18px" }}>
-          <label style={{ fontSize: "14px" }}>Email</label>
+        <div style={{ marginBottom: "18px", textAlign: "left" }}>
+          <label>Email</label>
           <input
             type="email"
             placeholder="Enter your email"
@@ -100,15 +77,15 @@ const Login = () => {
               padding: "13px",
               marginTop: "6px",
               borderRadius: "10px",
-              border: "1px solid #ddd",
+              border: "1.5px solid #cbd5e1",
               fontSize: "14px",
             }}
           />
         </div>
 
         {/* Password */}
-        <div style={{ marginBottom: "18px" }}>
-          <label style={{ fontSize: "14px" }}>Password</label>
+        <div style={{ marginBottom: "18px", textAlign: "left" }}>
+          <label>Password</label>
           <input
             type="password"
             placeholder="Enter your password"
@@ -117,7 +94,7 @@ const Login = () => {
               padding: "13px",
               marginTop: "6px",
               borderRadius: "10px",
-              border: "1px solid #ddd",
+              border: "1.5px solid #cbd5e1",
               fontSize: "14px",
             }}
           />
@@ -135,12 +112,12 @@ const Login = () => {
           <label>
             <input type="checkbox" /> Remember me
           </label>
-          <span style={{ color: "#6366f1", cursor: "pointer" }}>
+          <span style={{ color: "#2563eb", cursor: "pointer" }}>
             Forgot password?
           </span>
         </div>
 
-        {/* Button */}
+        {/* Login Button */}
         <button
           style={{
             width: "100%",
@@ -148,12 +125,12 @@ const Login = () => {
             borderRadius: "999px",
             border: "none",
             background:
-              "linear-gradient(90deg, #6366f1, #9333ea)",
+              "linear-gradient(90deg, #2563eb, #1e40af)",
             color: "white",
             fontSize: "16px",
             fontWeight: "600",
             cursor: "pointer",
-            boxShadow: "0 12px 30px rgba(99,102,241,0.4)",
+            boxShadow: "0 12px 30px rgba(37,99,235,0.4)",
           }}
         >
           Login
