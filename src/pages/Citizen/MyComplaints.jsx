@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 const ComplaintHistory = () => {
-  // Hide topbar ONLY on this page
+  // Hide topbar only on this page
   useEffect(() => {
     const topbar = document.querySelector(".topbar");
     if (topbar) topbar.style.display = "none";
@@ -10,7 +10,8 @@ const ComplaintHistory = () => {
     };
   }, []);
 
-  // Mock complaints (replace with backend later)
+  // Mock complaint data
+  // image = USER UPLOADED IMAGE (stored in public folder for now)
   const complaints = [
     {
       id: 1,
@@ -21,32 +22,29 @@ const ComplaintHistory = () => {
       date: "12 Aug 2025",
       status: "Pending",
       progress: 30,
-      image:
-        "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92",
+      image: "/complaint-images/streetlight.jpg",
     },
     {
       id: 2,
       title: "Garbage not collected for 3 days",
       category: "Public Services",
       description:
-        "Garbage bins are overflowing and causing unhygienic conditions. Despite repeated complaints, the issue remains unresolved.",
+        "Garbage bins are overflowing and have not been cleared despite repeated complaints, causing unhygienic conditions.",
       date: "08 Aug 2025",
       status: "In Progress",
       progress: 65,
-      image:
-        "https://images.unsplash.com/photo-1595278069441-2cf29f8005a4",
+      image: "/complaint-images/garbage.jpg",
     },
     {
       id: 3,
       title: "Water leakage in main road",
       category: "Water & Sanitation",
       description:
-        "There is continuous water leakage on the main road leading to traffic congestion and wastage of water resources.",
+        "Continuous water leakage on the main road is causing traffic congestion and wastage of water resources.",
       date: "01 Aug 2025",
       status: "Resolved",
       progress: 100,
-      image:
-        "https://images.unsplash.com/photo-1581578731548-c64695cc6952",
+      image: "/complaint-images/waterleak.jpg",
     },
   ];
 
@@ -67,7 +65,7 @@ const ComplaintHistory = () => {
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* ===== HERO HEADER ===== */}
+        {/* ================= HERO SECTION ================= */}
         <div
           style={{
             background:
@@ -75,7 +73,7 @@ const ComplaintHistory = () => {
             borderRadius: "26px",
             padding: "45px",
             color: "white",
-            marginBottom: "40px",
+            marginBottom: "45px",
             boxShadow: "0 30px 60px rgba(37,99,235,0.45)",
           }}
         >
@@ -83,39 +81,39 @@ const ComplaintHistory = () => {
             Your Complaint Journey
           </h1>
           <p style={{ opacity: 0.9, maxWidth: "700px" }}>
-            Track every complaint you have raised, view its progress, and
-            understand how issues are being resolved by authorities.
+            View all complaints you have raised, track their progress, and
+            see how issues are being resolved by authorities.
           </p>
         </div>
 
-        {/* ===== COMPLAINT CARDS ===== */}
+        {/* ================= COMPLAINT CARDS ================= */}
         {complaints.map((c) => (
           <div
             key={c.id}
             style={{
               display: "grid",
               gridTemplateColumns: "260px 1fr",
-              gap: "25px",
+              gap: "28px",
               background: "white",
-              borderRadius: "24px",
-              padding: "30px",
-              marginBottom: "35px",
-              boxShadow: "0 22px 50px rgba(0,0,0,0.12)",
+              borderRadius: "26px",
+              padding: "32px",
+              marginBottom: "38px",
+              boxShadow: "0 22px 55px rgba(0,0,0,0.12)",
             }}
           >
-            {/* Image */}
+            {/* Image Evidence */}
             <img
               src={c.image}
-              alt="Complaint"
+              alt="User uploaded evidence"
               style={{
                 width: "100%",
-                height: "180px",
+                height: "190px",
                 objectFit: "cover",
-                borderRadius: "16px",
+                borderRadius: "18px",
               }}
             />
 
-            {/* Content */}
+            {/* Complaint Details */}
             <div>
               {/* Title + Status */}
               <div
@@ -123,14 +121,15 @@ const ComplaintHistory = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  gap: "12px",
+                  gap: "14px",
+                  flexWrap: "wrap",
                 }}
               >
                 <h2 style={{ margin: 0 }}>{c.title}</h2>
 
                 <span
                   style={{
-                    padding: "6px 16px",
+                    padding: "6px 18px",
                     borderRadius: "999px",
                     fontSize: "14px",
                     fontWeight: "600",
@@ -160,7 +159,7 @@ const ComplaintHistory = () => {
               </p>
 
               {/* Progress */}
-              <div style={{ marginTop: "20px" }}>
+              <div style={{ marginTop: "22px" }}>
                 <div
                   style={{
                     display: "flex",
