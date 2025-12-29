@@ -19,125 +19,145 @@ const Login = () => {
       style={{
         minHeight: "100vh",
         position: "relative",
-        backgroundImage: "url('/bg/smart-city.png')",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        overflow: "hidden",
+        background:
+          "linear-gradient(135deg, #fbc2eb, #a6c1ee)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      {/* TRANSPARENT OVERLAY */}
+      {/* Decorative Pastel Blobs */}
       <div
         style={{
           position: "absolute",
-          inset: 0,
-          background: "rgba(255, 255, 255, 0.55)", // controls transparency
-          zIndex: 1,
+          width: "420px",
+          height: "420px",
+          background: "#fde68a",
+          borderRadius: "50%",
+          top: "-120px",
+          left: "-120px",
+          filter: "blur(80px)",
+          opacity: 0.6,
         }}
       />
 
-      {/* CENTERED CONTENT */}
       <div
         style={{
-          minHeight: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "relative",
+          position: "absolute",
+          width: "380px",
+          height: "380px",
+          background: "#a5f3fc",
+          borderRadius: "50%",
+          bottom: "-120px",
+          right: "-120px",
+          filter: "blur(90px)",
+          opacity: 0.6,
+        }}
+      />
+
+      {/* Login Card */}
+      <div
+        style={{
+          width: "420px",
+          background: "rgba(255,255,255,0.85)",
+          backdropFilter: "blur(18px)",
+          borderRadius: "20px",
+          padding: "42px",
+          boxShadow: "0 25px 60px rgba(0,0,0,0.25)",
           zIndex: 2,
         }}
       >
-        {/* LOGIN CARD */}
-        <div
+        <h2
           style={{
-            width: "420px",
-            background: "rgba(255,255,255,0.96)",
-            borderRadius: "16px",
-            padding: "40px",
-            boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
+            textAlign: "center",
+            fontSize: "28px",
+            marginBottom: "6px",
           }}
         >
-          <h2 style={{ textAlign: "center", marginBottom: "6px" }}>
-            Citizen Login
-          </h2>
+          Citizen Login
+        </h2>
 
-          <p
-            style={{
-              textAlign: "center",
-              fontSize: "14px",
-              color: "#555",
-              marginBottom: "28px",
-            }}
-          >
-            Smart Public Complaint Management System
-          </p>
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "14px",
+            color: "#555",
+            marginBottom: "30px",
+          }}
+        >
+          Smart Public Complaint Management System
+        </p>
 
-          {/* EMAIL */}
-          <div style={{ marginBottom: "18px" }}>
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "6px",
-                borderRadius: "8px",
-                border: "1px solid #ccc",
-                fontSize: "14px",
-              }}
-            />
-          </div>
-
-          {/* PASSWORD */}
-          <div style={{ marginBottom: "16px" }}>
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "6px",
-                borderRadius: "8px",
-                border: "1px solid #ccc",
-                fontSize: "14px",
-              }}
-            />
-          </div>
-
-          {/* OPTIONS */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "14px",
-              marginBottom: "22px",
-            }}
-          >
-            <label>
-              <input type="checkbox" /> Remember me
-            </label>
-            <span style={{ color: "#2563eb", cursor: "pointer" }}>
-              Forgot password?
-            </span>
-          </div>
-
-          {/* LOGIN BUTTON */}
-          <button
+        {/* Email */}
+        <div style={{ marginBottom: "18px" }}>
+          <label style={{ fontSize: "14px" }}>Email</label>
+          <input
+            type="email"
+            placeholder="Enter your email"
             style={{
               width: "100%",
-              padding: "14px",
-              border: "none",
-              borderRadius: "8px",
-              background: "#2563eb",
-              color: "white",
-              fontSize: "16px",
-              cursor: "pointer",
+              padding: "13px",
+              marginTop: "6px",
+              borderRadius: "10px",
+              border: "1px solid #ddd",
+              fontSize: "14px",
             }}
-          >
-            Login
-          </button>
+          />
         </div>
+
+        {/* Password */}
+        <div style={{ marginBottom: "18px" }}>
+          <label style={{ fontSize: "14px" }}>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            style={{
+              width: "100%",
+              padding: "13px",
+              marginTop: "6px",
+              borderRadius: "10px",
+              border: "1px solid #ddd",
+              fontSize: "14px",
+            }}
+          />
+        </div>
+
+        {/* Options */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: "13px",
+            marginBottom: "24px",
+          }}
+        >
+          <label>
+            <input type="checkbox" /> Remember me
+          </label>
+          <span style={{ color: "#6366f1", cursor: "pointer" }}>
+            Forgot password?
+          </span>
+        </div>
+
+        {/* Button */}
+        <button
+          style={{
+            width: "100%",
+            padding: "14px",
+            borderRadius: "999px",
+            border: "none",
+            background:
+              "linear-gradient(90deg, #6366f1, #9333ea)",
+            color: "white",
+            fontSize: "16px",
+            fontWeight: "600",
+            cursor: "pointer",
+            boxShadow: "0 12px 30px rgba(99,102,241,0.4)",
+          }}
+        >
+          Login
+        </button>
       </div>
     </div>
   );
