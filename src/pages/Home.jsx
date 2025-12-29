@@ -52,7 +52,7 @@ export default function Home() {
       )}
 
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero home-glass">
         <div className="hero-text">
           <span className="badge">SMART CITY INITIATIVE</span>
 

@@ -23,37 +23,71 @@ export default function SetPassword() {
 
     setError("");
 
-    // 🔐 Send password to backend (after OTP verified)
-    // await authService.setPassword({ password });
-
+    // 🔐 Backend will save password here
     navigate("/login"); // user can now login
   };
 
   return (
-    <div className="auth-page">
+    <div className="auth-bg">
       <div className="auth-card">
-        <h2>Set Your Password</h2>
-        <p>Create a password for future logins</p>
+
+        {/* Avatar */}
+        <div className="auth-avatar">
+          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 15v2m0-10v4m4 4a4 4 0 10-8 0v2h8v-2z"
+            />
+          </svg>
+        </div>
+
+        <h2 style={{ marginBottom: "6px" }}>Set Your Password</h2>
+        <p style={{ fontSize: "14px", opacity: 0.8, marginBottom: "22px" }}>
+          Create a password for future logins
+        </p>
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="password"
-            placeholder="New Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="auth-input">
+            <span>🔒</span>
+            <input
+              type="password"
+              placeholder="New Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          <div className="auth-input">
+            <span>🔒</span>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
 
-          {error && <p className="error-text">{error}</p>}
+          {error && (
+            <p
+              style={{
+                color: "#7f1d1d",
+                background: "rgba(255,255,255,0.6)",
+                padding: "8px 12px",
+                borderRadius: "8px",
+                fontSize: "13px",
+                marginBottom: "12px"
+              }}
+            >
+              {error}
+            </p>
+          )}
 
-          <button type="submit">Save Password</button>
+          <button className="auth-btn" type="submit">
+            SAVE PASSWORD
+          </button>
         </form>
+
       </div>
     </div>
   );

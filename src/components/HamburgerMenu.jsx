@@ -1,7 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function HamburgerMenu({ open, setOpen }) {
-  if (!open) return null; // 🔥 completely remove from DOM when closed
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  if (!open) return null; // remove from DOM when closed
+
+  const handleLogout = () => {
+    logout();          // clear auth (user + token)
+    setOpen(false);    // close menu
+    navigate("/");     // go to home page (before login)
+  };
 
   return (
     <>
@@ -13,7 +23,7 @@ export default function HamburgerMenu({ open, setOpen }) {
           onClick={() => setOpen(false)}
           aria-label="Close menu"
         >
-          ×
+          ✕
         </button>
 
         <Link to="/citizen/dashboard" onClick={() => setOpen(false)}>
@@ -28,9 +38,11 @@ export default function HamburgerMenu({ open, setOpen }) {
         <Link to="/citizen/history" onClick={() => setOpen(false)}>
           History
         </Link>
-        <Link to="/login" onClick={() => setOpen(false)}>
+
+        {/* REAL LOGOUT */}
+        <button className="logout-link" onClick={handleLogout}>
           Logout
-        </Link>
+        </button>
       </div>
     </>
   );

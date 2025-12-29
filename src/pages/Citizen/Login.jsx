@@ -1,64 +1,52 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    const result = await login({ email, password });
-
-    if (result?.user?.role === "citizen") {
-      navigate("/citizen/dashboard");
-    }
+    await login();     // DEV login
+    navigate("/");
   };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <h2>Sign in</h2>
-        <p className="login-sub">Stay updated on your grievance status</p>
-
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Email or Phone"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <div className="password-field">
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+    <div className="auth-bg">
+      <div className="auth-card">
+        <div className="auth-avatar">
+          {/* user icon */}
+          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"
             />
-            <span className="show-text">show</span>
-          </div>
-
-          <Link to="#" className="forgot-link">
-            Forgot password?
-          </Link>
-
-          <button type="submit" className="login-btn">
-            Sign in
-          </button>
-        </form>
-
-        <div className="divider">
-          <span>or</span>
+          </svg>
         </div>
 
-        <p className="register-text">
-          New here? <Link to="/register">Join now</Link>
-        </p>
+        <form onSubmit={handleLogin}>
+          <div className="auth-input">
+            <span>👤</span>
+            <input type="email" placeholder="Email ID" />
+          </div>
+
+          <div className="auth-input">
+            <span>🔒</span>
+            <input type="password" placeholder="Password" />
+          </div>
+
+          <div className="auth-footer">
+            <label>
+              <input type="checkbox" /> Remember me
+            </label>
+            <a href="#">Forgot Password?</a>
+          </div>
+
+          <button className="auth-btn" type="submit">
+            LOGIN
+          </button>
+        </form>
       </div>
     </div>
   );

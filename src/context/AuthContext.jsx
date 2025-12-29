@@ -1,39 +1,26 @@
-import React, { createContext, useContext, useState } from 'react';
-import authService from '../services/authService';
+import React, { createContext, useContext, useState } from "react";
 
-const AuthContext = createContext({
-  user: null,
-  token: null,
-  login: async () => {},
-  logout: () => {}
-});
+const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-const [user, setUser] = useState({
-  firstName: "Demo",
-  lastName: "User",
-  role: "citizen"
-});
+  const [user, setUser] = useState(null);
 
-  const [token, setToken] = useState(authService.getToken());
-
-  const login = async (credentials) => {
-    const data = await authService.login(credentials);
-    if (data) {
-      setUser(data.user);
-      setToken(data.token);
-    }
-    return data;
+  // 🔥 DEV LOGIN (no backend, no credentials)
+  const login = async () => {
+    setUser({
+      id: 1,
+      name: "Dev User",
+      role: "citizen"
+    });
+    return true;
   };
 
   const logout = () => {
-    authService.logout();
     setUser(null);
-    setToken(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

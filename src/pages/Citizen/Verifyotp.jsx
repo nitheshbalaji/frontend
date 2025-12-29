@@ -9,7 +9,6 @@ export default function VerifyOtp() {
   const handleVerify = async (e) => {
     e.preventDefault();
 
-    // Example validation
     if (otp.length !== 6) {
       setError("Please enter a valid 6-digit OTP");
       return;
@@ -17,31 +16,62 @@ export default function VerifyOtp() {
 
     setError("");
 
-    // 🔐 Backend OTP verification happens here
-    // const success = await authService.verifyOtp(otp);
-
-    // if (success) {
-    navigate("/set-password");   // ✅ THIS LINE IS THE KEY
-    // }
+    // 🔐 Backend OTP verification will go here
+    navigate("/set-password");
   };
 
   return (
-    <div className="verify-otp-page">
-      <div className="verify-otp-card">
-        <h2>Verify OTP</h2>
-        <p>Enter the OTP sent to your registered mobile/email</p>
+    <div className="auth-bg">
+      <div className="auth-card">
+
+        {/* Avatar */}
+        <div className="auth-avatar">
+          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 15v2m0-10v4m7.07 1.93a10 10 0 11-14.14 0
+                 10 10 0 0114.14 0z"
+            />
+          </svg>
+        </div>
+
+        <h2 style={{ marginBottom: "6px" }}>Verify OTP</h2>
+        <p style={{ fontSize: "14px", opacity: 0.8, marginBottom: "22px" }}>
+          Enter the 6-digit OTP sent to your registered mobile/email
+        </p>
 
         <form onSubmit={handleVerify}>
-          <input
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-          />
+          <div className="auth-input">
+            <span>🔢</span>
+            <input
+              placeholder="Enter OTP"
+              value={otp}
+              maxLength={6}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+          </div>
 
-          {error && <p className="otp-error">{error}</p>}
+          {error && (
+            <p
+              style={{
+                color: "#7f1d1d",
+                background: "rgba(255,255,255,0.6)",
+                padding: "8px 12px",
+                borderRadius: "8px",
+                fontSize: "13px",
+                marginBottom: "12px"
+              }}
+            >
+              {error}
+            </p>
+          )}
 
-          <button type="submit">Verify</button>
+          <button className="auth-btn" type="submit">
+            VERIFY OTP
+          </button>
         </form>
+
       </div>
     </div>
   );

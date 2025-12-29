@@ -12,9 +12,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
-  font-weight: 600;
+  padding: 0 20px 0 64px; /* 🔥 pushes CityConnect right */
 }
+
 
 .logout-btn {
   background: #4dd0e1;
@@ -100,6 +100,12 @@ body {
   font-weight: 700;
   font-size: 18px;
   color: #2563eb;
+  margin-left: 40px;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+.topbar.menu-open .logo {
+  margin-left: 64px; /* moves slightly more */
 }
 
 .home-navbar a {
@@ -640,15 +646,16 @@ body {
 .hamburger-menu {
   position: fixed;
   top: 0;
-  left: -260px;
-  /* hidden by default */
+  left: 0;
   width: 260px;
   height: 100vh;
   background: #2f3b52;
-  padding-top: 70px;
-  transition: left 0.3s ease;
+  padding: 70px 0 20px;
+  box-sizing: border-box; /* 🔥 IMPORTANT */
+  overflow-y: auto;       /* 🔥 IMPORTANT */
   z-index: 1101;
 }
+
 
 /* When menu is open */
 .hamburger-menu.open {
@@ -668,7 +675,13 @@ body {
   width: 100%;
   text-align: left;
   cursor: pointer;
+  box-sizing: border-box;
 }
+.hamburger-menu a:hover {
+  background: #1e293b;
+  color: white;
+}
+
 
 /* Hover + active */
 .hamburger-menu a:hover,
@@ -681,6 +694,23 @@ body {
 .logout-link {
   margin-top: 20px;
   color: #ffb4b4;
+}
+
+.logout-link {
+  display: block;
+  padding: 12px 20px;
+  color: #ffb4b4;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.logout-link:hover {
+  background: #1e293b;
+  color: white;
 }
 
 /* ----------------------------
@@ -772,3 +802,381 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
 }
+
+/* ==========================
+   HERO TRANSITION ON MENU
+   ========================== */
+
+.hero-text {
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-open .hero-text {
+  transform: translateX(200px);
+}
+
+/* Keep image static */
+.hero-image {
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================
+   HAMBURGER CLOSE BUTTON
+   ========================== */
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+/* =========================
+   LOGIN PAGE (POLISHED)
+   ========================= */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #eef3f8, #f8fafc);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.login-card {
+  width: 420px;
+  padding: 36px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.login-card h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.login-sub {
+  margin: 8px 0 26px;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  color: #0f172a;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-card input::placeholder {
+  color: #94a3b8;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 14px;
+  border: none;
+  border-radius: 999px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.login-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   AUTH SHARED BACKGROUND
+   ========================= */
+
+.auth-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+/* =========================
+   AUTH CARD (GLASS)
+   ========================= */
+
+.auth-card {
+  width: 380px;
+  padding: 70px 32px 36px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.25);
+  position: relative;
+  text-align: center;
+}
+
+/* Avatar circle */
+.auth-avatar {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #0f2a44;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.auth-avatar svg {
+  width: 42px;
+  height: 42px;
+  stroke: white;
+}
+
+/* =========================
+   AUTH INPUTS
+   ========================= */
+
+.auth-input {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 42, 68, 0.75);
+  border-radius: 10px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.auth-input span {
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+}
+
+.auth-input input {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+}
+
+.auth-input input::placeholder {
+  color: #cbd5e1;
+}
+
+.auth-input input:focus {
+  outline: none;
+}
+
+/* =========================
+   AUTH ACTIONS
+   ========================= */
+
+.auth-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #0f2a44;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.auth-footer {
+  margin-top: 16px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  color: #0f2a44;
+}
+
+.auth-footer a {
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* =========================
+   HOME PAGE – MODERN GLASS
+   ========================= */
+
+/* Soft gradient background for home */
+.home {
+  background: linear-gradient(
+    180deg,
+    #eef3f8 0%,
+    #f8fafc 40%,
+    #ffffff 100%
+  );
+}
+
+/* Glass hero container */
+.home-glass {
+  margin: 40px 60px;
+  padding: 80px 80px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.08);
+}
+
+/* Badge refinement */
+.badge {
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+  font-weight: 600;
+}
+
+/* Hero text */
+.hero-text h1 {
+  font-size: 52px;
+  letter-spacing: -0.5px;
+}
+
+.hero-text p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Hero image enhancement */
+.hero-image img {
+  border-radius: 22px;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   STATS – GLASS CARDS
+   ========================= */
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+   WHY SECTION POLISH
+   ========================= */
+
+.why {
+  padding: 100px 60px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    #f8fafc
+  );
+}
+
+.why-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+}
+
+/* =========================
+   HOME BACKGROUND – SOFT AUTH MATCH
+   ========================= */
+
+/* =========================
+   HOME BACKGROUND – ENHANCED AUTH MATCH
+   ========================= */
+
+.home {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(209, 107, 165, 0.14),
+      rgba(186, 131, 202, 0.14),
+      rgba(154, 154, 225, 0.14),
+      rgba(121, 179, 244, 0.14)
+    ),
+    #f8fafc;
+}
+
+.home-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(22px);
+}
+
