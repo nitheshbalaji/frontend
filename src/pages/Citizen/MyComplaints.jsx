@@ -1,41 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const ComplaintHistory = () => {
-  // Mock complaint data (replace with backend later)
+  // Hide topbar ONLY on this page
+  useEffect(() => {
+    const topbar = document.querySelector(".topbar");
+    if (topbar) topbar.style.display = "none";
+    return () => {
+      if (topbar) topbar.style.display = "";
+    };
+  }, []);
+
+  // Mock complaints (replace with backend later)
   const complaints = [
     {
       id: 1,
       title: "Street lights not working near my house",
       category: "Infrastructure",
       description:
-        "Street lights have not been functioning for the past 4 days, causing safety issues at night.",
+        "Street lights in my area have not been functioning for the past four days, making it unsafe for pedestrians and vehicles during night hours.",
       date: "12 Aug 2025",
       status: "Pending",
       progress: 30,
+      image:
+        "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92",
     },
     {
       id: 2,
       title: "Garbage not collected for 3 days",
       category: "Public Services",
       description:
-        "Garbage bins in my area are overflowing and have not been cleared.",
+        "Garbage bins are overflowing and causing unhygienic conditions. Despite repeated complaints, the issue remains unresolved.",
       date: "08 Aug 2025",
       status: "In Progress",
       progress: 65,
+      image:
+        "https://images.unsplash.com/photo-1595278069441-2cf29f8005a4",
     },
     {
       id: 3,
       title: "Water leakage in main road",
       category: "Water & Sanitation",
       description:
-        "Continuous water leakage near the main road causing traffic disruption.",
+        "There is continuous water leakage on the main road leading to traffic congestion and wastage of water resources.",
       date: "01 Aug 2025",
       status: "Resolved",
       progress: 100,
+      image:
+        "https://images.unsplash.com/photo-1581578731548-c64695cc6952",
     },
   ];
 
-  // Status color mapping
   const statusColor = {
     Pending: "#f59e0b",
     "In Progress": "#2563eb",
@@ -48,115 +62,143 @@ const ComplaintHistory = () => {
       style={{
         minHeight: "100vh",
         background:
-          "linear-gradient(180deg, #f1f5ff 0%, #f8fafc 70%)",
-        padding: "40px",
+          "linear-gradient(180deg, #e0e7ff 0%, #f8fafc 70%)",
+        padding: "40px 30px",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        {/* Header */}
-        <h1 style={{ fontSize: "32px", marginBottom: "6px" }}>
-          📂 Complaint History
-        </h1>
-        <p style={{ color: "#555", marginBottom: "30px" }}>
-          Track the progress and resolution of your submitted complaints.
-        </p>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        {/* ===== HERO HEADER ===== */}
+        <div
+          style={{
+            background:
+              "linear-gradient(135deg, #2563eb, #1e40af)",
+            borderRadius: "26px",
+            padding: "45px",
+            color: "white",
+            marginBottom: "40px",
+            boxShadow: "0 30px 60px rgba(37,99,235,0.45)",
+          }}
+        >
+          <h1 style={{ marginBottom: "8px" }}>
+            Your Complaint Journey
+          </h1>
+          <p style={{ opacity: 0.9, maxWidth: "700px" }}>
+            Track every complaint you have raised, view its progress, and
+            understand how issues are being resolved by authorities.
+          </p>
+        </div>
 
-        {/* Complaint Cards */}
-        {complaints.map((complaint) => (
+        {/* ===== COMPLAINT CARDS ===== */}
+        {complaints.map((c) => (
           <div
-            key={complaint.id}
+            key={c.id}
             style={{
+              display: "grid",
+              gridTemplateColumns: "260px 1fr",
+              gap: "25px",
               background: "white",
-              borderRadius: "20px",
+              borderRadius: "24px",
               padding: "30px",
-              marginBottom: "28px",
-              boxShadow: "0 20px 45px rgba(0,0,0,0.1)",
+              marginBottom: "35px",
+              boxShadow: "0 22px 50px rgba(0,0,0,0.12)",
             }}
           >
-            {/* Top Row */}
-            <div
+            {/* Image */}
+            <img
+              src={c.image}
+              alt="Complaint"
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: "10px",
+                width: "100%",
+                height: "180px",
+                objectFit: "cover",
+                borderRadius: "16px",
               }}
-            >
-              <h2 style={{ margin: 0 }}>
-                {complaint.title}
-              </h2>
+            />
 
-              <span
-                style={{
-                  padding: "6px 14px",
-                  borderRadius: "999px",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                  background:
-                    statusColor[complaint.status] + "22",
-                  color: statusColor[complaint.status],
-                }}
-              >
-                {complaint.status}
-              </span>
-            </div>
-
-            {/* Meta */}
-            <p style={{ marginTop: "6px", color: "#6b7280" }}>
-              📅 {complaint.date} • 🗂 {complaint.category}
-            </p>
-
-            {/* Description */}
-            <p
-              style={{
-                marginTop: "14px",
-                color: "#374151",
-                lineHeight: "1.6",
-              }}
-            >
-              {complaint.description}
-            </p>
-
-            {/* Progress */}
-            <div style={{ marginTop: "18px" }}>
+            {/* Content */}
+            <div>
+              {/* Title + Status */}
               <div
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  marginBottom: "6px",
+                  alignItems: "center",
+                  gap: "12px",
                 }}
               >
-                <span style={{ fontSize: "14px", color: "#555" }}>
-                  Progress
-                </span>
+                <h2 style={{ margin: 0 }}>{c.title}</h2>
+
                 <span
                   style={{
+                    padding: "6px 16px",
+                    borderRadius: "999px",
                     fontSize: "14px",
                     fontWeight: "600",
-                    color: statusColor[complaint.status],
+                    background:
+                      statusColor[c.status] + "22",
+                    color: statusColor[c.status],
                   }}
                 >
-                  {complaint.progress}%
+                  {c.status}
                 </span>
               </div>
 
-              <div
+              {/* Meta */}
+              <p style={{ marginTop: "6px", color: "#6b7280" }}>
+                📅 {c.date} • 🗂 {c.category}
+              </p>
+
+              {/* Description */}
+              <p
                 style={{
-                  height: "10px",
-                  borderRadius: "999px",
-                  background: "#e5e7eb",
-                  overflow: "hidden",
+                  marginTop: "14px",
+                  color: "#374151",
+                  lineHeight: "1.7",
                 }}
               >
+                {c.description}
+              </p>
+
+              {/* Progress */}
+              <div style={{ marginTop: "20px" }}>
                 <div
                   style={{
-                    width: `${complaint.progress}%`,
-                    height: "100%",
-                    background: statusColor[complaint.status],
-                    borderRadius: "999px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBottom: "6px",
                   }}
-                />
+                >
+                  <span style={{ fontSize: "14px", color: "#555" }}>
+                    Resolution Progress
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      color: statusColor[c.status],
+                    }}
+                  >
+                    {c.progress}%
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    height: "10px",
+                    borderRadius: "999px",
+                    background: "#e5e7eb",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: `${c.progress}%`,
+                      height: "100%",
+                      background: statusColor[c.status],
+                      borderRadius: "999px",
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
