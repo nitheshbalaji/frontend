@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // registration logic later
@@ -112,7 +115,14 @@ export default function Register() {
           }}
         >
           Already have an account?{" "}
-          <span style={{ color: "#2563eb", fontWeight: "600" }}>
+          <span
+            style={{
+              color: "#2563eb",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/login")}
+          >
             Login
           </span>
         </p>
