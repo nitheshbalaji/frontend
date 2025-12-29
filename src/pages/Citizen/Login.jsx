@@ -18,20 +18,24 @@ const Login = () => {
     <div
       style={{
         minHeight: "100vh",
-        backgroundImage: "url('/bg/city-public.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundColor: "#eef2ff",
+        position: "relative",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      {/* Overlay */}
+      {/* Subtle City/Public Background */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(15, 23, 42, 0.55)",
+          backgroundImage:
+            "url('https://raw.githubusercontent.com/undraw/undraw/master/illustrations/city_life_re_8tok.svg')",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "70%",
+          opacity: 0.25, // makes it look transparent
         }}
       />
 
@@ -41,9 +45,9 @@ const Login = () => {
           position: "relative",
           width: "420px",
           background: "white",
-          borderRadius: "16px",
+          borderRadius: "14px",
           padding: "40px",
-          boxShadow: "0 25px 60px rgba(0,0,0,0.35)",
+          boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
         }}
       >
         <h2 style={{ textAlign: "center", marginBottom: "6px" }}>
@@ -58,7 +62,7 @@ const Login = () => {
             marginBottom: "30px",
           }}
         >
-          Complaint Management System
+          Public Complaint Management System
         </p>
 
         {/* Email */}
