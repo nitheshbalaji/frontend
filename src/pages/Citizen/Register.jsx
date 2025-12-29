@@ -1,138 +1,192 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React from "react";
 
 export default function Register() {
-  const navigate = useNavigate();
-
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    city: "",
-    state: "",
-    pincode: ""
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    // 🔥 backend will send OTP later
-    navigate("/verify-otp");
+    // registration logic later
   };
 
   return (
-    <div className="auth-bg">
-      <div className="auth-card">
-
-        {/* Avatar */}
-        <div className="auth-avatar">
-          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 7.5a3.75 3.75 0 11-7.5 0
-                 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"
-            />
-          </svg>
+    <div
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg, #dbeafe, #fef3c7, #e0f2fe)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "30px",
+      }}
+    >
+      {/* Card */}
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "480px",
+          background: "rgba(255,255,255,0.95)",
+          borderRadius: "22px",
+          padding: "48px 38px 42px",
+          boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
+          position: "relative",
+        }}
+      >
+        {/* Icon */}
+        <div
+          style={{
+            position: "absolute",
+            top: "-48px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "96px",
+            height: "96px",
+            borderRadius: "50%",
+            background:
+              "linear-gradient(135deg, #2563eb, #1e40af)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            fontSize: "38px",
+            boxShadow: "0 14px 30px rgba(0,0,0,0.35)",
+          }}
+        >
+          📝
         </div>
 
-        <h2 style={{ marginBottom: "6px" }}>Citizen Registration</h2>
-        <p style={{ fontSize: "14px", opacity: 0.8, marginBottom: "22px" }}>
+        {/* Header */}
+        <h2
+          style={{
+            marginTop: "38px",
+            textAlign: "center",
+            fontSize: "26px",
+            fontWeight: "700",
+          }}
+        >
+          Citizen Registration
+        </h2>
+
+        <p
+          style={{
+            textAlign: "center",
+            color: "#555",
+            fontSize: "14px",
+            marginBottom: "32px",
+          }}
+        >
           Enter your details to receive OTP
         </p>
 
-        <form onSubmit={handleSubmit}>
-          <div className="auth-input">
-            <span>👤</span>
-            <input
-              name="firstName"
-              placeholder="First Name"
-              onChange={handleChange}
-            />
-          </div>
+        {/* Form */}
+        <form onSubmit={handleSubmit} style={{ padding: "0 4px" }}>
+          <FormInput label="First Name" placeholder="Enter first name" />
+          <FormInput label="Last Name" placeholder="Enter last name" />
+          <FormInput label="Email" placeholder="Enter your email" />
+          <FormInput label="Mobile Number" placeholder="Enter mobile number" />
+          <FormInput label="Address" placeholder="Enter address" />
+          <FormInput label="City" placeholder="Enter city" />
 
-          <div className="auth-input">
-            <span>👤</span>
-            <input
-              name="lastName"
-              placeholder="Last Name"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="auth-input">
-            <span>📧</span>
-            <input
-              name="email"
-              placeholder="Email Address"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="auth-input">
-            <span>📱</span>
-            <input
-              name="phone"
-              placeholder="Mobile Number"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="auth-input">
-            <span>🏠</span>
-            <input
-              name="address"
-              placeholder="Address"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="auth-input">
-            <span>🏙️</span>
-            <input
-              name="city"
-              placeholder="City"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="auth-input">
-            <span>🗺️</span>
-            <input
-              name="state"
-              placeholder="State"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="auth-input">
-            <span>📮</span>
-            <input
-              name="pincode"
-              placeholder="Pincode"
-              onChange={handleChange}
-            />
-          </div>
-
-          <button className="auth-btn" type="submit">
-            SEND OTP
+          <button
+            type="submit"
+            style={buttonStyle}
+            onMouseOver={(e) => {
+              e.target.style.transform = "translateY(-2px)";
+              e.target.style.boxShadow =
+                "0 10px 25px rgba(37,99,235,0.4)";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.transform = "translateY(0)";
+              e.target.style.boxShadow = "none";
+            }}
+          >
+            Register
           </button>
         </form>
 
-        <div style={{ marginTop: "16px", fontSize: "13px" }}>
-          Already registered?{" "}
-          <Link to="/login" style={{ fontWeight: 600 }}>
-            Sign in
-          </Link>
-        </div>
-
+        {/* Footer */}
+        <p
+          style={{
+            marginTop: "18px",
+            fontSize: "13px",
+            textAlign: "center",
+            color: "#666",
+          }}
+        >
+          Already have an account?{" "}
+          <span style={{ color: "#2563eb", fontWeight: "600" }}>
+            Login
+          </span>
+        </p>
       </div>
     </div>
   );
 }
+
+/* =====================
+   Reusable Input Block
+   ===================== */
+
+function FormInput({ label, placeholder }) {
+  return (
+    <div style={{ marginBottom: "22px" }}>
+      <label style={labelStyle}>{label}</label>
+      <input
+        type="text"
+        placeholder={placeholder}
+        style={inputStyle}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+    </div>
+  );
+}
+
+/* =====================
+   Styles
+   ===================== */
+
+const labelStyle = {
+  display: "block",
+  marginBottom: "8px",
+  fontSize: "14px",
+  fontWeight: "600",
+  color: "#374151",
+};
+
+const inputStyle = {
+  width: "100%",
+  boxSizing: "border-box",
+  padding: "14px 16px",
+  borderRadius: "12px",
+  border: "1.5px solid #d1d5db",
+  fontSize: "15px",
+  backgroundColor: "#f9fafb",
+  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.05)",
+  transition: "all 0.25s ease",
+};
+
+const buttonStyle = {
+  width: "100%",
+  padding: "15px",
+  borderRadius: "999px",
+  border: "none",
+  background: "linear-gradient(90deg, #2563eb, #1e40af)",
+  color: "white",
+  fontSize: "16px",
+  fontWeight: "600",
+  cursor: "pointer",
+  transition: "all 0.25s ease",
+};
+
+const handleFocus = (e) => {
+  e.target.style.borderColor = "#2563eb";
+  e.target.style.backgroundColor = "#ffffff";
+  e.target.style.boxShadow =
+    "0 0 0 4px rgba(37,99,235,0.15)";
+};
+
+const handleBlur = (e) => {
+  e.target.style.borderColor = "#d1d5db";
+  e.target.style.backgroundColor = "#f9fafb";
+  e.target.style.boxShadow =
+    "inset 0 1px 2px rgba(0,0,0,0.05)";
+};
