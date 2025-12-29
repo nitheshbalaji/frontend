@@ -7,8 +7,8 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login();        // DEV login
-    navigate("/");        // go to logged-in home
+    await login();      // DEV login
+    navigate("/");      // go to home
   };
 
   return (
@@ -23,7 +23,7 @@ export default function Login() {
         padding: "30px",
       }}
     >
-      {/* Login Card */}
+      {/* Card */}
       <div
         style={{
           width: "100%",
@@ -35,7 +35,7 @@ export default function Login() {
           position: "relative",
         }}
       >
-        {/* Top Icon */}
+        {/* Icon */}
         <div
           style={{
             position: "absolute",
@@ -58,7 +58,7 @@ export default function Login() {
           👤
         </div>
 
-        {/* Title */}
+        {/* Header */}
         <h2
           style={{
             marginTop: "35px",
@@ -84,22 +84,28 @@ export default function Login() {
         {/* Form */}
         <form onSubmit={handleSubmit}>
           {/* Email */}
-          <input
-            type="email"
-            placeholder="Enter your email"
-            style={inputStyle}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          />
+          <div style={{ marginBottom: "20px" }}>
+            <label style={labelStyle}>Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              style={inputStyle}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </div>
 
           {/* Password */}
-          <input
-            type="password"
-            placeholder="Enter your password"
-            style={inputStyle}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          />
+          <div style={{ marginBottom: "22px" }}>
+            <label style={labelStyle}>Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              style={inputStyle}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </div>
 
           {/* Options */}
           <div
@@ -130,19 +136,7 @@ export default function Login() {
           {/* Button */}
           <button
             type="submit"
-            style={{
-              width: "100%",
-              padding: "15px",
-              borderRadius: "999px",
-              border: "none",
-              background:
-                "linear-gradient(90deg, #2563eb, #1e40af)",
-              color: "white",
-              fontSize: "16px",
-              fontWeight: "600",
-              cursor: "pointer",
-              transition: "all 0.25s ease",
-            }}
+            style={buttonStyle}
             onMouseOver={(e) => {
               e.target.style.transform = "translateY(-2px)";
               e.target.style.boxShadow =
@@ -176,19 +170,39 @@ export default function Login() {
   );
 }
 
-/* ======================
-   Input Styling Helpers
-   ====================== */
+/* =====================
+   Styles & Helpers
+   ===================== */
+
+const labelStyle = {
+  display: "block",
+  marginBottom: "6px",
+  fontSize: "14px",
+  fontWeight: "600",
+  color: "#374151",
+};
 
 const inputStyle = {
   width: "100%",
   padding: "14px 16px",
-  marginBottom: "18px",
   borderRadius: "12px",
   border: "1.5px solid #d1d5db",
   fontSize: "15px",
   backgroundColor: "#f9fafb",
   boxShadow: "inset 0 1px 2px rgba(0,0,0,0.05)",
+  transition: "all 0.25s ease",
+};
+
+const buttonStyle = {
+  width: "100%",
+  padding: "15px",
+  borderRadius: "999px",
+  border: "none",
+  background: "linear-gradient(90deg, #2563eb, #1e40af)",
+  color: "white",
+  fontSize: "16px",
+  fontWeight: "600",
+  cursor: "pointer",
   transition: "all 0.25s ease",
 };
 
