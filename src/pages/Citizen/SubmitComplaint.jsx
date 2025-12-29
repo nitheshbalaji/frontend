@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const SubmitComplaint = () => {
   // Hide sidebar & topbar ONLY on this page
@@ -9,12 +9,43 @@ const SubmitComplaint = () => {
     if (sidebar) sidebar.style.display = "none";
     if (topbar) topbar.style.display = "none";
 
-    // Restore on unmount
     return () => {
       if (sidebar) sidebar.style.display = "";
       if (topbar) topbar.style.display = "";
     };
   }, []);
+
+  // Image states
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [analysisStatus, setAnalysisStatus] = useState("");
+
+  // Handle image upload
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
+    analyzeImage(file);
+  };
+
+  // Mock AI analysis (replace with backend API later)
+  const analyzeImage = (file) => {
+    setAnalysisStatus("analyzing");
+
+    // Simulate AI processing delay
+    setTimeout(() => {
+      // Random result for demo
+      const isReal = Math.random() > 0.3;
+
+      if (isReal) {
+        setAnalysisStatus("real");
+      } else {
+        setAnalysisStatus("fake");
+      }
+    }, 2000);
+  };
 
   return (
     <div
@@ -62,7 +93,7 @@ const SubmitComplaint = () => {
         >
           <span>🔒 Identity Protected</span>
           <span>⏱ Resolution: 3–7 working days</span>
-          <span>📌 Trackable Complaint ID</span>
+          <span>🤖 AI-verified evidence</span>
         </div>
 
         <form className="register-form">
@@ -74,9 +105,6 @@ const SubmitComplaint = () => {
               placeholder="Eg: Street lights not working near my house"
               required
             />
-            <small style={{ color: "#666" }}>
-              Keep it short and specific
-            </small>
           </div>
 
           {/* Category */}
@@ -90,9 +118,6 @@ const SubmitComplaint = () => {
               <option>Electricity</option>
               <option>Other</option>
             </select>
-            <small style={{ color: "#666" }}>
-              Choosing the right category speeds up resolution
-            </small>
           </div>
 
           {/* Description */}
@@ -105,12 +130,78 @@ const SubmitComplaint = () => {
             />
           </div>
 
+          {/* IMAGE UPLOAD SECTION */}
+          <div className="form-group">
+            <label>Upload Image Evidence (Optional)</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+            <small style={{ color: "#666" }}>
+              Supported formats: JPG, PNG
+            </small>
+          </div>
+
+          {/* Image Preview */}
+          {preview && (
+            <div
+              style={{
+                marginTop: "15px",
+                textAlign: "center",
+              }}
+            >
+              <img
+                src={preview}
+                alt="Preview"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "220px",
+                  borderRadius: "12px",
+                  boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+                }}
+              />
+            </div>
+          )}
+
+          {/* AI Analysis Status */}
+          {analysisStatus && (
+            <div
+              style={{
+                marginTop: "14px",
+                padding: "12px",
+                borderRadius: "10px",
+                background:
+                  analysisStatus === "analyzing"
+                    ? "#fef3c7"
+                    : analysisStatus === "real"
+                    ? "#dcfce7"
+                    : "#fee2e2",
+                color:
+                  analysisStatus === "real"
+                    ? "#166534"
+                    : analysisStatus === "fake"
+                    ? "#991b1b"
+                    : "#92400e",
+                fontWeight: "600",
+                textAlign: "center",
+              }}
+            >
+              {analysisStatus === "analyzing" &&
+                "🤖 AI is analyzing the image..."}
+              {analysisStatus === "real" &&
+                "✅ Image appears to be genuine"}
+              {analysisStatus === "fake" &&
+                "⚠️ Image may be manipulated or fake"}
+            </div>
+          )}
+
           {/* Submit */}
           <button
             type="submit"
             className="submit-btn"
             style={{
-              marginTop: "10px",
+              marginTop: "18px",
               fontSize: "17px",
               padding: "16px",
               borderRadius: "14px",
@@ -129,7 +220,8 @@ const SubmitComplaint = () => {
             textAlign: "center",
           }}
         >
-          Please avoid duplicate complaints. False reporting may delay action.
+          Image evidence helps us verify complaints faster using AI-assisted
+          validation.
         </p>
       </div>
     </div>
@@ -137,4 +229,3 @@ const SubmitComplaint = () => {
 };
 
 export default SubmitComplaint;
-
