@@ -11,7 +11,6 @@ const ComplaintHistory = () => {
   }, []);
 
   // Mock complaint data
-  // image = USER UPLOADED IMAGE (stored in public folder for now)
   const complaints = [
     {
       id: 1,
@@ -65,7 +64,7 @@ const ComplaintHistory = () => {
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* ================= HERO SECTION ================= */}
+        {/* HERO SECTION */}
         <div
           style={{
             background:
@@ -81,12 +80,12 @@ const ComplaintHistory = () => {
             Your Complaint Journey
           </h1>
           <p style={{ opacity: 0.9, maxWidth: "700px" }}>
-            View all complaints you have raised, track their progress, and
-            see how issues are being resolved by authorities.
+            View all complaints you have raised and track their
+            resolution progress in real time.
           </p>
         </div>
 
-        {/* ================= COMPLAINT CARDS ================= */}
+        {/* COMPLAINT CARDS */}
         {complaints.map((c) => (
           <div
             key={c.id}
@@ -101,7 +100,7 @@ const ComplaintHistory = () => {
               boxShadow: "0 22px 55px rgba(0,0,0,0.12)",
             }}
           >
-            {/* Image Evidence */}
+            {/* User Uploaded Image */}
             <img
               src={c.image}
               alt="User uploaded evidence"
@@ -142,9 +141,9 @@ const ComplaintHistory = () => {
                 </span>
               </div>
 
-              {/* Meta */}
+              {/* Meta (NO ICONS) */}
               <p style={{ marginTop: "6px", color: "#6b7280" }}>
-                📅 {c.date} • 🗂 {c.category}
+                {c.date} • {c.category}
               </p>
 
               {/* Description */}
