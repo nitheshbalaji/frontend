@@ -7,10 +7,8 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // 🔥 DEV LOGIN (ignore credentials for now)
-    await login();
-    navigate("/"); // logged-in home
+    await login();        // DEV login
+    navigate("/");        // go to logged-in home
   };
 
   return (
@@ -30,10 +28,10 @@ export default function Login() {
         style={{
           width: "100%",
           maxWidth: "420px",
-          background: "rgba(255, 255, 255, 0.95)",
-          borderRadius: "20px",
-          padding: "40px 35px",
-          boxShadow: "0 25px 60px rgba(0,0,0,0.2)",
+          background: "rgba(255,255,255,0.95)",
+          borderRadius: "22px",
+          padding: "45px 35px 40px",
+          boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
           position: "relative",
         }}
       >
@@ -41,11 +39,11 @@ export default function Login() {
         <div
           style={{
             position: "absolute",
-            top: "-45px",
+            top: "-48px",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "90px",
-            height: "90px",
+            width: "96px",
+            height: "96px",
             borderRadius: "50%",
             background:
               "linear-gradient(135deg, #2563eb, #1e40af)",
@@ -53,8 +51,8 @@ export default function Login() {
             alignItems: "center",
             justifyContent: "center",
             color: "white",
-            fontSize: "36px",
-            boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+            fontSize: "38px",
+            boxShadow: "0 14px 30px rgba(0,0,0,0.35)",
           }}
         >
           👤
@@ -63,7 +61,7 @@ export default function Login() {
         {/* Title */}
         <h2
           style={{
-            marginTop: "30px",
+            marginTop: "35px",
             textAlign: "center",
             fontSize: "26px",
             fontWeight: "700",
@@ -77,7 +75,7 @@ export default function Login() {
             textAlign: "center",
             color: "#555",
             fontSize: "14px",
-            marginBottom: "28px",
+            marginBottom: "30px",
           }}
         >
           Smart Public Complaint Management System
@@ -85,18 +83,25 @@ export default function Login() {
 
         {/* Form */}
         <form onSubmit={handleSubmit}>
+          {/* Email */}
           <input
             type="email"
-            placeholder="Email (ignored)"
+            placeholder="Enter your email"
             style={inputStyle}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
 
+          {/* Password */}
           <input
             type="password"
-            placeholder="Password (ignored)"
+            placeholder="Enter your password"
             style={inputStyle}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
 
+          {/* Options */}
           <div
             style={{
               display: "flex",
@@ -111,16 +116,23 @@ export default function Login() {
               Remember me
             </label>
 
-            <span style={{ color: "#2563eb", cursor: "pointer" }}>
+            <span
+              style={{
+                color: "#2563eb",
+                cursor: "pointer",
+                fontWeight: "500",
+              }}
+            >
               Forgot password?
             </span>
           </div>
 
+          {/* Button */}
           <button
             type="submit"
             style={{
               width: "100%",
-              padding: "14px",
+              padding: "15px",
               borderRadius: "999px",
               border: "none",
               background:
@@ -129,14 +141,17 @@ export default function Login() {
               fontSize: "16px",
               fontWeight: "600",
               cursor: "pointer",
-              transition: "transform 0.2s ease",
+              transition: "all 0.25s ease",
             }}
-            onMouseOver={(e) =>
-              (e.target.style.transform = "translateY(-2px)")
-            }
-            onMouseOut={(e) =>
-              (e.target.style.transform = "translateY(0)")
-            }
+            onMouseOver={(e) => {
+              e.target.style.transform = "translateY(-2px)";
+              e.target.style.boxShadow =
+                "0 10px 25px rgba(37,99,235,0.4)";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.transform = "translateY(0)";
+              e.target.style.boxShadow = "none";
+            }}
           >
             Login
           </button>
@@ -161,13 +176,32 @@ export default function Login() {
   );
 }
 
-/* Reusable Input Style */
+/* ======================
+   Input Styling Helpers
+   ====================== */
+
 const inputStyle = {
   width: "100%",
-  padding: "12px 14px",
-  marginBottom: "16px",
-  borderRadius: "10px",
+  padding: "14px 16px",
+  marginBottom: "18px",
+  borderRadius: "12px",
   border: "1.5px solid #d1d5db",
-  fontSize: "14px",
-  outline: "none",
+  fontSize: "15px",
+  backgroundColor: "#f9fafb",
+  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.05)",
+  transition: "all 0.25s ease",
+};
+
+const handleFocus = (e) => {
+  e.target.style.borderColor = "#2563eb";
+  e.target.style.backgroundColor = "#ffffff";
+  e.target.style.boxShadow =
+    "0 0 0 4px rgba(37,99,235,0.15)";
+};
+
+const handleBlur = (e) => {
+  e.target.style.borderColor = "#d1d5db";
+  e.target.style.backgroundColor = "#f9fafb";
+  e.target.style.boxShadow =
+    "inset 0 1px 2px rgba(0,0,0,0.05)";
 };
