@@ -8,7 +8,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login();
-    navigate("/");
+    navigate("/"); // logged-in home
   };
 
   return (
@@ -75,19 +75,14 @@ export default function Login() {
             textAlign: "center",
             color: "#555",
             fontSize: "14px",
-            marginBottom: "32px",
+            marginBottom: "30px",
           }}
         >
           Smart Public Complaint Management System
         </p>
 
         {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            padding: "0 4px", // 🔥 prevents edge touching
-          }}
-        >
+        <form onSubmit={handleSubmit} style={{ padding: "0 4px" }}>
           {/* Email */}
           <div style={{ marginBottom: "22px" }}>
             <label style={labelStyle}>Email</label>
@@ -166,7 +161,14 @@ export default function Login() {
           }}
         >
           Don’t have an account?{" "}
-          <span style={{ color: "#2563eb", fontWeight: "600" }}>
+          <span
+            style={{
+              color: "#2563eb",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/register")}
+          >
             Register
           </span>
         </p>
