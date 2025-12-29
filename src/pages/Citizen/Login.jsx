@@ -7,8 +7,8 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login();      // DEV login
-    navigate("/");      // go to home
+    await login();
+    navigate("/");
   };
 
   return (
@@ -30,7 +30,7 @@ export default function Login() {
           maxWidth: "420px",
           background: "rgba(255,255,255,0.95)",
           borderRadius: "22px",
-          padding: "45px 35px 40px",
+          padding: "48px 38px 42px",
           boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
           position: "relative",
         }}
@@ -61,7 +61,7 @@ export default function Login() {
         {/* Header */}
         <h2
           style={{
-            marginTop: "35px",
+            marginTop: "38px",
             textAlign: "center",
             fontSize: "26px",
             fontWeight: "700",
@@ -75,16 +75,21 @@ export default function Login() {
             textAlign: "center",
             color: "#555",
             fontSize: "14px",
-            marginBottom: "30px",
+            marginBottom: "32px",
           }}
         >
           Smart Public Complaint Management System
         </p>
 
         {/* Form */}
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            padding: "0 4px", // 🔥 prevents edge touching
+          }}
+        >
           {/* Email */}
-          <div style={{ marginBottom: "20px" }}>
+          <div style={{ marginBottom: "22px" }}>
             <label style={labelStyle}>Email</label>
             <input
               type="email"
@@ -96,7 +101,7 @@ export default function Login() {
           </div>
 
           {/* Password */}
-          <div style={{ marginBottom: "22px" }}>
+          <div style={{ marginBottom: "24px" }}>
             <label style={labelStyle}>Password</label>
             <input
               type="password"
@@ -114,7 +119,7 @@ export default function Login() {
               justifyContent: "space-between",
               alignItems: "center",
               fontSize: "13px",
-              marginBottom: "22px",
+              marginBottom: "24px",
             }}
           >
             <label style={{ display: "flex", gap: "6px" }}>
@@ -171,12 +176,12 @@ export default function Login() {
 }
 
 /* =====================
-   Styles & Helpers
+   Styles
    ===================== */
 
 const labelStyle = {
   display: "block",
-  marginBottom: "6px",
+  marginBottom: "8px",
   fontSize: "14px",
   fontWeight: "600",
   color: "#374151",
@@ -184,6 +189,7 @@ const labelStyle = {
 
 const inputStyle = {
   width: "100%",
+  boxSizing: "border-box",
   padding: "14px 16px",
   borderRadius: "12px",
   border: "1.5px solid #d1d5db",
