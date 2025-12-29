@@ -18,36 +18,34 @@ const Login = () => {
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: "#eef2ff",
+        backgroundImage: "url('/bg/smart-city.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         position: "relative",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      {/* Subtle City/Public Background */}
+      {/* TRANSPARENT OVERLAY (THIS makes image subtle) */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage:
-            "url('https://raw.githubusercontent.com/undraw/undraw/master/illustrations/city_life_re_8tok.svg')",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "70%",
-          opacity: 0.25, // makes it look transparent
+          background:
+            "linear-gradient(135deg, rgba(15,23,42,0.65), rgba(30,64,175,0.55))",
         }}
       />
 
-      {/* Login Card */}
+      {/* LOGIN CARD */}
       <div
         style={{
           position: "relative",
           width: "420px",
-          background: "white",
-          borderRadius: "14px",
+          background: "rgba(255,255,255,0.92)",
+          borderRadius: "16px",
           padding: "40px",
-          boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
+          boxShadow: "0 30px 70px rgba(0,0,0,0.35)",
         }}
       >
         <h2 style={{ textAlign: "center", marginBottom: "6px" }}>
@@ -59,10 +57,10 @@ const Login = () => {
             textAlign: "center",
             fontSize: "14px",
             color: "#555",
-            marginBottom: "30px",
+            marginBottom: "28px",
           }}
         >
-          Public Complaint Management System
+          Smart Public Complaint Management System
         </p>
 
         {/* Email */}
