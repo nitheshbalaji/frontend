@@ -19,49 +19,69 @@ const Login = () => {
       style={{
         minHeight: "100vh",
         position: "relative",
-        background:
-          "linear-gradient(180deg, #dbeafe 0%, #e0f2fe 60%, #bae6fd 100%)",
         overflow: "hidden",
+        background:
+          "linear-gradient(180deg, #dbeafe 0%, #bfdbfe 40%, #93c5fd 100%)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      {/* SVG CITY BACKGROUND (NO IMAGE FILE) */}
-      <svg
-        viewBox="0 0 1440 400"
-        preserveAspectRatio="none"
+      {/* ===== CLOUD LAYER ===== */}
+      <div
+        style={{
+          position: "absolute",
+          top: "8%",
+          left: "-10%",
+          width: "120%",
+          height: "180px",
+          background:
+            "radial-gradient(circle at 30% 50%, rgba(255,255,255,0.9), transparent 60%), radial-gradient(circle at 60% 50%, rgba(255,255,255,0.85), transparent 65%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.9), transparent 60%)",
+        }}
+      />
+
+      {/* ===== FAR CITY LAYER ===== */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "35%",
+          left: 0,
+          width: "100%",
+          height: "200px",
+          background:
+            "linear-gradient(180deg, rgba(59,130,246,0.35), rgba(37,99,235,0.45))",
+          clipPath:
+            "polygon(0 60%, 10% 50%, 20% 55%, 30% 45%, 40% 50%, 50% 42%, 60% 48%, 70% 40%, 80% 45%, 90% 38%, 100% 42%, 100% 100%, 0 100%)",
+        }}
+      />
+
+      {/* ===== NEAR CITY / INFRASTRUCTURE LAYER ===== */}
+      <div
         style={{
           position: "absolute",
           bottom: 0,
+          left: 0,
           width: "100%",
-          height: "50%",
-          opacity: 0.35,
+          height: "260px",
+          background:
+            "linear-gradient(180deg, #1e40af, #1e3a8a)",
+          clipPath:
+            "polygon(0 55%, 8% 45%, 18% 50%, 28% 42%, 38% 48%, 48% 40%, 58% 46%, 68% 38%, 78% 44%, 88% 36%, 100% 42%, 100% 100%, 0 100%)",
         }}
-      >
-        <path
-          d="M0,250L80,230C160,210,320,170,480,165C640,160,800,190,960,200C1120,210,1280,200,1360,195L1440,190L1440,400L0,400Z"
-          fill="#2563eb"
-        />
-        <path
-          d="M0,280L120,260C240,240,480,200,720,195C960,190,1200,230,1320,250L1440,270L1440,400L0,400Z"
-          fill="#1e40af"
-        />
-      </svg>
+      />
 
-      {/* LOGIN CARD */}
+      {/* ===== LOGIN CARD ===== */}
       <div
         style={{
           width: "420px",
-          background: "rgba(255,255,255,0.9)",
-          backdropFilter: "blur(16px)",
+          background: "rgba(255,255,255,0.88)",
+          backdropFilter: "blur(18px)",
           borderRadius: "28px",
           padding: "44px 36px",
-          boxShadow: "0 40px 80px rgba(0,0,0,0.25)",
-          zIndex: 2,
+          boxShadow: "0 40px 90px rgba(0,0,0,0.3)",
+          zIndex: 5,
         }}
       >
-        {/* Header */}
         <h2
           style={{
             textAlign: "center",
@@ -72,6 +92,7 @@ const Login = () => {
         >
           Citizen Login
         </h2>
+
         <p
           style={{
             textAlign: "center",
