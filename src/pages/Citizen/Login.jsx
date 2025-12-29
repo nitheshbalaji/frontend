@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const sidebar = document.querySelector(".sidebar");
     const topbar = document.querySelector(".topbar");
@@ -14,19 +17,27 @@ const Login = () => {
     };
   }, []);
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // 🔐 Later you can add authentication here
+    // For now, direct login
+    navigate("/citizen/dashboard");
+  };
+
   return (
     <div
       style={{
         minHeight: "100vh",
         background:
-          "linear-gradient(135deg, #dbeafe, #fef3c7, #e0f2fe)", // same family as register complaint
+          "linear-gradient(135deg, #dbeafe, #fef3c7, #e0f2fe)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      {/* Login Card */}
-      <div
+      <form
+        onSubmit={handleLogin}
         style={{
           width: "420px",
           background: "white",
@@ -36,7 +47,7 @@ const Login = () => {
           textAlign: "center",
         }}
       >
-        {/* Avatar Circle */}
+        {/* Avatar */}
         <div
           style={{
             width: "80px",
@@ -48,14 +59,12 @@ const Login = () => {
             justifyContent: "center",
             alignItems: "center",
             margin: "0 auto 12px",
-            boxShadow: "0 10px 25px rgba(37,99,235,0.4)",
           }}
         >
           <span style={{ fontSize: "36px", color: "white" }}>👤</span>
         </div>
 
-        {/* Login Title */}
-        <h2 style={{ marginBottom: "4px" }}>Login</h2>
+        <h2>Login</h2>
         <div
           style={{
             width: "50px",
@@ -71,6 +80,7 @@ const Login = () => {
           <label>Email</label>
           <input
             type="email"
+            required
             placeholder="Enter your email"
             style={{
               width: "100%",
@@ -78,7 +88,6 @@ const Login = () => {
               marginTop: "6px",
               borderRadius: "10px",
               border: "1.5px solid #cbd5e1",
-              fontSize: "14px",
             }}
           />
         </div>
@@ -88,6 +97,7 @@ const Login = () => {
           <label>Password</label>
           <input
             type="password"
+            required
             placeholder="Enter your password"
             style={{
               width: "100%",
@@ -95,7 +105,6 @@ const Login = () => {
               marginTop: "6px",
               borderRadius: "10px",
               border: "1.5px solid #cbd5e1",
-              fontSize: "14px",
             }}
           />
         </div>
@@ -119,6 +128,7 @@ const Login = () => {
 
         {/* Login Button */}
         <button
+          type="submit"
           style={{
             width: "100%",
             padding: "14px",
@@ -130,12 +140,11 @@ const Login = () => {
             fontSize: "16px",
             fontWeight: "600",
             cursor: "pointer",
-            boxShadow: "0 12px 30px rgba(37,99,235,0.4)",
           }}
         >
           Login
         </button>
-      </div>
+      </form>
     </div>
   );
 };
