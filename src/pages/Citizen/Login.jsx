@@ -1,53 +1,135 @@
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import React, { useEffect } from "react";
 
-export default function Login() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+const Login = () => {
+  useEffect(() => {
+    const sidebar = document.querySelector(".sidebar");
+    const topbar = document.querySelector(".topbar");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    await login();     // DEV login
-    navigate("/");
-  };
+    if (sidebar) sidebar.style.display = "none";
+    if (topbar) topbar.style.display = "none";
+
+    return () => {
+      if (sidebar) sidebar.style.display = "";
+      if (topbar) topbar.style.display = "";
+    };
+  }, []);
 
   return (
-    <div className="auth-bg">
-      <div className="auth-card">
-        <div className="auth-avatar">
-          {/* user icon */}
-          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"
-            />
-          </svg>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#eef2ff",
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {/* Subtle City/Public Background */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "url('https://raw.githubusercontent.com/undraw/undraw/master/illustrations/city_life_re_8tok.svg')",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "70%",
+          opacity: 0.25, // makes it look transparent
+        }}
+      />
+
+      {/* Login Card */}
+      <div
+        style={{
+          position: "relative",
+          width: "420px",
+          background: "white",
+          borderRadius: "14px",
+          padding: "40px",
+          boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
+        }}
+      >
+        <h2 style={{ textAlign: "center", marginBottom: "6px" }}>
+          Citizen Login
+        </h2>
+
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "14px",
+            color: "#555",
+            marginBottom: "30px",
+          }}
+        >
+          Public Complaint Management System
+        </p>
+
+        {/* Email */}
+        <div style={{ marginBottom: "18px" }}>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            style={{
+              width: "100%",
+              padding: "12px",
+              marginTop: "6px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+            }}
+          />
         </div>
 
-        <form onSubmit={handleLogin}>
-          <div className="auth-input">
-            <span>👤</span>
-            <input type="email" placeholder="Email ID" />
-          </div>
+        {/* Password */}
+        <div style={{ marginBottom: "16px" }}>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            style={{
+              width: "100%",
+              padding: "12px",
+              marginTop: "6px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+            }}
+          />
+        </div>
 
-          <div className="auth-input">
-            <span>🔒</span>
-            <input type="password" placeholder="Password" />
-          </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: "14px",
+            marginBottom: "22px",
+          }}
+        >
+          <label>
+            <input type="checkbox" /> Remember me
+          </label>
+          <span style={{ color: "#2563eb", cursor: "pointer" }}>
+            Forgot password?
+          </span>
+        </div>
 
-          <div className="auth-footer">
-            <label>
-              <input type="checkbox" /> Remember me
-            </label>
-            <a href="#">Forgot Password?</a>
-          </div>
-
-          <button className="auth-btn" type="submit">
-            LOGIN
-          </button>
-        </form>
+        <button
+          style={{
+            width: "100%",
+            padding: "14px",
+            border: "none",
+            borderRadius: "8px",
+            background: "#2563eb",
+            color: "white",
+            fontSize: "16px",
+            cursor: "pointer",
+          }}
+        >
+          Login
+        </button>
       </div>
     </div>
   );
-}
+};
+
+export default Login;
