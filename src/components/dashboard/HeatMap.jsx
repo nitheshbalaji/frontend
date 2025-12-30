@@ -1,69 +1,98 @@
 import "./HeatMap.css";
 
-const heatmapData = [
-  { day: "Mon", values: [1, 3, 5, 2, 0, 1] },
-  { day: "Tue", values: [2, 4, 6, 3, 1, 2] },
-  { day: "Wed", values: [4, 6, 9, 5, 3, 2] },
-  { day: "Thu", values: [3, 5, 8, 6, 4, 3] },
-  { day: "Fri", values: [5, 7, 10, 8, 6, 4] },
-  { day: "Sat", values: [2, 3, 4, 3, 2, 1] },
-  { day: "Sun", values: [1, 2, 2, 1, 0, 0] },
+const localityData = [
+  {
+    name: "Ward 1",
+    complaints: 12,
+    severity: 2,
+  },
+  {
+    name: "Ward 2",
+    complaints: 28,
+    severity: 4,
+  },
+  {
+    name: "Ward 3",
+    complaints: 45,
+    severity: 5,
+  },
+  {
+    name: "Ward 4",
+    complaints: 18,
+    severity: 3,
+  },
+  {
+    name: "Ward 5",
+    complaints: 6,
+    severity: 1,
+  },
+  {
+    name: "Ward 6",
+    complaints: 32,
+    severity: 4,
+  },
 ];
 
+const getComplaintLevel = (count) => {
+  if (count <= 5) return "low";
+  if (count <= 15) return "medium";
+  if (count <= 30) return "high";
+  return "critical";
+};
+
+const getSeverityLevel = (sev) => {
+  if (sev === 1) return "sev-low";
+  if (sev === 2) return "sev-moderate";
+  if (sev === 3) return "sev-high";
+  return "sev-critical";
+};
+
 export default function HeatMap() {
-  const getLevel = (value) => {
-    if (value === 0) return "l0";
-    if (value <= 2) return "l1";
-    if (value <= 4) return "l2";
-    if (value <= 6) return "l3";
-    if (value <= 8) return "l4";
-    return "l5";
-  };
-
   return (
-    <div className="dashboard-card heatmap-main">
-      <h3>City Complaint Heatmap</h3>
-      <p className="heatmap-desc">
-        Complaint density by day and time (last 7 days)
-      </p>
+    <div className="dashboard-card heatmap-wrapper">
 
-      <div className="heatmap-wrapper">
-        <div className="heatmap-hours">
-          <span>6 AM</span>
-          <span>9 AM</span>
-          <span>12 PM</span>
-          <span>3 PM</span>
-          <span>6 PM</span>
-          <span>9 PM</span>
-        </div>
+      {/* COMPLAINT COUNT HEATMAP */}
+      <div className="heatmap-section">
+        <h3>Complaints by Locality</h3>
+        <p className="heatmap-sub">
+          Density of complaints across city areas
+        </p>
 
         <div className="heatmap-grid">
-          {heatmapData.map((row, i) => (
-            <div key={i} className="heatmap-row">
-              <span className="heatmap-day">{row.day}</span>
-
-              {row.values.map((val, j) => (
-                <div
-                  key={j}
-                  className={`heatmap-cell ${getLevel(val)}`}
-                  title={`${val} complaints`}
-                />
-              ))}
+          {localityData.map((loc) => (
+            <div
+              key={loc.name}
+              className={`heatmap-tile ${getComplaintLevel(loc.complaints)}`}
+              title={`${loc.complaints} complaints`}
+            >
+              <span>{loc.name}</span>
+              <strong>{loc.complaints}</strong>
             </div>
           ))}
         </div>
       </div>
 
-      {/* LEGEND */}
-      <div className="heatmap-legend">
-        <span>Low</span>
-        <div className="legend-box l1" />
-        <div className="legend-box l2" />
-        <div className="legend-box l3" />
-        <div className="legend-box l4" />
-        <div className="legend-box l5" />
-        <span>High</span>
+      {/* SEVERITY HEATMAP */}
+      <div className="heatmap-section">
+        <h3>Severity by Locality</h3>
+        <p className="heatmap-sub">
+          Criticality of issues reported
+        </p>
+
+        <div className="heatmap-grid">
+          {localityData.map((loc) => (
+            <div
+              key={loc.name}
+              className={`heatmap-tile ${getSeverityLevel(loc.severity)}`}
+              title={`Severity level ${loc.severity}`}
+            >
+              <span>{loc.name}</span>
+              <strong>Level {loc.severity}</strong>
+            </div>
+          ))}
+        </div>
       </div>
+
     </div>
   );
 }
