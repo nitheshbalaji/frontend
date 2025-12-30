@@ -28,9 +28,9 @@
    LOGO – CITYCONNECT
 ========================= */
 .logo {
-  font-size: 32px;          /* ⬅ increased size */
+  font-size: 34px;          /* ⬅ increased size */
   font-weight: 800;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   background: linear-gradient(90deg, #2563eb, #7c3aed);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
