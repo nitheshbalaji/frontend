@@ -16,12 +16,44 @@ export default function Home() {
         <div className="nav-left">
           {user && (
             <div
-              className="hamburger-icon"
-              onClick={() => setMenuOpen(true)}
-              title="Menu"
-            >
-              ☰
-            </div>
+  onClick={() => setMenuOpen(true)}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = "scale(1.08)";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+  style={{
+    marginTop: "-8px",          // ⬅ moves it UP (THIS finally works)
+    width: "42px",
+    height: "42px",
+    borderRadius: "12px",
+    border: "1px solid rgba(0,0,0,0.06)",
+    background: "rgba(255,255,255,0.95)",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 6px 18px rgba(0,0,0,0.14)",
+    transition: "transform 0.2s ease",
+  }}
+  aria-label="Open menu"
+>
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#1e40af"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+  >
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+</div>
+
           )}
           <div className="logo">CityConnect</div>
         </div>
