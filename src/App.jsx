@@ -2,23 +2,31 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
-/* Layouts */
+/* =====================
+   LAYOUTS
+===================== */
 import CitizenLayout from "./layouts/CitizenLayout";
 
-/* Public Pages */
+/* =====================
+   PUBLIC PAGES
+===================== */
 import Home from "./pages/Home";
 import Login from "./pages/Citizen/Login";
 import Register from "./pages/Citizen/Register";
-import VerifyOtp from "./pages/Citizen/Verifyotp";
+import VerifyOtp from "./pages/Citizen/VerifyOtp";
 import SetPassword from "./pages/Citizen/SetPassword";
 
-/* Citizen Pages */
-import Dashboard from "./pages/Citizen/Dashboard";
+/* =====================
+   CITIZEN PAGES
+===================== */
+import CitizenDashboard from "./pages/Citizen/Dashboard";
 import Profile from "./pages/Citizen/Profile";
 import SubmitComplaint from "./pages/Citizen/SubmitComplaint";
 import MyComplaints from "./pages/Citizen/MyComplaints";
 
-/* Protected Route Component */
+/* =====================
+   PROTECTED ROUTE
+===================== */
 function ProtectedRoute({ children, role }) {
   const { user } = useAuth();
 
@@ -33,18 +41,31 @@ function ProtectedRoute({ children, role }) {
   return children;
 }
 
+/* =====================
+   APP ROUTES
+===================== */
 export default function App() {
   return (
     <Routes>
 
-      {/* Public Routes */}
+      {/* ---------- PUBLIC ---------- */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/verify-otp" element={<VerifyOtp />} />
       <Route path="/set-password" element={<SetPassword />} />
 
-      {/* Citizen Routes (Protected) */}
+      {/* ---------- CITIZEN DASHBOARD (NO LAYOUT) ---------- */}
+      <Route
+        path="/citizen/dashboard"
+        element={
+          <ProtectedRoute role="citizen">
+            <CitizenDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* ---------- CITIZEN PAGES (WITH LAYOUT) ---------- */}
       <Route
         path="/citizen"
         element={
@@ -53,14 +74,12 @@ export default function App() {
           </ProtectedRoute>
         }
       >
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
         <Route path="submit" element={<SubmitComplaint />} />
         <Route path="history" element={<MyComplaints />} />
       </Route>
 
-      {/* Catch-all */}
+      {/* ---------- FALLBACK ---------- */}
       <Route path="*" element={<Navigate to="/" replace />} />
 
     </Routes>
