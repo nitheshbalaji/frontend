@@ -1,42 +1,65 @@
-import "./HeatMap.css";
+.heatmap-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
 
-const data = [
-  { day: "Mon", value: 2 },
-  { day: "Tue", value: 6 },
-  { day: "Wed", value: 10 },
-  { day: "Thu", value: 4 },
-  { day: "Fri", value: 8 },
-  { day: "Sat", value: 1 },
-  { day: "Sun", value: 0 },
-];
+.heatmap-title {
+  font-size: 18px;
+  font-weight: 600;
+}
 
-export default function HeatMap() {
-  const getLevel = (v) => {
-    if (v === 0) return "level-0";
-    if (v <= 2) return "level-1";
-    if (v <= 5) return "level-2";
-    if (v <= 8) return "level-3";
-    return "level-4";
-  };
+.heatmap-subtitle {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
 
-  return (
-    <div className="heatmap-card">
-      <h3 className="heatmap-title">Complaint Activity</h3>
-      <p className="heatmap-subtitle">
-        Weekly complaint intensity
-      </p>
+.heatmap-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
 
-      <div className="heatmap-row">
-        {data.map((d, i) => (
-          <div key={i} className="heatmap-col">
-            <div
-              className={`heatmap-cell ${getLevel(d.value)}`}
-              title={`${d.value} complaints`}
-            />
-            <span>{d.day}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+.heatmap-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.heatmap-cell {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 12px currentColor;
+}
+
+/* Heat levels */
+.level-0 {
+  background: #1e293b;
+}
+
+.level-1 {
+  background: #60a5fa;
+}
+
+.level-2 {
+  background: #22c55e;
+}
+
+.level-3 {
+  background: #facc15;
+}
+
+.level-4 {
+  background: #ef4444;
 }
