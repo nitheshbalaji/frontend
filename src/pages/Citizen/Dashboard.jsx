@@ -1,6 +1,26 @@
 import React from "react";
 import "./dashboard.css";
 
+/* ---------------- MOCK DATA ---------------- */
+
+const heatmapData = [
+  { area: "Anna Nagar", count: 12 },
+  { area: "T Nagar", count: 22 },
+  { area: "Velachery", count: 9 },
+  { area: "Tambaram", count: 18 },
+  { area: "Adyar", count: 6 },
+  { area: "Guindy", count: 14 },
+];
+
+const getHeatColor = (count) => {
+  if (count > 20) return "#ef4444"; // red
+  if (count > 15) return "#f97316"; // orange
+  if (count > 10) return "#facc15"; // yellow
+  return "#4ade80"; // green
+};
+
+/* ---------------- COMPONENT ---------------- */
+
 export default function Dashboard() {
   return (
     <div className="cd-root">
@@ -10,7 +30,6 @@ export default function Dashboard() {
       </p>
 
       <div className="cd-grid">
-
         {/* TO DO */}
         <div className="cd-card glass blue">
           <h3>To Do</h3>
@@ -31,7 +50,7 @@ export default function Dashboard() {
           </ul>
         </div>
 
-        {/* DONE */}
+        {/* RESOLVED */}
         <div className="cd-card glass green">
           <h3>Resolved</h3>
           <div className="cd-stats">
@@ -67,9 +86,30 @@ export default function Dashboard() {
             <span />
             <span />
             <span />
+            <span />
           </div>
         </div>
 
+        {/* HEATMAP */}
+        <div className="cd-card wide glass heatmap-card">
+          <h3>🔥 Area-wise Complaint Heatmap</h3>
+          <p className="heatmap-sub">
+            Darker color indicates higher number of complaints
+          </p>
+
+          <div className="cd-heatmap">
+            {heatmapData.map((item, index) => (
+              <div
+                key={index}
+                className="cd-heat-cell"
+                style={{ background: getHeatColor(item.count) }}
+              >
+                <span className="cd-area">{item.area}</span>
+                <span className="cd-count">{item.count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
