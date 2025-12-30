@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import HamburgerMenu from "../components/HamburgerMenu";
+import "./home.css";
+
 
 export default function Home() {
   const { user } = useAuth();
