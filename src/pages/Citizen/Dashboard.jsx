@@ -1,5 +1,6 @@
 import "../../styles/dashboard.css";
 import BoardColumn from "../../components/dashboard/BoardColumn";
+import StatMiniCard from "../../components/dashboard/StatMiniCard";
 
 export default function Dashboard() {
   return (
@@ -23,38 +24,48 @@ export default function Dashboard() {
         />
 
         {/* CENTER */}
-        <BoardColumn
-          title="In Progress"
-          scroll
-          items={[
-            "Road repair – Zone 3",
-            "Drainage issue",
-            "Power fluctuation",
-            "Transformer failure",
-            "Sewage overflow",
-            "Street light upgrade",
-          ]}
-        />
+        <div className="center-stack">
+          <BoardColumn
+            title="In Progress"
+            scroll
+            items={[
+              "Road repair – Zone 3",
+              "Drainage issue",
+              "Power fluctuation",
+              "Transformer failure",
+              "Sewage overflow",
+            ]}
+          />
+
+          <div className="dashboard-card workers">
+            <h3>Tickets being worked on</h3>
+
+            <div className="workers-row">
+              <StatMiniCard name="Sam" count="3" />
+              <StatMiniCard name="Tom" count="2" />
+              <StatMiniCard name="Jon" count="4" alert />
+            </div>
+          </div>
+        </div>
 
         {/* RIGHT */}
         <div className="dashboard-card stats">
-          <h3 className="card-title">Resolved</h3>
+          <div>
+            <h2>17</h2>
+            <p>Today</p>
+            <div className="progress green"></div>
+          </div>
 
-          <div className="stats-row">
-            <div>
-              <h2>17</h2>
-              <span>Today</span>
-            </div>
-            <div>
-              <h2>45</h2>
-              <span>This week</span>
-            </div>
+          <div>
+            <h2>45</h2>
+            <p>This week</p>
+            <div className="progress blue"></div>
           </div>
         </div>
 
         <div className="dashboard-card highlight red">
           <h2>7</h2>
-          <p>Unassigned Complaints</p>
+          <p>Unassigned</p>
         </div>
 
         <div className="dashboard-card highlight purple">
