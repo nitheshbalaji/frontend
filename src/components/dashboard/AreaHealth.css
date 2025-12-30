@@ -1,0 +1,11 @@
+.area-health.good {
+  border-left: 6px solid #22c55e;
+}
+
+.area-health.warning {
+  border-left: 6px solid #facc15;
+}
+
+.area-health.critical {
+  border-left: 6px solid #ef4444;
+}
