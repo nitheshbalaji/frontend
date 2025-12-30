@@ -7,10 +7,12 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // DEV LOGIN (no backend yet)
     await login();
 
-    // ✅ Redirect to citizen dashboard
-    navigate("/citizen/dashboard");
+    // ✅ GO TO HOME PAGE (CityConnect)
+    navigate("/");
   };
 
   return (
@@ -30,7 +32,7 @@ export default function Login() {
         style={{
           width: "100%",
           maxWidth: "420px",
-          background: "rgba(255,255,255,0.95)",
+          background: "rgba(255,255,255,0.96)",
           borderRadius: "22px",
           padding: "48px 38px 42px",
           boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
@@ -84,7 +86,7 @@ export default function Login() {
         </p>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} style={{ padding: "0 4px" }}>
+        <form onSubmit={handleSubmit}>
           {/* Email */}
           <div style={{ marginBottom: "22px" }}>
             <label style={labelStyle}>Email</label>
@@ -92,9 +94,9 @@ export default function Login() {
               type="email"
               placeholder="Enter your email"
               style={inputStyle}
+              required
               onFocus={handleFocus}
               onBlur={handleBlur}
-              required
             />
           </div>
 
@@ -105,9 +107,9 @@ export default function Login() {
               type="password"
               placeholder="Enter your password"
               style={inputStyle}
+              required
               onFocus={handleFocus}
               onBlur={handleBlur}
-              required
             />
           </div>
 
@@ -126,7 +128,6 @@ export default function Login() {
               Remember me
             </label>
 
-            {/* ✅ FIXED: Forgot password navigation */}
             <span
               style={{
                 color: "#2563eb",
@@ -139,20 +140,8 @@ export default function Login() {
             </span>
           </div>
 
-          {/* Button */}
-          <button
-            type="submit"
-            style={buttonStyle}
-            onMouseOver={(e) => {
-              e.target.style.transform = "translateY(-2px)";
-              e.target.style.boxShadow =
-                "0 10px 25px rgba(37,99,235,0.4)";
-            }}
-            onMouseOut={(e) => {
-              e.target.style.transform = "translateY(0)";
-              e.target.style.boxShadow = "none";
-            }}
-          >
+          {/* Login Button */}
+          <button type="submit" style={buttonStyle}>
             Login
           </button>
         </form>
@@ -197,6 +186,7 @@ const labelStyle = {
 
 const inputStyle = {
   width: "100%",
+  boxSizing: "border-box",
   padding: "14px 16px",
   borderRadius: "12px",
   border: "1.5px solid #d1d5db",
@@ -215,7 +205,6 @@ const buttonStyle = {
   fontSize: "16px",
   fontWeight: "600",
   cursor: "pointer",
-  transition: "all 0.25s ease",
 };
 
 const handleFocus = (e) => {
