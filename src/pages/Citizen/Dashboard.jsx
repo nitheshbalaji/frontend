@@ -1,4 +1,5 @@
 import "../../styles/dashboard.css";
+import BoardColumn from "../../components/dashboard/BoardColumn";
 
 export default function Dashboard() {
   return (
@@ -9,31 +10,33 @@ export default function Dashboard() {
         Track and manage your complaints in real time
       </p>
 
-      {/* MAIN GRID */}
       <div className="dashboard-grid">
 
-        {/* TO DO */}
-        <div className="dashboard-card column">
-          <h3 className="card-title">To Do</h3>
-          <ul>
-            <li>Street light not working</li>
-            <li>Garbage not collected</li>
-            <li>Water leakage</li>
-          </ul>
-        </div>
+        {/* LEFT */}
+        <BoardColumn
+          title="To Do"
+          items={[
+            "Street light not working",
+            "Garbage not collected",
+            "Water leakage",
+          ]}
+        />
 
-        {/* IN PROGRESS */}
-        <div className="dashboard-card column">
-          <h3 className="card-title">In Progress</h3>
-          <ul>
-            <li>Road repair – Zone 3</li>
-            <li>Drainage issue</li>
-            <li>Power fluctuation</li>
-            <li>Sewage overflow</li>
-          </ul>
-        </div>
+        {/* CENTER */}
+        <BoardColumn
+          title="In Progress"
+          scroll
+          items={[
+            "Road repair – Zone 3",
+            "Drainage issue",
+            "Power fluctuation",
+            "Transformer failure",
+            "Sewage overflow",
+            "Street light upgrade",
+          ]}
+        />
 
-        {/* DONE */}
+        {/* RIGHT */}
         <div className="dashboard-card stats">
           <h3 className="card-title">Resolved</h3>
 
@@ -49,13 +52,11 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* UNASSIGNED */}
         <div className="dashboard-card highlight red">
           <h2>7</h2>
           <p>Unassigned Complaints</p>
         </div>
 
-        {/* OVERDUE */}
         <div className="dashboard-card highlight purple">
           <h2>3</h2>
           <p>Overdue</p>
