@@ -11,6 +11,27 @@
 }
 
 /* =========================
+   HAMBURGER TRANSITION EFFECT
+========================= */
+
+/* default position */
+.hero-visual {
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+/* when menu opens */
+.home.menu-open .hero-visual {
+  transform: translateX(-80px);
+  opacity: 0.85;
+}
+
+/* smooth floating card feel */
+.float-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+
+/* =========================
    NAVBAR
 ========================= */
 .home-navbar {
