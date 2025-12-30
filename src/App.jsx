@@ -18,6 +18,9 @@ import Profile from "./pages/Citizen/Profile";
 import SubmitComplaint from "./pages/Citizen/SubmitComplaint";
 import MyComplaints from "./pages/Citizen/MyComplaints";
 
+/*Admin Page*/
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+
 /* Protected Route Component */
 function ProtectedRoute({ children, role }) {
   const { user } = useAuth();
