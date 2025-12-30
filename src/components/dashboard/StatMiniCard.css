@@ -1,0 +1,43 @@
+.stat-mini {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 18px;
+  border-radius: 14px;
+  width: 110px;
+  text-align: center;
+  color: #e5e7eb;
+  transition: transform 0.2s ease;
+}
+
+.stat-mini:hover {
+  transform: translateY(-4px);
+}
+
+.stat-mini h2 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.stat-mini span {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.stat-mini.alert {
+  border: 1px solid #ef4444;
+}
+
+.alert-dot {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #ef4444;
+  color: white;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
