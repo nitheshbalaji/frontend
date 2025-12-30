@@ -6,7 +6,7 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // later → OTP page
+    // later → send OTP
     navigate("/verify-otp");
   };
 
@@ -29,7 +29,7 @@ export default function Register() {
           maxWidth: "480px",
           background: "rgba(255,255,255,0.96)",
           borderRadius: "22px",
-          padding: "48px 36px 42px", // ✅ FIXED PADDING
+          padding: "48px 36px 42px",
           boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
           position: "relative",
         }}
@@ -80,7 +80,7 @@ export default function Register() {
           Enter your details to create an account
         </p>
 
-        {/* FORM */}
+        {/* Form */}
         <form onSubmit={handleSubmit}>
           <FormInput label="First Name" placeholder="Enter first name" />
           <FormInput label="Last Name" placeholder="Enter last name" />
@@ -88,6 +88,19 @@ export default function Register() {
           <FormInput label="Mobile Number" placeholder="Enter mobile number" />
           <FormInput label="Address" placeholder="Enter address" />
           <FormInput label="City" placeholder="Enter city" />
+
+          {/* 🔐 PASSWORD */}
+          <FormInput
+            label="Password"
+            placeholder="Create password"
+            type="password"
+          />
+
+          <FormInput
+            label="Confirm Password"
+            placeholder="Re-enter password"
+            type="password"
+          />
 
           <button type="submit" style={buttonStyle}>
             Register
@@ -124,12 +137,12 @@ export default function Register() {
    Reusable Input
    ===================== */
 
-function FormInput({ label, placeholder }) {
+function FormInput({ label, placeholder, type = "text" }) {
   return (
     <div style={{ marginBottom: "22px" }}>
       <label style={labelStyle}>{label}</label>
       <input
-        type="text"
+        type={type}
         placeholder={placeholder}
         style={inputStyle}
         onFocus={handleFocus}
@@ -159,7 +172,7 @@ const inputStyle = {
   border: "1.5px solid #d1d5db",
   fontSize: "15px",
   backgroundColor: "#f9fafb",
-  boxSizing: "border-box", // ✅ KEY FIX
+  boxSizing: "border-box",
   transition: "all 0.25s ease",
 };
 
