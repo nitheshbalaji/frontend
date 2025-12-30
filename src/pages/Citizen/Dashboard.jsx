@@ -1,17 +1,20 @@
 import React from "react";
-import "./dashboard.css";
+import "./CitizenDashboard.css";
 
 export default function Dashboard() {
   return (
-    <div className="dashboard-root">
-      <h1 className="dashboard-title">Citizen Dashboard</h1>
+    <div className="cd-root">
+      <h1 className="cd-title">Citizen Dashboard</h1>
+      <p className="cd-subtitle">
+        Track and manage your complaints in real time
+      </p>
 
-      <div className="dashboard-grid">
+      <div className="cd-grid">
 
         {/* TO DO */}
-        <div className="card tall">
+        <div className="cd-card glass blue">
           <h3>To Do</h3>
-          <ul className="list">
+          <ul>
             <li>Street light not working</li>
             <li>Garbage not collected</li>
             <li>Water leakage</li>
@@ -19,9 +22,9 @@ export default function Dashboard() {
         </div>
 
         {/* IN PROGRESS */}
-        <div className="card tall">
+        <div className="cd-card glass orange">
           <h3>In Progress</h3>
-          <ul className="list">
+          <ul>
             <li>Road damage repair</li>
             <li>Drainage issue</li>
             <li>Power fluctuation</li>
@@ -29,46 +32,36 @@ export default function Dashboard() {
         </div>
 
         {/* DONE */}
-        <div className="card">
-          <h3>Done</h3>
-          <div className="stats">
+        <div className="cd-card glass green">
+          <h3>Resolved</h3>
+          <div className="cd-stats">
             <div>
               <h2>5</h2>
-              <p>Today</p>
+              <span>Today</span>
             </div>
             <div>
               <h2>18</h2>
-              <p>This week</p>
+              <span>This week</span>
             </div>
           </div>
         </div>
 
         {/* UNASSIGNED */}
-        <div className="card highlight">
+        <div className="cd-card highlight red">
           <h2>7</h2>
           <p>Unassigned Complaints</p>
         </div>
 
         {/* OVERDUE */}
-        <div className="card danger">
+        <div className="cd-card highlight purple">
           <h2>3</h2>
           <p>Overdue</p>
         </div>
 
-        {/* TICKETS BY YOU */}
-        <div className="card wide">
-          <h3>Your Complaints</h3>
-          <div className="mini-cards">
-            <div className="mini">2<br /><span>Electricity</span></div>
-            <div className="mini">3<br /><span>Water</span></div>
-            <div className="mini">1<br /><span>Road</span></div>
-          </div>
-        </div>
-
-        {/* GRAPH PLACEHOLDER */}
-        <div className="card wide">
+        {/* TREND */}
+        <div className="cd-card wide glass">
           <h3>Complaints Trend</h3>
-          <div className="fake-chart">
+          <div className="cd-chart">
             <span />
             <span />
             <span />
