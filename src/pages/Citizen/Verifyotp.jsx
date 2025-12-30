@@ -1,77 +1,106 @@
-import { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function VerifyOtp() {
   const navigate = useNavigate();
-  const [otp, setOtp] = useState("");
-  const [error, setError] = useState("");
 
-  const handleVerify = async (e) => {
+  const handleVerify = (e) => {
     e.preventDefault();
 
-    if (otp.length !== 6) {
-      setError("Please enter a valid 6-digit OTP");
-      return;
-    }
-
-    setError("");
-
-    // 🔐 Backend OTP verification will go here
-    navigate("/set-password");
+    // later: verify OTP via backend
+    navigate("/set-password"); // or dashboard later
   };
 
   return (
-    <div className="auth-bg">
-      <div className="auth-card">
-
-        {/* Avatar */}
-        <div className="auth-avatar">
-          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 15v2m0-10v4m7.07 1.93a10 10 0 11-14.14 0
-                 10 10 0 0114.14 0z"
-            />
-          </svg>
+    <div
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg, #c7d2fe, #fde68a, #bae6fd)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "420px",
+          background: "rgba(255,255,255,0.95)",
+          borderRadius: "20px",
+          padding: "35px",
+          boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
+          textAlign: "center",
+        }}
+      >
+        {/* Icon */}
+        <div
+          style={{
+            width: "60px",
+            height: "60px",
+            margin: "0 auto 20px",
+            borderRadius: "50%",
+            background: "#2563eb",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            fontSize: "26px",
+          }}
+        >
+          🔐
         </div>
 
-        <h2 style={{ marginBottom: "6px" }}>Verify OTP</h2>
-        <p style={{ fontSize: "14px", opacity: 0.8, marginBottom: "22px" }}>
-          Enter the 6-digit OTP sent to your registered mobile/email
+        <h2 style={{ marginBottom: "8px" }}>Verify OTP</h2>
+        <p style={{ fontSize: "14px", color: "#555", marginBottom: "25px" }}>
+          Enter the 6-digit OTP sent to your registered email / mobile
         </p>
 
         <form onSubmit={handleVerify}>
-          <div className="auth-input">
-            <span>🔢</span>
+          <div style={{ marginBottom: "20px", textAlign: "left" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "6px",
+                fontWeight: "500",
+              }}
+            >
+              OTP
+            </label>
             <input
+              type="text"
+              maxLength="6"
               placeholder="Enter OTP"
-              value={otp}
-              maxLength={6}
-              onChange={(e) => setOtp(e.target.value)}
+              required
+              style={{
+                width: "100%",
+                padding: "14px",
+                borderRadius: "12px",
+                border: "1px solid #ccc",
+                outline: "none",
+                fontSize: "15px",
+              }}
             />
           </div>
 
-          {error && (
-            <p
-              style={{
-                color: "#7f1d1d",
-                background: "rgba(255,255,255,0.6)",
-                padding: "8px 12px",
-                borderRadius: "8px",
-                fontSize: "13px",
-                marginBottom: "12px"
-              }}
-            >
-              {error}
-            </p>
-          )}
-
-          <button className="auth-btn" type="submit">
-            VERIFY OTP
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              padding: "14px",
+              borderRadius: "999px",
+              border: "none",
+              background: "linear-gradient(90deg, #2563eb, #1e40af)",
+              color: "white",
+              fontSize: "16px",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+          >
+            Verify OTP
           </button>
         </form>
-
       </div>
     </div>
   );
