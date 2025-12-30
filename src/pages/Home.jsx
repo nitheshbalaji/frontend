@@ -1,130 +1,83 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import HamburgerMenu from "../components/HamburgerMenu";
+import { useNavigate } from "react-router-dom";
+import "./home.css";
 
 export default function Home() {
-  const { user } = useAuth();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <div className={`home ${menuOpen ? "menu-open" : ""}`}>
-      {/* Top Navbar */}
-      <header className="home-navbar">
-        {/* LEFT: Hamburger + Logo */}
-        <div className="nav-left">
-          {user && (
-            <div
-              className="hamburger-icon"
-              onClick={() => setMenuOpen(true)}
-              title="Menu"
-            >
-              ☰
-            </div>
-          )}
-          <div className="logo">CityConnect</div>
-        </div>
+    <div className="home-root">
+      {/* HERO SECTION */}
+      <section className="home-hero">
+        <div className="hero-left">
+          <span className="hero-badge">SMART CITY INITIATIVE</span>
 
-        {/* RIGHT: Nav Links */}
-        <nav>
-          <Link to="/">Home</Link>
-
-          {!user ? (
-            <>
-              <Link to="/login" className="btn-outline">
-                Login
-              </Link>
-              <Link to="/register" className="btn-primary">
-                Register
-              </Link>
-            </>
-          ) : (
-            <Link to="/citizen/dashboard" className="btn-primary">
-              Dashboard
-            </Link>
-          )}
-        </nav>
-      </header>
-
-      {/* Hamburger Slide Menu */}
-      {user && (
-        <HamburgerMenu open={menuOpen} setOpen={setMenuOpen} />
-      )}
-
-      {/* Hero Section */}
-      <section className="hero home-glass">
-        <div className="hero-text">
-          <span className="badge">SMART CITY INITIATIVE</span>
-
-          <h1>A Smarter Way to Resolve Public Issues</h1>
+          <h1>
+            A Smarter Way <br />
+            to Resolve <span>Public Issues</span>
+          </h1>
 
           <p>
-            Register complaints, track progress in real-time, and help build
-            a transparent and efficient grievance resolution system.
+            Register complaints, track progress in real time, and help build a
+            transparent, accountable, and efficient grievance resolution
+            system for your city.
           </p>
 
-          {!user && (
-            <div className="hero-actions">
-              <Link to="/login" className="btn-primary">
-                Citizen Login
-              </Link>
-              <Link to="/register" className="btn-secondary">
-                Register Now
-              </Link>
-            </div>
-          )}
+          <div className="hero-actions">
+            <button
+              className="btn-primary"
+              onClick={() => navigate("/login")}
+            >
+              Citizen Login
+            </button>
+
+            <button
+              className="btn-secondary"
+              onClick={() => navigate("/register")}
+            >
+              Register Now
+            </button>
+          </div>
         </div>
 
-        <div className="hero-image">
+        <div className="hero-right">
           <img
-            src="https://cdn.thewire.in/wp-content/uploads/2022/05/22223000/MKStalin_PTI_8032021_1200-1.jpg"
-            alt="City Governance"
+            src="/leader.jpg"
+            alt="Smart City Leadership"
           />
+
+          {/* Floating Cards */}
+          <div className="float-card fc-1">
+            <h3>2,430+</h3>
+            <p>Complaints Resolved</p>
+          </div>
+
+          <div className="float-card fc-2">
+            <h3>48 hrs</h3>
+            <p>Avg Resolution Time</p>
+          </div>
+
+          <div className="float-card fc-3">
+            <h3>92%</h3>
+            <p>Citizen Satisfaction</p>
+          </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="stats">
-        <div className="stat-card">
-          <h2>15,000+</h2>
-          <p>Complaints Filed</p>
+      {/* CITY STATS */}
+      <section className="home-stats">
+        <div className="stat-card blue">
+          <h2>12</h2>
+          <p>Departments Connected</p>
         </div>
-        <div className="stat-card">
-          <h2>94%</h2>
-          <p>Resolution Rate</p>
+
+        <div className="stat-card green">
+          <h2>35+</h2>
+          <p>City Zones Covered</p>
         </div>
-        <div className="stat-card">
-          <h2>48 Hrs</h2>
-          <p>Avg. Resolution Time</p>
-        </div>
-        <div className="stat-card">
-          <h2>1,400+</h2>
-          <p>Active Cases</p>
-        </div>
-      </section>
 
-      {/* Why Section */}
-      <section className="why">
-        <h2>Why use the Smart Grievance System?</h2>
-        <p className="why-sub">
-          A transparent, efficient, and citizen-friendly platform.
-        </p>
-
-        <div className="why-cards">
-          <div className="why-card">
-            <h3>Real-time Tracking</h3>
-            <p>Track complaint status anytime with instant updates.</p>
-          </div>
-
-          <div className="why-card">
-            <h3>Direct Department Access</h3>
-            <p>Complaints are routed directly to the responsible authority.</p>
-          </div>
-
-          <div className="why-card">
-            <h3>24/7 Availability</h3>
-            <p>Submit complaints anytime, anywhere.</p>
-          </div>
+        <div className="stat-card purple">
+          <h2>24×7</h2>
+          <p>Citizen Support</p>
         </div>
       </section>
     </div>
