@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ComplaintHistory = () => {
+  const navigate = useNavigate();
+
   // Hide topbar only on this page
   useEffect(() => {
     const topbar = document.querySelector(".topbar");
@@ -58,17 +61,39 @@ const ComplaintHistory = () => {
       className="content-area"
       style={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(180deg, #e0e7ff 0%, #f8fafc 70%)",
+        background: "linear-gradient(180deg, #e0e7ff 0%, #f8fafc 70%)",
         padding: "40px 30px",
+        position: "relative",
       }}
     >
+      {/* BACK BUTTON → HOME */}
+      <button
+        onClick={() => navigate("/")}
+        style={{
+          position: "fixed",
+          top: "20px",
+          left: "20px",
+          width: "42px",
+          height: "42px",
+          borderRadius: "12px",
+          border: "none",
+          background: "#1f2937",
+          color: "white",
+          fontSize: "20px",
+          cursor: "pointer",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+          zIndex: 1000,
+        }}
+        aria-label="Go back to home"
+      >
+        ←
+      </button>
+
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* HERO SECTION */}
         <div
           style={{
-            background:
-              "linear-gradient(135deg, #2563eb, #1e40af)",
+            background: "linear-gradient(135deg, #2563eb, #1e40af)",
             borderRadius: "26px",
             padding: "45px",
             color: "white",
@@ -76,12 +101,10 @@ const ComplaintHistory = () => {
             boxShadow: "0 30px 60px rgba(37,99,235,0.45)",
           }}
         >
-          <h1 style={{ marginBottom: "8px" }}>
-            Your Complaint Journey
-          </h1>
+          <h1 style={{ marginBottom: "8px" }}>Your Complaint Journey</h1>
           <p style={{ opacity: 0.9, maxWidth: "700px" }}>
-            View all complaints you have raised and track their
-            resolution progress in real time.
+            View all complaints you have raised and track their resolution
+            progress in real time.
           </p>
         </div>
 
@@ -100,7 +123,6 @@ const ComplaintHistory = () => {
               boxShadow: "0 22px 55px rgba(0,0,0,0.12)",
             }}
           >
-            {/* User Uploaded Image */}
             <img
               src={c.image}
               alt="User uploaded evidence"
@@ -112,9 +134,7 @@ const ComplaintHistory = () => {
               }}
             />
 
-            {/* Complaint Details */}
             <div>
-              {/* Title + Status */}
               <div
                 style={{
                   display: "flex",
@@ -132,8 +152,7 @@ const ComplaintHistory = () => {
                     borderRadius: "999px",
                     fontSize: "14px",
                     fontWeight: "600",
-                    background:
-                      statusColor[c.status] + "22",
+                    background: statusColor[c.status] + "22",
                     color: statusColor[c.status],
                   }}
                 >
@@ -141,12 +160,10 @@ const ComplaintHistory = () => {
                 </span>
               </div>
 
-              {/* Meta (NO ICONS) */}
               <p style={{ marginTop: "6px", color: "#6b7280" }}>
                 {c.date} • {c.category}
               </p>
 
-              {/* Description */}
               <p
                 style={{
                   marginTop: "14px",
@@ -157,7 +174,6 @@ const ComplaintHistory = () => {
                 {c.description}
               </p>
 
-              {/* Progress */}
               <div style={{ marginTop: "22px" }}>
                 <div
                   style={{
