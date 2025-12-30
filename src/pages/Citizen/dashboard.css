@@ -116,3 +116,38 @@
 .cd-chart span:nth-child(3) { height: 30%; }
 .cd-chart span:nth-child(4) { height: 90%; }
 .cd-chart span:nth-child(5) { height: 55%; }
+
+/* ===== Heatmap ===== */
+
+.cd-heatmap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.cd-heat-cell {
+  height: 110px;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #1f2937;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cd-heat-cell:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.cd-area {
+  font-size: 14px;
+}
+
+.cd-count {
+  font-size: 28px;
+}
+
