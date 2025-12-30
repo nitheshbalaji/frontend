@@ -1,6 +1,6 @@
 import "./HeatMap.css";
 
-const mockData = [
+const data = [
   { day: "Mon", value: 2 },
   { day: "Tue", value: 6 },
   { day: "Wed", value: 10 },
@@ -11,27 +11,29 @@ const mockData = [
 ];
 
 export default function HeatMap() {
-  const getIntensityClass = (value) => {
-    if (value === 0) return "level-0";
-    if (value <= 2) return "level-1";
-    if (value <= 5) return "level-2";
-    if (value <= 8) return "level-3";
+  const getLevel = (v) => {
+    if (v === 0) return "level-0";
+    if (v <= 2) return "level-1";
+    if (v <= 5) return "level-2";
+    if (v <= 8) return "level-3";
     return "level-4";
   };
 
   return (
     <div className="heatmap-card">
-      <h3>Complaint Heatmap</h3>
-      <p className="heatmap-sub">Complaints registered this week</p>
+      <h3 className="heatmap-title">Complaint Activity</h3>
+      <p className="heatmap-subtitle">
+        Weekly complaint intensity
+      </p>
 
-      <div className="heatmap-grid">
-        {mockData.map((item, index) => (
-          <div key={index} className="heatmap-cell-wrapper">
+      <div className="heatmap-row">
+        {data.map((d, i) => (
+          <div key={i} className="heatmap-col">
             <div
-              className={`heatmap-cell ${getIntensityClass(item.value)}`}
-              title={`${item.value} complaints`}
+              className={`heatmap-cell ${getLevel(d.value)}`}
+              title={`${d.value} complaints`}
             />
-            <span className="heatmap-label">{item.day}</span>
+            <span>{d.day}</span>
           </div>
         ))}
       </div>
