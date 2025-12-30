@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 /* ======================
-   MOCK DATA (Citizen)
+   MOCK DATA
    ====================== */
 
 const stats = [
-  { label: "Total Complaints", value: 6, color: "#2563eb" },
-  { label: "Pending", value: 2, color: "#dc2626" },
-  { label: "In Progress", value: 2, color: "#f59e0b" },
-  { label: "Resolved", value: 2, color: "#16a34a" },
+  {
+    label: "Total Complaints",
+    value: 6,
+    gradient: "linear-gradient(135deg, #2563eb, #60a5fa)",
+    icon: "📄",
+  },
+  {
+    label: "Pending",
+    value: 2,
+    gradient: "linear-gradient(135deg, #dc2626, #f87171)",
+    icon: "⏳",
+  },
+  {
+    label: "In Progress",
+    value: 2,
+    gradient: "linear-gradient(135deg, #f59e0b, #fbbf24)",
+    icon: "🔄",
+  },
+  {
+    label: "Resolved",
+    value: 2,
+    gradient: "linear-gradient(135deg, #16a34a, #4ade80)",
+    icon: "✅",
+  },
 ];
 
 const complaints = [
@@ -40,67 +60,80 @@ const complaints = [
    ====================== */
 
 export default function CitizenDashboard() {
+  /* 🔥 Hide sidebar & topbar ONLY on this page */
+  useEffect(() => {
+    const sidebar = document.querySelector(".sidebar");
+    const topbar = document.querySelector(".topbar");
+
+    if (sidebar) sidebar.style.display = "none";
+    if (topbar) topbar.style.display = "none";
+
+    return () => {
+      if (sidebar) sidebar.style.display = "";
+      if (topbar) topbar.style.display = "";
+    };
+  }, []);
+
   return (
     <div style={pageStyle}>
       {/* Header */}
-      <div style={{ marginBottom: "30px" }}>
-        <h1 style={{ fontSize: "28px", fontWeight: "700" }}>
-          Welcome 👋
+      <div style={headerStyle}>
+        <h1 style={{ fontSize: "34px", fontWeight: "800" }}>
+          Your Dashboard ✨
         </h1>
-        <p style={{ color: "#555" }}>
-          Track and manage your complaints easily
+        <p style={{ color: "#334155", marginTop: "6px" }}>
+          Track your complaints and progress in real time
         </p>
       </div>
 
-      {/* Stats */}
+      {/* Stats Cards */}
       <div style={statsGrid}>
         {stats.map((item, index) => (
           <div
             key={index}
             style={{
               ...statCard,
-              borderTopColor: item.color,
+              background: item.gradient,
             }}
           >
-            <p style={{ fontSize: "14px", color: "#555" }}>
-              {item.label}
-            </p>
-            <h2 style={{ fontSize: "32px", marginTop: "6px" }}>
+            <div style={statIcon}>{item.icon}</div>
+            <h2 style={{ fontSize: "36px", margin: "12px 0 4px" }}>
               {item.value}
             </h2>
+            <p style={{ opacity: 0.9 }}>{item.label}</p>
           </div>
         ))}
       </div>
 
-      {/* Recent Complaints */}
-      <div style={card}>
-        <h3 style={cardTitle}>📂 Recent Complaints</h3>
+      {/* Complaints Section */}
+      <div style={glassCard}>
+        <h3 style={sectionTitle}>📂 Your Complaints</h3>
 
         {complaints.map((c) => (
           <div key={c.id} style={complaintRow}>
             <div>
               <h4 style={{ margin: 0 }}>{c.title}</h4>
-              <p style={{ fontSize: "13px", color: "#666" }}>
-                Category: {c.category}
+              <p style={{ fontSize: "13px", color: "#475569" }}>
+                {c.category}
               </p>
             </div>
 
-            <div style={{ minWidth: "160px" }}>
+            <div style={{ width: "180px" }}>
               <div style={progressBar}>
                 <div
                   style={{
                     ...progressFill,
                     width: `${c.progress}%`,
-                    backgroundColor:
+                    background:
                       c.status === "Pending"
-                        ? "#dc2626"
+                        ? "#ef4444"
                         : c.status === "In Progress"
                         ? "#f59e0b"
-                        : "#16a34a",
+                        : "#22c55e",
                   }}
                 />
               </div>
-              <p style={{ fontSize: "12px", marginTop: "4px" }}>
+              <p style={{ fontSize: "12px", marginTop: "6px" }}>
                 {c.status}
               </p>
             </div>
@@ -116,45 +149,54 @@ export default function CitizenDashboard() {
    ====================== */
 
 const pageStyle = {
-  padding: "30px",
-  background:
-    "linear-gradient(135deg, #f8fafc, #eef2ff)",
   minHeight: "100vh",
+  padding: "40px",
+  background:
+    "linear-gradient(135deg, #dbeafe, #fef3c7, #e0f2fe)",
+};
+
+const headerStyle = {
+  marginBottom: "35px",
 };
 
 const statsGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-  gap: "20px",
-  marginBottom: "30px",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: "22px",
+  marginBottom: "40px",
 };
 
 const statCard = {
-  background: "white",
-  padding: "22px",
-  borderRadius: "14px",
-  borderTop: "5px solid",
-  boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+  color: "white",
+  padding: "26px",
+  borderRadius: "20px",
+  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+  position: "relative",
 };
 
-const card = {
-  background: "white",
-  padding: "24px",
-  borderRadius: "14px",
-  boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+const statIcon = {
+  fontSize: "32px",
 };
 
-const cardTitle = {
-  fontSize: "18px",
-  fontWeight: "600",
-  marginBottom: "18px",
+const glassCard = {
+  background: "rgba(255,255,255,0.85)",
+  backdropFilter: "blur(12px)",
+  padding: "28px",
+  borderRadius: "20px",
+  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+};
+
+const sectionTitle = {
+  fontSize: "20px",
+  fontWeight: "700",
+  marginBottom: "20px",
 };
 
 const complaintRow = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: "14px 0",
+  padding: "16px 0",
   borderBottom: "1px solid #e5e7eb",
 };
 
