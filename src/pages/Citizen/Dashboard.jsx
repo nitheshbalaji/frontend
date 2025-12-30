@@ -1,6 +1,7 @@
 import "../../styles/dashboard.css";
 import BoardColumn from "../../components/dashboard/BoardColumn";
 import StatMiniCard from "../../components/dashboard/StatMiniCard";
+import HeatMap from "../../components/dashboard/HeatMap";
 
 export default function Dashboard() {
   return (
@@ -39,7 +40,6 @@ export default function Dashboard() {
 
           <div className="dashboard-card workers">
             <h3>Tickets being worked on</h3>
-
             <div className="workers-row">
               <StatMiniCard name="Sam" count="3" />
               <StatMiniCard name="Tom" count="2" />
@@ -49,28 +49,33 @@ export default function Dashboard() {
         </div>
 
         {/* RIGHT */}
-        <div className="dashboard-card stats">
-          <div>
-            <h2>17</h2>
-            <p>Today</p>
-            <div className="progress green"></div>
+        <div className="right-stack">
+          <div className="dashboard-card stats">
+            <div>
+              <h2>17</h2>
+              <p>Today</p>
+              <div className="progress green"></div>
+            </div>
+
+            <div>
+              <h2>45</h2>
+              <p>This week</p>
+              <div className="progress blue"></div>
+            </div>
           </div>
 
-          <div>
-            <h2>45</h2>
-            <p>This week</p>
-            <div className="progress blue"></div>
+          <div className="dashboard-card highlight red">
+            <h2>7</h2>
+            <p>Unassigned</p>
           </div>
-        </div>
 
-        <div className="dashboard-card highlight red">
-          <h2>7</h2>
-          <p>Unassigned</p>
-        </div>
+          <div className="dashboard-card highlight purple">
+            <h2>3</h2>
+            <p>Overdue</p>
+          </div>
 
-        <div className="dashboard-card highlight purple">
-          <h2>3</h2>
-          <p>Overdue</p>
+          {/* 🔥 HEATMAP */}
+          <HeatMap />
         </div>
 
       </div>
