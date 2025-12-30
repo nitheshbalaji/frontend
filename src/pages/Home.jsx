@@ -9,7 +9,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="home">
+    <div className={`home ${menuOpen ? "menu-open" : ""}`}>
 
       {/* Top Navbar */}
       <header className="home-navbar">
@@ -69,7 +69,7 @@ export default function Home() {
           )}
         </div>
 
-        {/* RIGHT SIDE – CREATIVE SPACE */}
+        {/* RIGHT SIDE */}
         <div className="hero-visual">
           <div className="float-card card-blue">
             <h4>Live Tracking</h4>
@@ -88,7 +88,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats */}
       <section className="stats">
         <div className="stat-card">
           <h2>15,000+</h2>
@@ -108,7 +108,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Section */}
+      {/* Why */}
       <section className="why">
         <h2>Why use the Smart Grievance System?</h2>
         <p className="why-sub">
