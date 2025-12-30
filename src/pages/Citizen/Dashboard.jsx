@@ -5,7 +5,7 @@ import BoardColumn from "../../components/dashboard/BoardColumn";
 import StatMiniCard from "../../components/dashboard/StatMiniCard";
 import HeatMap from "../../components/dashboard/HeatMap";
 
-/* New intelligence components */
+/* Intelligence components */
 import CivicImpact from "../../components/dashboard/CivicImpact";
 import CommunityActivity from "../../components/dashboard/CommunityActivity";
 import AreaHealth from "../../components/dashboard/AreaHealth";
@@ -63,6 +63,14 @@ export default function Dashboard() {
         {/* ================= RIGHT COLUMN ================= */}
         <div className="right-stack">
 
+          {/* 🔥 MAIN VISUAL – HEATMAP (PRIORITY) */}
+          <HeatMap />
+
+          {/* Area intelligence */}
+          <AreaHealth />
+
+          <TopCategories />
+
           {/* Resolution stats */}
           <div className="dashboard-card stats">
             <div>
@@ -89,13 +97,7 @@ export default function Dashboard() {
             <p>Overdue Issues</p>
           </div>
 
-          {/* DATA + INTELLIGENCE */}
-          <HeatMap />
-
-          <AreaHealth />
-
-          <TopCategories />
-
+          {/* Civic intelligence */}
           <CivicImpact />
 
           <CommunityActivity />
