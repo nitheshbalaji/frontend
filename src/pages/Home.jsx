@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import HamburgerMenu from "../components/HamburgerMenu";
-import "./home.css";
-
+import "./Home.css";
 
 export default function Home() {
   const { user } = useAuth();
@@ -14,8 +13,6 @@ export default function Home() {
 
       {/* Top Navbar */}
       <header className="home-navbar">
-
-        {/* LEFT */}
         <div className="nav-left">
           {user && (
             <div
@@ -29,7 +26,6 @@ export default function Home() {
           <div className="logo">CityConnect</div>
         </div>
 
-        {/* RIGHT */}
         <nav>
           <Link to="/">Home</Link>
 
@@ -46,59 +42,66 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Hamburger Menu */}
-      {user && (
-        <HamburgerMenu open={menuOpen} setOpen={setMenuOpen} />
-      )}
+      {user && <HamburgerMenu open={menuOpen} setOpen={setMenuOpen} />}
 
-      {/* HERO (NO IMAGE – PURE DESIGN) */}
-      <section className="hero hero-gradient">
-        <div className="hero-text centered">
-
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero-text">
           <span className="badge">SMART CITY INITIATIVE</span>
 
-          <h1>
-            A Smarter Way to <br />
-            Resolve <span>Public Issues</span>
+          <h1 className="hero-title">
+            A Smarter Way to
+            <span> Resolve Public Issues</span>
           </h1>
 
           <p>
             Register complaints, track progress in real-time, and help build
-            a transparent, accountable, and efficient grievance resolution system.
+            a transparent, accountable, and efficient grievance resolution
+            system.
           </p>
 
           {!user && (
             <div className="hero-actions">
-              <Link to="/login" className="btn-primary">
-                Citizen Login
-              </Link>
-              <Link to="/register" className="btn-secondary">
-                Register Now
-              </Link>
+              <Link to="/login" className="btn-primary">Citizen Login</Link>
+              <Link to="/register" className="btn-secondary">Register Now</Link>
             </div>
           )}
+        </div>
 
+        {/* RIGHT CREATIVE VISUAL */}
+        <div className="hero-visual">
+          <div className="floating-card blue">
+            <h3>Live Tracking</h3>
+            <p>Complaints update in real-time</p>
+          </div>
+
+          <div className="floating-card purple">
+            <h3>Transparency</h3>
+            <p>Status visible at every stage</p>
+          </div>
+
+          <div className="floating-card green">
+            <h3>Fast Resolution</h3>
+            <p>Issues resolved efficiently</p>
+          </div>
         </div>
       </section>
 
       {/* STATS */}
-      <section className="stats pastel">
-        <div className="stat-card soft-blue">
+      <section className="stats">
+        <div className="stat-card">
           <h2>15,000+</h2>
           <p>Complaints Filed</p>
         </div>
-
-        <div className="stat-card soft-green">
+        <div className="stat-card">
           <h2>94%</h2>
           <p>Resolution Rate</p>
         </div>
-
-        <div className="stat-card soft-purple">
+        <div className="stat-card">
           <h2>48 Hrs</h2>
           <p>Avg. Resolution Time</p>
         </div>
-
-        <div className="stat-card soft-orange">
+        <div className="stat-card">
           <h2>1,400+</h2>
           <p>Active Cases</p>
         </div>
@@ -112,19 +115,19 @@ export default function Home() {
         </p>
 
         <div className="why-cards">
-          <div className="why-card glow-blue">
+          <div className="why-card">
             <h3>Real-time Tracking</h3>
             <p>Track complaint status anytime with instant updates.</p>
           </div>
 
-          <div className="why-card glow-green">
+          <div className="why-card">
             <h3>Direct Department Access</h3>
-            <p>Complaints are routed directly to the responsible authority.</p>
+            <p>Complaints go straight to responsible authorities.</p>
           </div>
 
-          <div className="why-card glow-purple">
+          <div className="why-card">
             <h3>24/7 Availability</h3>
-            <p>Submit complaints anytime, anywhere.</p>
+            <p>Submit issues anytime, anywhere.</p>
           </div>
         </div>
       </section>
