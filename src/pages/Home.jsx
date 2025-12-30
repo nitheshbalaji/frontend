@@ -23,7 +23,6 @@ export default function Home() {
               ☰
             </div>
           )}
-          {/* ONLY text style changed via CSS */}
           <div className="logo">CityConnect</div>
         </div>
 
@@ -47,7 +46,7 @@ export default function Home() {
         <HamburgerMenu open={menuOpen} setOpen={setMenuOpen} />
       )}
 
-      {/* Hero Section — SAME STRUCTURE */}
+      {/* Hero Section */}
       <section className="hero">
         <div className="hero-text">
           <span className="badge">SMART CITY INITIATIVE</span>
@@ -70,12 +69,11 @@ export default function Home() {
           )}
         </div>
 
-        {/* IMAGE REMOVED AS YOU ASKED — SPACE FILLED BY BACKGROUND */}
+        {/* RIGHT SIDE – SAME DIV, CREATIVE CONTENT VIA CSS */}
         <div className="hero-placeholder" />
       </section>
 
-      {/* EVERYTHING BELOW REMAINS EXACTLY AS BEFORE */}
-
+      {/* Stats Section */}
       <section className="stats">
         <div className="stat-card">
           <h2>15,000+</h2>
@@ -95,6 +93,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Section */}
       <section className="why">
         <h2>Why use the Smart Grievance System?</h2>
         <p className="why-sub">
