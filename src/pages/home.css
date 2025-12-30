@@ -1,13 +1,18 @@
-/* PAGE BACKGROUND */
+/* =========================
+   PAGE BACKGROUND
+========================= */
 .home {
   min-height: 100vh;
   background:
-    radial-gradient(circle at right, rgba(168,85,247,0.18), transparent 55%),
+    radial-gradient(circle at 70% 30%, rgba(168,85,247,0.22), transparent 55%),
+    radial-gradient(circle at 85% 60%, rgba(59,130,246,0.22), transparent 55%),
     linear-gradient(135deg, #f8fbff, #eef4ff);
   font-family: "Inter", system-ui, sans-serif;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 .home-navbar {
   display: flex;
   justify-content: space-between;
@@ -18,17 +23,21 @@
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: 800;
-  color: #2563eb;
-  letter-spacing: -0.5px;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.8px;
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 .hero {
   max-width: 1200px;
   margin: auto;
-  padding: 60px 32px 40px; /* GAP REDUCED */
+  padding: 60px 32px 40px;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
@@ -43,25 +52,53 @@
   background: linear-gradient(90deg, #2563eb, #9333ea);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 10px 30px rgba(99,102,241,0.25);
+  text-shadow: 0 12px 35px rgba(99,102,241,0.35);
 }
 
-/* RIGHT EMPTY AREA FILLED VISUALLY */
+/* =========================
+   RIGHT EMPTY SPACE (CREATIVE)
+========================= */
 .hero-placeholder {
+  position: relative;
   border-radius: 28px;
   background:
-    radial-gradient(circle at top, rgba(99,102,241,0.25), transparent 60%),
-    radial-gradient(circle at bottom, rgba(168,85,247,0.25), transparent 60%);
+    radial-gradient(circle at top left, rgba(99,102,241,0.25), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(168,85,247,0.25), transparent 60%);
+  overflow: hidden;
 }
 
-/* BUTTON ALIGNMENT */
+/* floating cards illusion */
+.hero-placeholder::before,
+.hero-placeholder::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 120px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.65);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+  backdrop-filter: blur(10px);
+}
+
+.hero-placeholder::before {
+  top: 18%;
+  left: 20%;
+}
+
+.hero-placeholder::after {
+  bottom: 18%;
+  right: 18%;
+}
+
+/* =========================
+   BUTTONS
+========================= */
 .hero-actions {
   margin-top: 26px;
   display: flex;
   gap: 16px;
 }
 
-/* BUTTONS */
 .btn-primary {
   padding: 12px 22px;
   border-radius: 10px;
@@ -69,6 +106,7 @@
   color: white;
   font-weight: 600;
   text-decoration: none;
+  box-shadow: 0 10px 30px rgba(99,102,241,0.35);
 }
 
 .btn-secondary {
