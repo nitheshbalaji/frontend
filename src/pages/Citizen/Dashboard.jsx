@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
+import HeatMap from "../../components/dashboard/HeatMap";
 
 /* ---------------- MOCK DATA ---------------- */
 
@@ -118,6 +119,7 @@ export default function Dashboard() {
 
         {/* HEATMAP */}
         <div className="cd-card wide glass heatmap-card">
+          <HeatMap />
           <h3>🔥 Area-wise Complaint Heatmap</h3>
           <p className="heatmap-sub">
             Darker color indicates higher number of complaints
