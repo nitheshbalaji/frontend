@@ -6,7 +6,6 @@ import StatMiniCard from "../../components/dashboard/StatMiniCard";
 import HeatMap from "../../components/dashboard/HeatMap";
 
 /* Intelligence components */
-import CivicImpact from "../../components/dashboard/CivicImpact";
 import CommunityActivity from "../../components/dashboard/CommunityActivity";
 import AreaHealth from "../../components/dashboard/AreaHealth";
 import TopCategories from "../../components/dashboard/TopCategories";
