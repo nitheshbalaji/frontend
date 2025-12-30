@@ -1,0 +1,62 @@
+.heatmap-container {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.heatmap-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.heatmap-subtitle {
+  font-size: 14px;
+  color: #c7d2fe;
+  margin-bottom: 16px;
+}
+
+.heatmap-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heatmap-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.heatmap-day {
+  width: 42px;
+  font-size: 13px;
+  color: #e5e7eb;
+}
+
+.heatmap-cell {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+}
+
+/* Heat levels */
+.level-0 { background: #1f2933; }
+.level-1 { background: #e0e7ff; }
+.level-2 { background: #c7d2fe; }
+.level-3 { background: #a5b4fc; }
+.level-4 { background: #818cf8; }
+.level-5 { background: #6366f1; }
+.level-6 { background: #4f46e5; }
+.level-7 { background: #4338ca; }
+.level-8 { background: #3730a3; }
+.level-9 { background: #312e81; }
+.level-10 { background: #1e1b4b; }
