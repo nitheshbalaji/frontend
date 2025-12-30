@@ -1,14 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 export default function VerifyOtp() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleVerify = (e) => {
+  const handleVerify = async (e) => {
     e.preventDefault();
 
-    // later: verify OTP via backend
-    navigate("/set-password"); // or dashboard later
+    // ✅ OTP verification logic later
+    // For now assume OTP is correct
+
+    await login(); // register + login (dummy)
+    navigate("/citizen/dashboard"); // go to home
   };
 
   return (
@@ -16,79 +21,92 @@ export default function VerifyOtp() {
       style={{
         minHeight: "100vh",
         background:
-          "linear-gradient(135deg, #c7d2fe, #fde68a, #bae6fd)",
+          "linear-gradient(135deg, #dbeafe, #fef3c7, #e0f2fe)",
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
-        padding: "20px",
+        alignItems: "center",
+        padding: "30px",
       }}
     >
+      {/* Card */}
       <div
         style={{
           width: "100%",
           maxWidth: "420px",
           background: "rgba(255,255,255,0.95)",
-          borderRadius: "20px",
-          padding: "35px",
-          boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
-          textAlign: "center",
+          borderRadius: "22px",
+          padding: "48px 38px 42px",
+          boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
+          position: "relative",
         }}
       >
         {/* Icon */}
         <div
           style={{
-            width: "60px",
-            height: "60px",
-            margin: "0 auto 20px",
+            position: "absolute",
+            top: "-48px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "96px",
+            height: "96px",
             borderRadius: "50%",
-            background: "#2563eb",
+            background:
+              "linear-gradient(135deg, #2563eb, #1e40af)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "white",
-            fontSize: "26px",
+            fontSize: "34px",
+            boxShadow: "0 14px 30px rgba(0,0,0,0.35)",
           }}
         >
           🔐
         </div>
 
-        <h2 style={{ marginBottom: "8px" }}>Verify OTP</h2>
-        <p style={{ fontSize: "14px", color: "#555", marginBottom: "25px" }}>
-          Enter the 6-digit OTP sent to your registered email / mobile
+        <h2
+          style={{
+            marginTop: "38px",
+            textAlign: "center",
+            fontSize: "26px",
+            fontWeight: "700",
+          }}
+        >
+          Verify OTP
+        </h2>
+
+        <p
+          style={{
+            textAlign: "center",
+            color: "#555",
+            fontSize: "14px",
+            marginBottom: "28px",
+          }}
+        >
+          Enter the 6-digit OTP sent to your registered email/mobile
         </p>
 
         <form onSubmit={handleVerify}>
-          <div style={{ marginBottom: "20px", textAlign: "left" }}>
-            <label
-              style={{
-                display: "block",
-                marginBottom: "6px",
-                fontWeight: "500",
-              }}
-            >
-              OTP
-            </label>
-            <input
-              type="text"
-              maxLength="6"
-              placeholder="Enter OTP"
-              required
-              style={{
-                width: "100%",
-                padding: "14px",
-                borderRadius: "12px",
-                border: "1px solid #ccc",
-                outline: "none",
-                fontSize: "15px",
-              }}
-            />
-          </div>
+          <input
+            type="text"
+            placeholder="Enter OTP"
+            maxLength={6}
+            required
+            style={{
+              width: "100%",
+              padding: "14px 16px",
+              borderRadius: "12px",
+              border: "1.5px solid #d1d5db",
+              fontSize: "16px",
+              backgroundColor: "#f9fafb",
+              marginBottom: "26px",
+            }}
+          />
 
           <button
             type="submit"
             style={{
               width: "100%",
-              padding: "14px",
+              padding: "15px",
               borderRadius: "999px",
               border: "none",
               background: "linear-gradient(90deg, #2563eb, #1e40af)",
