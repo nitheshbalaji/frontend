@@ -1,65 +1,77 @@
-.heatmap-card {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+.heatmap-main {
+  background: linear-gradient(135deg, #020617, #1e1b4b);
+  border-radius: 20px;
 }
 
-.heatmap-title {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.heatmap-subtitle {
+.heatmap-desc {
   font-size: 13px;
   opacity: 0.7;
   margin-bottom: 16px;
 }
 
-.heatmap-row {
+.heatmap-wrapper {
   display: flex;
-  gap: 16px;
-  align-items: flex-end;
+  gap: 14px;
 }
 
-.heatmap-col {
+.heatmap-hours {
   display: flex;
   flex-direction: column;
+  gap: 18px;
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.heatmap-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heatmap-row {
+  display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
+}
+
+.heatmap-day {
+  width: 40px;
   font-size: 12px;
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 .heatmap-cell {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .heatmap-cell:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 12px currentColor;
+  transform: scale(1.25);
+  box-shadow: 0 0 14px currentColor;
 }
 
-/* Heat levels */
-.level-0 {
-  background: #1e293b;
+/* Heat Levels */
+.l0 { background: #020617; }
+.l1 { background: #60a5fa; }
+.l2 { background: #34d399; }
+.l3 { background: #facc15; }
+.l4 { background: #fb7185; }
+.l5 { background: #ef4444; }
+
+/* Legend */
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 12px;
+  opacity: 0.7;
 }
 
-.level-1 {
-  background: #60a5fa;
-}
-
-.level-2 {
-  background: #22c55e;
-}
-
-.level-3 {
-  background: #facc15;
-}
-
-.level-4 {
-  background: #ef4444;
+.legend-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
 }
