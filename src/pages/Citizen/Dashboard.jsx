@@ -1,4 +1,4 @@
-import PageWrapper from "../../components/common/PageWrapper.jsx";
+import PageWrapper from "../../components/common/PageWrappper.jsx";
 import StatCard from "../../components/dashboard/StatCard";
 import RecentComplaints from "../../components/dashboard/RecentComplaints";
 import { dashboardStats } from "../../data/dashboardStats";
