@@ -5,20 +5,29 @@ import { Outlet, useLocation } from "react-router-dom";
 export default function CitizenLayout() {
   const location = useLocation();
 
-  // Show sidebar only on these routes
-  const showSidebar =
-    location.pathname.startsWith("/citizen/dashboard") ||
-    location.pathname.startsWith("/citizen/my-complaints");
+  // Pages that should be FULL SCREEN (no topbar, no sidebar)
+  const isDashboard = location.pathname === "/citizen/dashboard";
 
   return (
-    <div className="app-layout">
-      <Topbar />
+    <>
+      {/* Show Topbar only if NOT dashboard */}
+      {!isDashboard && <Topbar />}
+
       <div className="layout-body">
-        {showSidebar && <CitizenSidebar />}
-        <main className="content-area">
+        {/* Show sidebar only if NOT dashboard */}
+        {!isDashboard && <CitizenSidebar />}
+
+        <main
+          className="content-area"
+          style={{
+            padding: isDashboard ? "0" : "24px",
+            width: "100%",
+            minHeight: "100vh",
+          }}
+        >
           <Outlet />
         </main>
       </div>
-    </div>
+    </>
   );
 }
