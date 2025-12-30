@@ -69,8 +69,23 @@ export default function Home() {
           )}
         </div>
 
-        {/* RIGHT SIDE – SAME DIV, CREATIVE CONTENT VIA CSS */}
-        <div className="hero-placeholder" />
+        {/* RIGHT SIDE – CREATIVE SPACE */}
+        <div className="hero-visual">
+          <div className="float-card card-blue">
+            <h4>Live Tracking</h4>
+            <p>Status updates in real-time</p>
+          </div>
+
+          <div className="float-card card-green">
+            <h4>Fast Resolution</h4>
+            <p>Issues solved efficiently</p>
+          </div>
+
+          <div className="float-card card-purple">
+            <h4>Transparency</h4>
+            <p>Visible at every stage</p>
+          </div>
+        </div>
       </section>
 
       {/* Stats Section */}
