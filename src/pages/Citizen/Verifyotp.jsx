@@ -13,7 +13,7 @@ export default function VerifyOtp() {
     // For now assume OTP is correct
 
     await login(); // register + login (dummy)
-    navigate("/citizen/dashboard"); // go to home
+    navigate("/"); // go to home
   };
 
   return (
