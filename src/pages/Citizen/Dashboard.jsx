@@ -1,66 +1,46 @@
 import React, { useEffect } from "react";
 
-/* ======================
+/* =====================
    MOCK DATA
-   ====================== */
+===================== */
 
 const stats = [
   {
-    label: "Total Complaints",
+    title: "Total Complaints",
     value: 6,
-    gradient: "linear-gradient(135deg, #2563eb, #60a5fa)",
+    color: "#2563eb",
+    bg: "#eff6ff",
     icon: "📄",
   },
   {
-    label: "Pending",
+    title: "Pending",
     value: 2,
-    gradient: "linear-gradient(135deg, #dc2626, #f87171)",
+    color: "#dc2626",
+    bg: "#fef2f2",
     icon: "⏳",
   },
   {
-    label: "In Progress",
+    title: "In Progress",
     value: 2,
-    gradient: "linear-gradient(135deg, #f59e0b, #fbbf24)",
+    color: "#f59e0b",
+    bg: "#fffbeb",
     icon: "🔄",
   },
   {
-    label: "Resolved",
+    title: "Resolved",
     value: 2,
-    gradient: "linear-gradient(135deg, #16a34a, #4ade80)",
+    color: "#16a34a",
+    bg: "#f0fdf4",
     icon: "✅",
   },
 ];
 
-const complaints = [
-  {
-    id: 1,
-    title: "Street light not working",
-    category: "Electricity",
-    status: "Pending",
-    progress: 25,
-  },
-  {
-    id: 2,
-    title: "Water leakage near house",
-    category: "Water",
-    status: "In Progress",
-    progress: 60,
-  },
-  {
-    id: 3,
-    title: "Garbage not collected",
-    category: "Sanitation",
-    status: "Resolved",
-    progress: 100,
-  },
-];
-
-/* ======================
+/* =====================
    DASHBOARD
-   ====================== */
+===================== */
 
-export default function CitizenDashboard() {
-  /* 🔥 Hide sidebar & topbar ONLY on this page */
+export default function Dashboard() {
+  /* Hide sidebar & topbar */
   useEffect(() => {
     const sidebar = document.querySelector(".sidebar");
     const topbar = document.querySelector(".topbar");
@@ -75,139 +55,110 @@ export default function CitizenDashboard() {
   }, []);
 
   return (
-    <div style={pageStyle}>
-      {/* Header */}
-      <div style={headerStyle}>
-        <h1 style={{ fontSize: "34px", fontWeight: "800" }}>
-          Your Dashboard ✨
-        </h1>
-        <p style={{ color: "#334155", marginTop: "6px" }}>
-          Track your complaints and progress in real time
-        </p>
-      </div>
+    <div style={page}>
+      <div style={container}>
+        {/* Header */}
+        <div style={header}>
+          <h1 style={title}>Citizen Dashboard</h1>
+          <p style={subtitle}>
+            Overview of your complaints and their current status
+          </p>
+        </div>
 
-      {/* Stats Cards */}
-      <div style={statsGrid}>
-        {stats.map((item, index) => (
-          <div
-            key={index}
-            style={{
-              ...statCard,
-              background: item.gradient,
-            }}
-          >
-            <div style={statIcon}>{item.icon}</div>
-            <h2 style={{ fontSize: "36px", margin: "12px 0 4px" }}>
-              {item.value}
-            </h2>
-            <p style={{ opacity: 0.9 }}>{item.label}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Complaints Section */}
-      <div style={glassCard}>
-        <h3 style={sectionTitle}>📂 Your Complaints</h3>
-
-        {complaints.map((c) => (
-          <div key={c.id} style={complaintRow}>
-            <div>
-              <h4 style={{ margin: 0 }}>{c.title}</h4>
-              <p style={{ fontSize: "13px", color: "#475569" }}>
-                {c.category}
-              </p>
+        {/* Stats */}
+        <div style={statsGrid}>
+          {stats.map((item, i) => (
+            <div
+              key={i}
+              style={{
+                ...card,
+                background: item.bg,
+                borderLeft: `6px solid ${item.color}`,
+              }}
+            >
+              <div style={icon}>{item.icon}</div>
+              <h2 style={{ color: item.color }}>{item.value}</h2>
+              <p>{item.title}</p>
             </div>
+          ))}
+        </div>
 
-            <div style={{ width: "180px" }}>
-              <div style={progressBar}>
-                <div
-                  style={{
-                    ...progressFill,
-                    width: `${c.progress}%`,
-                    background:
-                      c.status === "Pending"
-                        ? "#ef4444"
-                        : c.status === "In Progress"
-                        ? "#f59e0b"
-                        : "#22c55e",
-                  }}
-                />
-              </div>
-              <p style={{ fontSize: "12px", marginTop: "6px" }}>
-                {c.status}
-              </p>
-            </div>
-          </div>
-        ))}
+        {/* Info Section */}
+        <div style={infoCard}>
+          <h3 style={{ marginBottom: "10px" }}>
+            📌 What you can do here
+          </h3>
+          <ul style={list}>
+            <li>View status of all your complaints</li>
+            <li>Track progress in real time</li>
+            <li>Get faster resolution updates</li>
+            <li>Maintain transparency with authorities</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
 }
 
-/* ======================
+/* =====================
    STYLES
-   ====================== */
+===================== */
 
-const pageStyle = {
+const page = {
   minHeight: "100vh",
-  padding: "40px",
-  background:
-    "linear-gradient(135deg, #dbeafe, #fef3c7, #e0f2fe)",
+  background: "linear-gradient(135deg, #eef2ff, #f8fafc)",
+  display: "flex",
+  justifyContent: "center",
+  padding: "40px 20px",
 };
 
-const headerStyle = {
+const container = {
+  width: "100%",
+  maxWidth: "1200px",
+};
+
+const header = {
   marginBottom: "35px",
+};
+
+const title = {
+  fontSize: "34px",
+  fontWeight: "700",
+  color: "#0f172a",
+};
+
+const subtitle = {
+  color: "#475569",
+  marginTop: "6px",
 };
 
 const statsGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-  gap: "22px",
-  marginBottom: "40px",
+  gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+  gap: "20px",
+  marginBottom: "35px",
 };
 
-const statCard = {
-  color: "white",
+const card = {
+  padding: "22px",
+  borderRadius: "14px",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+};
+
+const icon = {
+  fontSize: "26px",
+  marginBottom: "8px",
+};
+
+const infoCard = {
+  background: "white",
   padding: "26px",
-  borderRadius: "20px",
-  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-  position: "relative",
+  borderRadius: "14px",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
 };
 
-const statIcon = {
-  fontSize: "32px",
-};
-
-const glassCard = {
-  background: "rgba(255,255,255,0.85)",
-  backdropFilter: "blur(12px)",
-  padding: "28px",
-  borderRadius: "20px",
-  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-};
-
-const sectionTitle = {
-  fontSize: "20px",
-  fontWeight: "700",
-  marginBottom: "20px",
-};
-
-const complaintRow = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  padding: "16px 0",
-  borderBottom: "1px solid #e5e7eb",
-};
-
-const progressBar = {
-  height: "8px",
-  background: "#e5e7eb",
-  borderRadius: "999px",
-  overflow: "hidden",
-};
-
-const progressFill = {
-  height: "100%",
-  borderRadius: "999px",
+const list = {
+  paddingLeft: "18px",
+  lineHeight: "1.8",
+  color: "#334155",
 };
