@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
 
 /* ---------------- MOCK DATA ---------------- */
@@ -22,8 +23,33 @@ const getHeatColor = (count) => {
 /* ---------------- COMPONENT ---------------- */
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+
   return (
-    <div className="cd-root">
+    <div className="cd-root" style={{ position: "relative" }}>
+      {/* BACK BUTTON → HOME */}
+      <button
+        onClick={() => navigate("/")}
+        style={{
+          position: "fixed",
+          top: "20px",
+          left: "20px",
+          width: "42px",
+          height: "42px",
+          borderRadius: "12px",
+          border: "none",
+          background: "#111827",
+          color: "white",
+          fontSize: "20px",
+          cursor: "pointer",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+          zIndex: 1000,
+        }}
+        aria-label="Go back to home"
+      >
+        ←
+      </button>
+
       <h1 className="cd-title">Citizen Dashboard</h1>
       <p className="cd-subtitle">
         Track and manage your complaints in real time
