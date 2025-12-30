@@ -133,4 +133,10 @@
   background: linear-gradient(to right, #3b82f6, #2563eb);
   width: 90%;
 }
+.right-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 
