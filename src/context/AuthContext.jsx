@@ -5,12 +5,12 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // 🔥 DEV LOGIN (no backend, no credentials)
-  const login = async () => {
+  // ✅ LOGIN WITH ROLE (ADMIN / CITIZEN)
+  const login = async (userData) => {
     setUser({
-      id: 1,
-      name: "Dev User",
-      role: "citizen"
+      id: Date.now(),          // simple unique id
+      name: userData.username || "User",
+      role: userData.role || "citizen",
     });
     return true;
   };

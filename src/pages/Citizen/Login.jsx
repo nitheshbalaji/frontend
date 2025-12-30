@@ -1,18 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useState } from "react";
 
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // DEV LOGIN (no backend yet)
-    await login();
+    // ✅ ADMIN LOGIN SHORTCUT
+    if (email === "admin" && password === "admin") {
+      await login({
+        username: "admin",
+        role: "admin",
+      });
 
-    // ✅ GO TO HOME PAGE (CityConnect)
-    navigate("/");
+      navigate("/admin/dashboard");
+      return;
+    }
+
+    // ✅ NORMAL CITIZEN LOGIN (mock)
+    await login({
+      username: email,
+      role: "citizen",
+    });
+
+    navigate("/citizen/dashboard");
   };
 
   return (
@@ -71,7 +88,7 @@ export default function Login() {
             fontWeight: "700",
           }}
         >
-          Citizen Login
+          Login
         </h2>
 
         <p
@@ -89,12 +106,14 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           {/* Email */}
           <div style={{ marginBottom: "22px" }}>
-            <label style={labelStyle}>Email</label>
+            <label style={labelStyle}>Email / Username</label>
             <input
-              type="email"
-              placeholder="Enter your email"
+              type="text"
+              placeholder="Enter your email or admin"
               style={inputStyle}
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               onFocus={handleFocus}
               onBlur={handleBlur}
             />
@@ -108,6 +127,8 @@ export default function Login() {
               placeholder="Enter your password"
               style={inputStyle}
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               onFocus={handleFocus}
               onBlur={handleBlur}
             />

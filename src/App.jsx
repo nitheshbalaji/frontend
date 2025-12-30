@@ -4,6 +4,7 @@ import { useAuth } from "./context/AuthContext";
 
 /* Layouts */
 import CitizenLayout from "./layouts/CitizenLayout";
+import AdminLayout from "./pages/Admin/adminLayout";
 
 /* Public Pages */
 import Home from "./pages/Home";
@@ -17,6 +18,13 @@ import Dashboard from "./pages/Citizen/Dashboard";
 import Profile from "./pages/Citizen/Profile";
 import SubmitComplaint from "./pages/Citizen/SubmitComplaint";
 import MyComplaints from "./pages/Citizen/MyComplaints";
+
+/* Admin Pages */
+import AdminDashboard from "./pages/Admin/Dashboard";
+import Complaints from "./pages/Admin/complaints";
+import ManageComplaints from "./pages/Admin/ManageComplaints";
+import Reports from "./pages/Admin/reports";
+import Users from "./pages/Admin/users";
 
 /* Protected Route Component */
 function ProtectedRoute({ children, role }) {
@@ -36,7 +44,6 @@ function ProtectedRoute({ children, role }) {
 export default function App() {
   return (
     <Routes>
-
       {/* Public Routes */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
@@ -60,9 +67,25 @@ export default function App() {
         <Route path="history" element={<MyComplaints />} />
       </Route>
 
+      {/* Admin Routes (Protected) */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute role="admin">
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Navigate to="dashboard" replace />} />
+        <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="complaints" element={<Complaints />} />
+        <Route path="manage" element={<ManageComplaints />} />
+        <Route path="reports" element={<Reports />} />
+        <Route path="users" element={<Users />} />
+      </Route>
+
       {/* Catch-all */}
       <Route path="*" element={<Navigate to="/" replace />} />
-
     </Routes>
   );
 }
