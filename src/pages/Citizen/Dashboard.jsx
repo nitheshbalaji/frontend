@@ -1,62 +1,65 @@
-import "../../styles/dashboard.css";
-
-import StatCard from "../../components/dashboard/StatCard";
-import HeatMap from "../../components/dashboard/HeatMap";
-import TrendChart from "../../components/dashboard/TrendChart";
-import RecentComplaints from "../../components/dashboard/RecentComplaints";
-import ComplaintProgress from "../../components/dashboard/ComplaintProgress";
+import React from "react";
+import Heatmap from "../../components/Heatmap";
+import "./dashboard.css";
 
 export default function Dashboard() {
   return (
-    <div className="dashboard-container">
+    <div className="cd-root">
+      <h1 className="cd-title">Citizen Dashboard</h1>
+      <p className="cd-subtitle">
+        Track and manage your complaints in real time
+      </p>
 
-      {/* ================= LEFT COLUMN ================= */}
-      <div className="dashboard-left">
-        <RecentComplaints title="To Do" />
-        <RecentComplaints title="Requested by Support" />
+      <div className="cd-grid">
 
-        <StatCard
-          title="Unassigned Tickets"
-          value="7"
-          variant="danger"
-        />
-      </div>
+        <div className="cd-card glass blue">
+          <h3>To Do</h3>
+          <ul>
+            <li>Street light not working</li>
+            <li>Garbage not collected</li>
+            <li>Water leakage</li>
+          </ul>
+        </div>
 
-      {/* ================= CENTER COLUMN ================= */}
-      <div className="dashboard-center">
-        <ComplaintProgress />
+        <div className="cd-card glass orange">
+          <h3>In Progress</h3>
+          <ul>
+            <li>Road damage repair</li>
+            <li>Drainage issue</li>
+            <li>Power fluctuation</li>
+          </ul>
+        </div>
 
-        <div className="workers-card">
-          <h3>Tickets being worked on</h3>
-          <div className="workers">
-            <StatCard title="Sam" value="3" />
-            <StatCard title="Tom" value="2" />
-            <StatCard title="Jon" value="4" alert />
+        <div className="cd-card glass green">
+          <h3>Resolved</h3>
+          <div className="cd-stats">
+            <div>
+              <h2>5</h2>
+              <span>Today</span>
+            </div>
+            <div>
+              <h2>18</h2>
+              <span>This week</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* ================= RIGHT COLUMN ================= */}
-      <div className="dashboard-right">
-
-        <div className="done-card">
-          <StatCard title="Resolved Today" value="17" variant="success" />
-          <StatCard title="Resolved This Week" value="45" variant="info" />
+        <div className="cd-card highlight red">
+          <h2>7</h2>
+          <p>Unassigned Complaints</p>
         </div>
 
-        <StatCard
-          title="Overdue"
-          value="3"
-          variant="warning"
-          alert
-        />
+        <div className="cd-card highlight purple">
+          <h2>3</h2>
+          <p>Overdue</p>
+        </div>
 
-        <TrendChart />
+        {/* 🔥 HEATMAP ADDED */}
+        <div className="cd-card wide">
+          <Heatmap />
+        </div>
 
-        {/* 🔥 HEATMAP */}
-        <HeatMap />
       </div>
-
     </div>
   );
 }
