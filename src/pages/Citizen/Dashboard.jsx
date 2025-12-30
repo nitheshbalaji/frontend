@@ -1,7 +1,10 @@
 import "../../styles/dashboard.css";
-import BoardColumn from "../../components/dashboard/BoardColumn";
 import StatMiniCard from "../../components/dashboard/StatMiniCard";
 import TicketsChart from "../../components/dashboard/TicketsChart";
+import StatCard from "../../components/dashboard/StatCard";
+import HeatMap from "../../components/dashboard/HeatMap";
+import TrendChart from "../../components/dashboard/TrendChart";
+import RecentComplaints from "../../components/dashboard/RecentComplaints";
 
 export default function Dashboard() {
   return (
