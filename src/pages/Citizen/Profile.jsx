@@ -35,8 +35,52 @@ const Profile = () => {
         background:
           "linear-gradient(180deg, #e0e7ff 0%, #f8fafc 65%)",
         padding: "40px 30px",
+        position: "relative",
       }}
     >
+   <button
+  onClick={() => navigate("/")}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = "scale(1.08)";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+  style={{
+    position: "absolute",
+    top: "18px",
+    left: "18px",
+    width: "42px",
+    height: "42px",
+    borderRadius: "14px",
+    border: "1px solid rgba(0,0,0,0.06)",
+    background: "rgba(255,255,255,0.95)",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 8px 22px rgba(0,0,0,0.14)",
+    backdropFilter: "blur(10px)",
+    zIndex: 1000,
+    transition: "transform 0.2s ease",
+  }}
+  aria-label="Go back"
+>
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#1e40af"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+</button>
+
+
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         {/* ================= HERO PROFILE ================= */}
         <div
@@ -101,18 +145,6 @@ const Profile = () => {
               overflow: "hidden",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                top: "-20px",
-                right: "-20px",
-                fontSize: "90px",
-                opacity: 0.15,
-              }}
-            >
-              📊
-            </div>
-
             <h4 style={{ marginBottom: "14px", fontSize: "16px" }}>
               Complaints Filed
             </h4>
@@ -144,18 +176,6 @@ const Profile = () => {
               overflow: "hidden",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                top: "-18px",
-                right: "-10px",
-                fontSize: "80px",
-                opacity: 0.2,
-              }}
-            >
-              ✉️
-            </div>
-
             <h4 style={{ marginBottom: "14px" }}>
               Email Address
             </h4>
@@ -187,18 +207,6 @@ const Profile = () => {
               overflow: "hidden",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                top: "-18px",
-                right: "-10px",
-                fontSize: "80px",
-                opacity: 0.25,
-              }}
-            >
-              📞
-            </div>
-
             <h4 style={{ marginBottom: "14px" }}>
               Phone Number
             </h4>

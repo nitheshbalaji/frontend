@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SubmitComplaint = () => {
+  const navigate = useNavigate();
+
   // Hide sidebar & topbar ONLY on this page
   useEffect(() => {
     const sidebar = document.querySelector(".sidebar");
@@ -34,16 +37,9 @@ const SubmitComplaint = () => {
   const analyzeImage = (file) => {
     setAnalysisStatus("analyzing");
 
-    // Simulate AI processing delay
     setTimeout(() => {
-      // Random result for demo
       const isReal = Math.random() > 0.3;
-
-      if (isReal) {
-        setAnalysisStatus("real");
-      } else {
-        setAnalysisStatus("fake");
-      }
+      setAnalysisStatus(isReal ? "real" : "fake");
     }, 2000);
   };
 
@@ -57,8 +53,53 @@ const SubmitComplaint = () => {
         justifyContent: "center",
         alignItems: "center",
         padding: "40px",
+        position: "relative",
       }}
     >
+    <button
+  onClick={() => navigate("/")}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = "scale(1.08)";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+  style={{
+    position: "absolute",
+    top: "18px",
+    left: "18px",
+    width: "42px",
+    height: "42px",
+    borderRadius: "14px",
+    border: "1px solid rgba(0,0,0,0.06)",
+    background: "rgba(255,255,255,0.95)",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 8px 22px rgba(0,0,0,0.14)",
+    backdropFilter: "blur(10px)",
+    zIndex: 1000,
+    transition: "transform 0.2s ease",
+  }}
+  aria-label="Go back"
+>
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#1e40af"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+</button>
+
+
+
       <div
         style={{
           background: "white",
@@ -97,7 +138,6 @@ const SubmitComplaint = () => {
         </div>
 
         <form className="register-form">
-          {/* Title */}
           <div className="form-group">
             <label>Complaint Title</label>
             <input
@@ -107,7 +147,6 @@ const SubmitComplaint = () => {
             />
           </div>
 
-          {/* Category */}
           <div className="form-group">
             <label>Category</label>
             <select required>
@@ -120,7 +159,6 @@ const SubmitComplaint = () => {
             </select>
           </div>
 
-          {/* Description */}
           <div className="form-group">
             <label>Description</label>
             <textarea
@@ -130,7 +168,6 @@ const SubmitComplaint = () => {
             />
           </div>
 
-          {/* IMAGE UPLOAD SECTION */}
           <div className="form-group">
             <label>Upload Image Evidence</label>
             <input
@@ -143,14 +180,8 @@ const SubmitComplaint = () => {
             </small>
           </div>
 
-          {/* Image Preview */}
           {preview && (
-            <div
-              style={{
-                marginTop: "15px",
-                textAlign: "center",
-              }}
-            >
+            <div style={{ marginTop: "15px", textAlign: "center" }}>
               <img
                 src={preview}
                 alt="Preview"
@@ -164,7 +195,6 @@ const SubmitComplaint = () => {
             </div>
           )}
 
-          {/* AI Analysis Status */}
           {analysisStatus && (
             <div
               style={{
@@ -177,12 +207,6 @@ const SubmitComplaint = () => {
                     : analysisStatus === "real"
                     ? "#dcfce7"
                     : "#fee2e2",
-                color:
-                  analysisStatus === "real"
-                    ? "#166534"
-                    : analysisStatus === "fake"
-                    ? "#991b1b"
-                    : "#92400e",
                 fontWeight: "600",
                 textAlign: "center",
               }}
@@ -196,7 +220,6 @@ const SubmitComplaint = () => {
             </div>
           )}
 
-          {/* Submit */}
           <button
             type="submit"
             className="submit-btn"
@@ -211,7 +234,6 @@ const SubmitComplaint = () => {
           </button>
         </form>
 
-        {/* Footer Note */}
         <p
           style={{
             marginTop: "20px",

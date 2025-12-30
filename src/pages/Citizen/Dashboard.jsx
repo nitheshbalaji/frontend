@@ -27,28 +27,48 @@ export default function Dashboard() {
 
   return (
     <div className="cd-root" style={{ position: "relative" }}>
-      {/* BACK BUTTON → HOME */}
-      <button
-        onClick={() => navigate("/")}
-        style={{
-          position: "fixed",
-          top: "20px",
-          left: "20px",
-          width: "42px",
-          height: "42px",
-          borderRadius: "12px",
-          border: "none",
-          background: "#111827",
-          color: "white",
-          fontSize: "20px",
-          cursor: "pointer",
-          boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
-          zIndex: 1000,
-        }}
-        aria-label="Go back to home"
-      >
-        ←
-      </button>
+     <button
+  onClick={() => navigate("/")}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = "scale(1.08)";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+  style={{
+    position: "absolute",
+    top: "18px",
+    left: "18px",
+    width: "42px",
+    height: "42px",
+    borderRadius: "14px",
+    border: "1px solid rgba(0,0,0,0.06)",
+    background: "rgba(255,255,255,0.95)",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 8px 22px rgba(0,0,0,0.14)",
+    backdropFilter: "blur(10px)",
+    zIndex: 1000,
+    transition: "transform 0.2s ease",
+  }}
+  aria-label="Go back"
+>
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#1e40af"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+</button>
+
 
       <h1 className="cd-title">Citizen Dashboard</h1>
       <p className="cd-subtitle">
