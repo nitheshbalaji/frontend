@@ -55,6 +55,9 @@ export default function App() {
             <CitizenLayout />
           </ProtectedRoute>
         }
+      {/*Admin Routes*/}
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      
       >
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
