@@ -18,7 +18,14 @@ import Profile from "./pages/Citizen/Profile";
 import SubmitComplaint from "./pages/Citizen/SubmitComplaint";
 import MyComplaints from "./pages/Citizen/MyComplaints";
 
-/* Protected Route Component */
+/* Admin Pages */
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import ManageComplaints from "./pages/Admin/ManageComplaints";
+import ComplaintDetail from "./pages/Admin/ComplaintDetail";
+
+/* ===============================
+   Protected Route Component
+================================ */
 function ProtectedRoute({ children, role }) {
   const { user } = useAuth();
 
@@ -33,18 +40,25 @@ function ProtectedRoute({ children, role }) {
   return children;
 }
 
+/* ===============================
+   App Routes
+================================ */
 export default function App() {
   return (
     <Routes>
 
-      {/* Public Routes */}
+      {/* ===============================
+         Public Routes
+      =============================== */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/verify-otp" element={<VerifyOtp />} />
       <Route path="/set-password" element={<SetPassword />} />
 
-      {/* Citizen Routes (Protected) */}
+      {/* ===============================
+         Citizen Routes (Protected)
+      =============================== */}
       <Route
         path="/citizen"
         element={
@@ -60,7 +74,26 @@ export default function App() {
         <Route path="history" element={<MyComplaints />} />
       </Route>
 
-      {/* Catch-all */}
+      {/* ===============================
+         Admin Routes (Protected)
+      =============================== */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute role="admin">
+            <React.Fragment />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Navigate to="dashboard" replace />} />
+        <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="complaints" element={<ManageComplaints />} />
+        <Route path="complaints/:id" element={<ComplaintDetail />} />
+      </Route>
+
+      {/* ===============================
+         Catch-all Route
+      =============================== */}
       <Route path="*" element={<Navigate to="/" replace />} />
 
     </Routes>
