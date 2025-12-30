@@ -6,7 +6,8 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/verify-otp"); // go to OTP page
+    // later → OTP page
+    navigate("/verify-otp");
   };
 
   return (
@@ -18,16 +19,17 @@ export default function Register() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "30px",
+        padding: "40px 20px",
       }}
     >
+      {/* Card */}
       <div
         style={{
           width: "100%",
           maxWidth: "480px",
-          background: "rgba(255,255,255,0.95)",
+          background: "rgba(255,255,255,0.96)",
           borderRadius: "22px",
-          padding: "48px 38px 42px",
+          padding: "48px 36px 42px", // ✅ FIXED PADDING
           boxShadow: "0 30px 70px rgba(0,0,0,0.25)",
           position: "relative",
         }}
@@ -48,18 +50,37 @@ export default function Register() {
             alignItems: "center",
             justifyContent: "center",
             color: "white",
-            fontSize: "38px",
+            fontSize: "36px",
             boxShadow: "0 14px 30px rgba(0,0,0,0.35)",
           }}
         >
           📝
         </div>
 
-        <h2 style={titleStyle}>Citizen Registration</h2>
-        <p style={subtitleStyle}>
+        {/* Header */}
+        <h2
+          style={{
+            marginTop: "38px",
+            textAlign: "center",
+            fontSize: "26px",
+            fontWeight: "700",
+          }}
+        >
+          Citizen Registration
+        </h2>
+
+        <p
+          style={{
+            textAlign: "center",
+            color: "#555",
+            fontSize: "14px",
+            marginBottom: "32px",
+          }}
+        >
           Enter your details to create an account
         </p>
 
+        {/* FORM */}
         <form onSubmit={handleSubmit}>
           <FormInput label="First Name" placeholder="Enter first name" />
           <FormInput label="Last Name" placeholder="Enter last name" />
@@ -67,17 +88,30 @@ export default function Register() {
           <FormInput label="Mobile Number" placeholder="Enter mobile number" />
           <FormInput label="Address" placeholder="Enter address" />
           <FormInput label="City" placeholder="Enter city" />
-          <FormInput label="Password" placeholder="Create password" type="password" />
-          <FormInput label="Confirm Password" placeholder="Confirm password" type="password" />
 
           <button type="submit" style={buttonStyle}>
             Register
           </button>
         </form>
 
-        <p style={footerStyle}>
+        {/* Footer */}
+        <p
+          style={{
+            marginTop: "18px",
+            fontSize: "13px",
+            textAlign: "center",
+            color: "#666",
+          }}
+        >
           Already have an account?{" "}
-          <span style={linkStyle} onClick={() => navigate("/login")}>
+          <span
+            style={{
+              color: "#2563eb",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/login")}
+          >
             Login
           </span>
         </p>
@@ -86,50 +120,47 @@ export default function Register() {
   );
 }
 
-/* ========= Reusable Input ========= */
+/* =====================
+   Reusable Input
+   ===================== */
 
-function FormInput({ label, placeholder, type = "text" }) {
+function FormInput({ label, placeholder }) {
   return (
-    <div style={{ marginBottom: "18px" }}>
+    <div style={{ marginBottom: "22px" }}>
       <label style={labelStyle}>{label}</label>
       <input
-        type={type}
+        type="text"
         placeholder={placeholder}
         style={inputStyle}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        required
       />
     </div>
   );
 }
 
-/* ========= Styles ========= */
-
-const titleStyle = {
-  marginTop: "38px",
-  textAlign: "center",
-  fontSize: "26px",
-  fontWeight: "700",
-};
-
-const subtitleStyle = {
-  textAlign: "center",
-  color: "#555",
-  fontSize: "14px",
-  marginBottom: "28px",
-};
+/* =====================
+   Styles
+   ===================== */
 
 const labelStyle = {
+  display: "block",
+  marginBottom: "8px",
   fontSize: "14px",
   fontWeight: "600",
-  marginBottom: "6px",
-  display: "block",
+  color: "#374151",
 };
 
 const inputStyle = {
   width: "100%",
-  padding: "14px",
+  padding: "14px 16px",
   borderRadius: "12px",
   border: "1.5px solid #d1d5db",
-  background: "#f9fafb",
+  fontSize: "15px",
+  backgroundColor: "#f9fafb",
+  boxSizing: "border-box", // ✅ KEY FIX
+  transition: "all 0.25s ease",
 };
 
 const buttonStyle = {
@@ -137,23 +168,23 @@ const buttonStyle = {
   padding: "15px",
   borderRadius: "999px",
   border: "none",
+  marginTop: "10px",
   background: "linear-gradient(90deg, #2563eb, #1e40af)",
   color: "white",
   fontSize: "16px",
   fontWeight: "600",
-  marginTop: "10px",
   cursor: "pointer",
 };
 
-const footerStyle = {
-  marginTop: "18px",
-  fontSize: "13px",
-  textAlign: "center",
-  color: "#666",
+const handleFocus = (e) => {
+  e.target.style.borderColor = "#2563eb";
+  e.target.style.backgroundColor = "#ffffff";
+  e.target.style.boxShadow =
+    "0 0 0 4px rgba(37,99,235,0.15)";
 };
 
-const linkStyle = {
-  color: "#2563eb",
-  fontWeight: "600",
-  cursor: "pointer",
+const handleBlur = (e) => {
+  e.target.style.borderColor = "#d1d5db";
+  e.target.style.backgroundColor = "#f9fafb";
+  e.target.style.boxShadow = "none";
 };
