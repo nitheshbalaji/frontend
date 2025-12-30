@@ -1,84 +1,60 @@
 import "../../styles/dashboard.css";
+
 import StatCard from "../../components/dashboard/StatCard";
 import HeatMap from "../../components/dashboard/HeatMap";
-import HeatMapfrom "../../components/dashboard/HeatMap.css";
+import TrendChart from "../../components/dashboard/TrendChart";
+import RecentComplaints from "../../components/dashboard/RecentComplaints";
+import ComplaintProgress from "../../components/dashboard/ComplaintProgress";
 
 export default function Dashboard() {
   return (
     <div className="dashboard-container">
 
-      {/* LEFT */}
+      {/* ================= LEFT COLUMN ================= */}
       <div className="dashboard-left">
-        <BoardColumn
-          title="To do"
-          items={[
-            "Street light not working",
-            "Garbage not collected",
-            "Water leakage",
-          ]}
-        />
+        <RecentComplaints title="To Do" />
+        <RecentComplaints title="Requested by Support" />
 
-        <BoardColumn
-          title="Requested by Support"
-          items={[
-            "Road damage",
-            "Drainage issue",
-            "Power fluctuation",
-          ]}
+        <StatCard
+          title="Unassigned Tickets"
+          value="7"
+          variant="danger"
         />
-
-        <div className="unassigned-card">
-          <h1>7</h1>
-          <p>Unassigned tickets</p>
-        </div>
       </div>
 
-      {/* CENTER */}
+      {/* ================= CENTER COLUMN ================= */}
       <div className="dashboard-center">
-        <BoardColumn
-          title="In progress"
-          items={[
-            "Road repair – Zone 3",
-            "Pipeline fix – Ward 7",
-            "Transformer issue",
-            "Street light upgrade",
-            "Sewage overflow",
-          ]}
-          scroll
-        />
+        <ComplaintProgress />
 
         <div className="workers-card">
           <h3>Tickets being worked on</h3>
           <div className="workers">
-            <StatMiniCard name="Sam" count="3" />
-            <StatMiniCard name="Tom" count="2" />
-            <StatMiniCard name="Jon" count="4" alert />
+            <StatCard title="Sam" value="3" />
+            <StatCard title="Tom" value="2" />
+            <StatCard title="Jon" value="4" alert />
           </div>
         </div>
       </div>
 
-      {/* RIGHT */}
+      {/* ================= RIGHT COLUMN ================= */}
       <div className="dashboard-right">
+
         <div className="done-card">
-          <div>
-            <h1>17</h1>
-            <p>Today</p>
-            <div className="progress green"></div>
-          </div>
-          <div>
-            <h1>45</h1>
-            <p>This week</p>
-            <div className="progress blue"></div>
-          </div>
+          <StatCard title="Resolved Today" value="17" variant="success" />
+          <StatCard title="Resolved This Week" value="45" variant="info" />
         </div>
 
-        <div className="overdue-card">
-          <h1>3</h1>
-          <p>Overdue</p>
-          <span className="alert">!</span>
-        </div>
+        <StatCard
+          title="Overdue"
+          value="3"
+          variant="warning"
+          alert
+        />
 
-        <TicketsChart />
+        <TrendChart />
+
+        {/* 🔥 HEATMAP */}
+        <HeatMap />
       </div>
 
     </div>
