@@ -1,5 +1,5 @@
 import React from "react";
-import "./CitizenDashboard.css";
+import "./dashboard.css";
 
 export default function Dashboard() {
   return (
