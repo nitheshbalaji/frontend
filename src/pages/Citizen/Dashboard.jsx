@@ -11,14 +11,21 @@ export default function Dashboard() {
     <PageWrapper>
       <h1>Citizen Dashboard</h1>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "16px" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "16px",
+          marginBottom: "30px",
+        }}
+      >
         <StatCard label="Total" value={dashboardStats.total} />
         <StatCard label="Pending" value={dashboardStats.pending} />
         <StatCard label="In Progress" value={dashboardStats.inProgress} />
         <StatCard label="Resolved" value={dashboardStats.resolved} />
       </div>
 
-      <h2 style={{ marginTop: "30px" }}>Recent Complaints</h2>
+      <h2>Recent Complaints</h2>
       <RecentComplaints complaints={complaints} />
     </PageWrapper>
   );
