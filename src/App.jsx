@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
 /* Layouts */
@@ -26,7 +26,7 @@ import ComplaintDetail from "./pages/Admin/ComplaintDetail";
 /* ===============================
    Protected Route Component
 ================================ */
-function ProtectedRoute({ children, role }) {
+function ProtectedRoute({ role }) {
   const { user } = useAuth();
 
   if (!user) {
@@ -37,7 +37,7 @@ function ProtectedRoute({ children, role }) {
     return <Navigate to="/" replace />;
   }
 
-  return children;
+  return <Outlet />; // 🔥 THIS FIXES BLANK PAGE
 }
 
 /* ===============================
@@ -59,32 +59,20 @@ export default function App() {
       {/* ===============================
          Citizen Routes (Protected)
       =============================== */}
-      <Route
-        path="/citizen"
-        element={
-          <ProtectedRoute role="citizen">
-            <CitizenLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="submit" element={<SubmitComplaint />} />
-        <Route path="history" element={<MyComplaints />} />
+      <Route path="/citizen" element={<ProtectedRoute role="citizen" />}>
+        <Route element={<CitizenLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="submit" element={<SubmitComplaint />} />
+          <Route path="history" element={<MyComplaints />} />
+        </Route>
       </Route>
 
       {/* ===============================
          Admin Routes (Protected)
       =============================== */}
-      <Route
-        path="/admin"
-        element={
-          <ProtectedRoute role="admin">
-            <React.Fragment />
-          </ProtectedRoute>
-        }
-      >
+      <Route path="/admin" element={<ProtectedRoute role="admin" />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="complaints" element={<ManageComplaints />} />
@@ -92,7 +80,7 @@ export default function App() {
       </Route>
 
       {/* ===============================
-         Catch-all Route
+         Catch-all
       =============================== */}
       <Route path="*" element={<Navigate to="/" replace />} />
 
