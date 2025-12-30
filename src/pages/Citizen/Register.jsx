@@ -6,7 +6,10 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // registration logic later
+
+    // 🔐 Later: send registration data + trigger OTP API
+    // ✅ For now: go to OTP screen
+    navigate("/verify-otp");
   };
 
   return (
@@ -145,6 +148,7 @@ function FormInput({ label, placeholder }) {
         style={inputStyle}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        required
       />
     </div>
   );
