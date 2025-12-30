@@ -1,77 +1,77 @@
-.heatmap-main {
-  background: linear-gradient(135deg, #020617, #1e1b4b);
-  border-radius: 20px;
-}
-
-.heatmap-desc {
-  font-size: 13px;
-  opacity: 0.7;
-  margin-bottom: 16px;
-}
-
 .heatmap-wrapper {
   display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Section */
+.heatmap-section h3 {
+  margin-bottom: 4px;
+}
+
+.heatmap-sub {
+  font-size: 13px;
+  opacity: 0.65;
+  margin-bottom: 14px;
+}
+
+/* Grid */
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 14px;
 }
 
-.heatmap-hours {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  font-size: 11px;
-  opacity: 0.6;
-}
-
-.heatmap-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.heatmap-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.heatmap-day {
-  width: 40px;
-  font-size: 12px;
-  opacity: 0.8;
-}
-
-.heatmap-cell {
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
+/* Tile */
+.heatmap-tile {
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.heatmap-cell:hover {
-  transform: scale(1.25);
-  box-shadow: 0 0 14px currentColor;
+.heatmap-tile span {
+  font-size: 13px;
+  opacity: 0.9;
 }
 
-/* Heat Levels */
-.l0 { background: #020617; }
-.l1 { background: #60a5fa; }
-.l2 { background: #34d399; }
-.l3 { background: #facc15; }
-.l4 { background: #fb7185; }
-.l5 { background: #ef4444; }
-
-/* Legend */
-.heatmap-legend {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 16px;
-  font-size: 12px;
-  opacity: 0.7;
+.heatmap-tile strong {
+  display: block;
+  font-size: 18px;
+  margin-top: 6px;
 }
 
-.legend-box {
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
+.heatmap-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+/* Complaint Count Colors */
+.low {
+  background: #22c55e;
+}
+.medium {
+  background: #eab308;
+}
+.high {
+  background: #f97316;
+}
+.critical {
+  background: #ef4444;
+}
+
+/* Severity Colors */
+.sev-low {
+  background: #38bdf8;
+}
+.sev-moderate {
+  background: #6366f1;
+}
+.sev-high {
+  background: #a855f7;
+}
+.sev-critical {
+  background: #dc2626;
 }
