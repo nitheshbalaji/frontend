@@ -1,55 +1,55 @@
 .heatmap-card {
-  background: #1f2547;
-  border-radius: 16px;
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 22px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.heatmap-card h3 {
-  margin: 0;
+.heatmap-title {
   font-size: 18px;
   font-weight: 600;
 }
 
-.heatmap-sub {
+.heatmap-subtitle {
   font-size: 13px;
   opacity: 0.7;
   margin-bottom: 16px;
 }
 
-.heatmap-grid {
+.heatmap-row {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: flex-end;
 }
 
-.heatmap-cell-wrapper {
+.heatmap-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  font-size: 12px;
+  opacity: 0.85;
 }
 
 .heatmap-cell {
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
 }
 
 .heatmap-cell:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 10px currentColor;
+  transform: scale(1.2);
+  box-shadow: 0 0 12px currentColor;
 }
 
-/* INTENSITY LEVELS */
+/* Heat levels */
 .level-0 {
-  background: #2a2f5a;
+  background: #1e293b;
 }
 
 .level-1 {
-  background: #4f6fff;
+  background: #60a5fa;
 }
 
 .level-2 {
@@ -62,9 +62,4 @@
 
 .level-4 {
   background: #ef4444;
-}
-
-.heatmap-label {
-  font-size: 11px;
-  opacity: 0.7;
 }
