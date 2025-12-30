@@ -1,115 +1,118 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-/* =====================
+/* ======================
    MOCK DATA
-===================== */
+====================== */
 
 const stats = [
+  { title: "Total Complaints", value: 6, color: "#2563eb", icon: "📄" },
+  { title: "Pending", value: 2, color: "#dc2626", icon: "⏳" },
+  { title: "In Progress", value: 2, color: "#f59e0b", icon: "🔄" },
+  { title: "Resolved", value: 2, color: "#16a34a", icon: "✅" },
+];
+
+const recentComplaints = [
   {
-    title: "Total Complaints",
-    value: 6,
-    color: "#2563eb",
-    bg: "#eff6ff",
-    icon: "📄",
+    title: "Street light not working",
+    status: "Pending",
+    progress: 30,
   },
   {
-    title: "Pending",
-    value: 2,
-    color: "#dc2626",
-    bg: "#fef2f2",
-    icon: "⏳",
+    title: "Water leakage near road",
+    status: "In Progress",
+    progress: 60,
   },
   {
-    title: "In Progress",
-    value: 2,
-    color: "#f59e0b",
-    bg: "#fffbeb",
-    icon: "🔄",
-  },
-  {
-    title: "Resolved",
-    value: 2,
-    color: "#16a34a",
-    bg: "#f0fdf4",
-    icon: "✅",
+    title: "Garbage not collected",
+    status: "Resolved",
+    progress: 100,
   },
 ];
 
-/* =====================
+/* ======================
    DASHBOARD
-===================== */
+====================== */
 
 export default function Dashboard() {
-  /* Hide sidebar & topbar */
-  useEffect(() => {
-    const sidebar = document.querySelector(".sidebar");
-    const topbar = document.querySelector(".topbar");
-
-    if (sidebar) sidebar.style.display = "none";
-    if (topbar) topbar.style.display = "none";
-
-    return () => {
-      if (sidebar) sidebar.style.display = "";
-      if (topbar) topbar.style.display = "";
-    };
-  }, []);
-
   return (
     <div style={page}>
       <div style={container}>
-        {/* Header */}
-        <div style={header}>
-          <h1 style={title}>Citizen Dashboard</h1>
-          <p style={subtitle}>
-            Overview of your complaints and their current status
+        {/* HEADER */}
+        <header style={header}>
+          <h1 style={heading}>Citizen Dashboard</h1>
+          <p style={subheading}>
+            Monitor your complaints and track real-time progress
           </p>
-        </div>
+        </header>
 
-        {/* Stats */}
-        <div style={statsGrid}>
+        {/* STATS */}
+        <section style={statsGrid}>
           {stats.map((item, i) => (
             <div
               key={i}
               style={{
-                ...card,
-                background: item.bg,
-                borderLeft: `6px solid ${item.color}`,
+                ...statCard,
+                borderTop: `5px solid ${item.color}`,
               }}
             >
-              <div style={icon}>{item.icon}</div>
+              <span style={statIcon}>{item.icon}</span>
               <h2 style={{ color: item.color }}>{item.value}</h2>
               <p>{item.title}</p>
             </div>
           ))}
-        </div>
+        </section>
 
-        {/* Info Section */}
-        <div style={infoCard}>
-          <h3 style={{ marginBottom: "10px" }}>
-            📌 What you can do here
-          </h3>
-          <ul style={list}>
-            <li>View status of all your complaints</li>
-            <li>Track progress in real time</li>
-            <li>Get faster resolution updates</li>
-            <li>Maintain transparency with authorities</li>
-          </ul>
-        </div>
+        {/* RECENT COMPLAINTS */}
+        <section style={complaintsSection}>
+          <h2 style={sectionTitle}>📌 Recent Complaints</h2>
+
+          {recentComplaints.map((c, i) => (
+            <div key={i} style={complaintCard}>
+              <div>
+                <h3>{c.title}</h3>
+                <p style={{ color: "#64748b" }}>{c.status}</p>
+              </div>
+
+              <div style={progressWrapper}>
+                <div
+                  style={{
+                    ...progressBar,
+                    width: `${c.progress}%`,
+                  }}
+                />
+              </div>
+
+              <span style={progressText}>{c.progress}%</span>
+            </div>
+          ))}
+        </section>
+
+        {/* INFO */}
+        <section style={infoCard}>
+          <h3>Why this dashboard matters</h3>
+          <p>
+            This dashboard ensures transparency, accountability, and faster
+            resolution of public issues by providing real-time tracking and
+            progress updates.
+          </p>
+        </section>
       </div>
     </div>
   );
 }
 
-/* =====================
+/* ======================
    STYLES
-===================== */
+====================== */
 
 const page = {
   minHeight: "100vh",
-  background: "linear-gradient(135deg, #eef2ff, #f8fafc)",
+  background:
+    "linear-gradient(135deg, #e0e7ff, #fef3c7, #dcfce7)",
   display: "flex",
   justifyContent: "center",
   padding: "40px 20px",
+  animation: "fadeIn 0.6s ease-in-out",
 };
 
 const container = {
@@ -118,47 +121,80 @@ const container = {
 };
 
 const header = {
-  marginBottom: "35px",
+  marginBottom: "30px",
 };
 
-const title = {
-  fontSize: "34px",
+const heading = {
+  fontSize: "36px",
   fontWeight: "700",
   color: "#0f172a",
 };
 
-const subtitle = {
-  color: "#475569",
+const subheading = {
   marginTop: "6px",
+  color: "#475569",
 };
 
 const statsGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+  gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
   gap: "20px",
-  marginBottom: "35px",
+  marginBottom: "40px",
 };
 
-const card = {
-  padding: "22px",
+const statCard = {
+  background: "white",
+  padding: "24px",
+  borderRadius: "16px",
+  boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
+  transition: "transform 0.3s",
+};
+
+const statIcon = {
+  fontSize: "28px",
+  display: "block",
+  marginBottom: "8px",
+};
+
+const complaintsSection = {
+  marginBottom: "40px",
+};
+
+const sectionTitle = {
+  marginBottom: "20px",
+};
+
+const complaintCard = {
+  background: "white",
+  padding: "20px",
   borderRadius: "14px",
+  marginBottom: "15px",
   boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
 };
 
-const icon = {
-  fontSize: "26px",
-  marginBottom: "8px",
+const progressWrapper = {
+  background: "#e5e7eb",
+  borderRadius: "8px",
+  height: "10px",
+  marginTop: "10px",
+  overflow: "hidden",
+};
+
+const progressBar = {
+  height: "100%",
+  background: "linear-gradient(to right, #2563eb, #16a34a)",
+  transition: "width 0.6s ease",
+};
+
+const progressText = {
+  fontSize: "13px",
+  marginTop: "6px",
+  color: "#334155",
 };
 
 const infoCard = {
   background: "white",
   padding: "26px",
-  borderRadius: "14px",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-};
-
-const list = {
-  paddingLeft: "18px",
-  lineHeight: "1.8",
-  color: "#334155",
+  borderRadius: "16px",
+  boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
 };
