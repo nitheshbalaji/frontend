@@ -8,7 +8,9 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login();
-    navigate("/"); // logged-in home
+
+    // ✅ Redirect to citizen dashboard
+    navigate("/citizen/dashboard");
   };
 
   return (
@@ -92,6 +94,7 @@ export default function Login() {
               style={inputStyle}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              required
             />
           </div>
 
@@ -104,6 +107,7 @@ export default function Login() {
               style={inputStyle}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              required
             />
           </div>
 
@@ -122,12 +126,14 @@ export default function Login() {
               Remember me
             </label>
 
+            {/* ✅ FIXED: Forgot password navigation */}
             <span
               style={{
                 color: "#2563eb",
                 cursor: "pointer",
                 fontWeight: "500",
               }}
+              onClick={() => navigate("/set-password")}
             >
               Forgot password?
             </span>
@@ -191,13 +197,11 @@ const labelStyle = {
 
 const inputStyle = {
   width: "100%",
-  boxSizing: "border-box",
   padding: "14px 16px",
   borderRadius: "12px",
   border: "1.5px solid #d1d5db",
   fontSize: "15px",
   backgroundColor: "#f9fafb",
-  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.05)",
   transition: "all 0.25s ease",
 };
 
@@ -224,6 +228,5 @@ const handleFocus = (e) => {
 const handleBlur = (e) => {
   e.target.style.borderColor = "#d1d5db";
   e.target.style.backgroundColor = "#f9fafb";
-  e.target.style.boxShadow =
-    "inset 0 1px 2px rgba(0,0,0,0.05)";
+  e.target.style.boxShadow = "none";
 };
