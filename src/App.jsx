@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
 /* Layouts */
@@ -18,15 +18,8 @@ import Profile from "./pages/Citizen/Profile";
 import SubmitComplaint from "./pages/Citizen/SubmitComplaint";
 import MyComplaints from "./pages/Citizen/MyComplaints";
 
-/* Admin Pages */
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-import ManageComplaints from "./pages/Admin/ManageComplaints";
-import ComplaintDetail from "./pages/Admin/ComplaintDetail";
-
-/* ===============================
-   Protected Route Component
-================================ */
-function ProtectedRoute({ role }) {
+/* Protected Route Component */
+function ProtectedRoute({ children, role }) {
   const { user } = useAuth();
 
   if (!user) {
@@ -37,51 +30,37 @@ function ProtectedRoute({ role }) {
     return <Navigate to="/" replace />;
   }
 
-  return <Outlet />; // 🔥 THIS FIXES BLANK PAGE
+  return children;
 }
 
-/* ===============================
-   App Routes
-================================ */
 export default function App() {
   return (
     <Routes>
 
-      {/* ===============================
-         Public Routes
-      =============================== */}
+      {/* Public Routes */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/verify-otp" element={<VerifyOtp />} />
       <Route path="/set-password" element={<SetPassword />} />
 
-      {/* ===============================
-         Citizen Routes (Protected)
-      =============================== */}
-      <Route path="/citizen" element={<ProtectedRoute role="citizen" />}>
-        <Route element={<CitizenLayout />}>
-          <Route index element={<Navigate to="dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="submit" element={<SubmitComplaint />} />
-          <Route path="history" element={<MyComplaints />} />
-        </Route>
-      </Route>
-
-      {/* ===============================
-         Admin Routes (Protected)
-      =============================== */}
-      <Route path="/admin" element={<ProtectedRoute role="admin" />}>
+      {/* Citizen Routes (Protected) */}
+      <Route
+        path="/citizen"
+        element={
+          <ProtectedRoute role="citizen">
+            <CitizenLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="complaints" element={<ManageComplaints />} />
-        <Route path="complaints/:id" element={<ComplaintDetail />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="submit" element={<SubmitComplaint />} />
+        <Route path="history" element={<MyComplaints />} />
       </Route>
 
-      {/* ===============================
-         Catch-all
-      =============================== */}
+      {/* Catch-all */}
       <Route path="*" element={<Navigate to="/" replace />} />
 
     </Routes>
