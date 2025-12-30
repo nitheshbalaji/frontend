@@ -62,6 +62,30 @@ export default function Dashboard() {
         <div className="cd-card wide glass">
           <h3>Complaints Trend</h3>
           <div className="cd-chart">
+
+         {/* HEATMAP */}
+<div className="cd-card wide glass" style={{ border: "2px dashed #60a5fa" }}>
+  <h3 style={{ color: "#93c5fd", fontSize: "22px" }}>
+    🔥 Complaint Heatmap (Area-wise)
+  </h3>
+
+  <div className="cd-heatmap">
+    {heatmapData.map((item, index) => (
+      <div
+        key={index}
+        className="cd-heat-cell"
+        style={{
+          background: getHeatColor(item.count),
+          border: "1px solid rgba(0,0,0,0.1)",
+        }}
+      >
+        <span className="cd-area">{item.area}</span>
+        <span className="cd-count">{item.count}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
             <span />
             <span />
             <span />
