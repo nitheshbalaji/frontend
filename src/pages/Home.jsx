@@ -13,9 +13,18 @@ export default function Home() {
 
       {/* Top Navbar */}
       <header className="home-navbar">
-        <div className="nav-left">
+        <div
+  className="nav-left"
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+    marginLeft: "7px",   // ⬅ moves BOTH hamburger + CityConnect LEFT
+  }}
+>
+
           {user && (
-            <div
+           <div
   onClick={() => setMenuOpen(true)}
   onMouseEnter={(e) => {
     e.currentTarget.style.transform = "scale(1.08)";
@@ -24,7 +33,6 @@ export default function Home() {
     e.currentTarget.style.transform = "scale(1)";
   }}
   style={{
-    marginTop: "-8px",          // ⬅ moves it UP (THIS finally works)
     width: "42px",
     height: "42px",
     borderRadius: "12px",
@@ -36,6 +44,7 @@ export default function Home() {
     justifyContent: "center",
     boxShadow: "0 6px 18px rgba(0,0,0,0.14)",
     transition: "transform 0.2s ease",
+    marginLeft: "-8px",      // ✅ true left alignment
   }}
   aria-label="Open menu"
 >
@@ -54,8 +63,22 @@ export default function Home() {
   </svg>
 </div>
 
+
+
           )}
-          <div className="logo">CityConnect</div>
+         <div
+  className="logo"
+  style={{
+    fontSize: "22px",        // ⬅ bigger
+    fontWeight: "700",
+    letterSpacing: "0.4px",
+    lineHeight: "1",         // ⬅ baseline alignment fix
+  }}
+>
+  CityConnect
+</div>
+
+
         </div>
 
         <nav>
