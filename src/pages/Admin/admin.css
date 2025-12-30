@@ -1,0 +1,502 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+/* ===== Layout ===== */
+.admin-wrapper {
+    display: flex;
+    height: 100vh;
+    background: #ecf0f5;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 230px;
+    background: #222d32;
+    color: #b8c7ce;
+    flex-shrink: 0;
+}
+
+.logo {
+    padding: 15px;
+    background: #1a2226;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.user-panel {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #1a2226;
+}
+
+.user-panel img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status {
+    font-size: 12px;
+    color: #00a65a;
+}
+
+/* Menu */
+.menu a {
+    display: block;
+    padding: 12px 15px;
+    color: #b8c7ce;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    background: #1e282c;
+    color: #fff;
+}
+
+/* ===== Main Area ===== */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Topbar ===== */
+.topbar {
+    height: 50px;
+    background: #3c8dbc;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.menu-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* ===== Content ===== */
+.content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* ===== Dashboard Cards ===== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.info-box {
+    position: relative;
+    color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    min-height: 120px;
+}
+
+.info-box h2 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.info-box p {
+    margin-top: 10px;
+}
+
+.info-box .icon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 60px;
+    opacity: 0.3;
+}
+
+.info-box .footer {
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* ===== Sidebar collapse ===== */
+/* ===== Collapsed Sidebar (Professional) ===== */
+.collapsed .sidebar {
+    width: 60px;
+}
+
+.collapsed .logo {
+    text-align: center;
+    font-size: 16px;
+    padding: 15px 0;
+}
+
+.collapsed .user-panel {
+    display: none;
+}
+
+.collapsed .menu a {
+    text-align: center;
+    font-size: 20px;
+    padding: 12px 0;
+}
+
+.collapsed .menu a::after {
+    content: "";
+}
+
+.sidebar,
+.main {
+    transition: all 0.3s ease;
+}
+
+/* ===== Complaints Page Styling ===== */
+
+.subtitle {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Card container */
+.table-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Table */
+.complaints-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.complaints-table th {
+    text-align: left;
+    padding: 12px;
+    background: #f4f6f9;
+    font-weight: 600;
+}
+
+.complaints-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Status badges */
+.badge {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.badge.pending {
+    background: #f39c12;
+}
+
+.badge.progress {
+    background: #3498db;
+}
+
+.badge.resolved {
+    background: #2ecc71;
+}
+
+/* View button */
+.view-btn {
+    padding: 6px 12px;
+    border: none;
+    background: #3c8dbc;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background: #367fa9;
+}
+
+/* ===== Modal ===== */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    width: 60%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.close-btn {
+    margin-top: 15px;
+    padding: 8px 14px;
+    border: none;
+    background: #d9534f;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* ===== Modal Styling ===== */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    width: 85%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.close-btn {
+    margin-top: 15px;
+    padding: 8px 14px;
+    border: none;
+    background: #d9534f;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background: #c9302c;
+}
+
+/* ===== Complaint Detail Page ===== */
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #3c8dbc;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.detail-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.detail-body p {
+    margin-bottom: 10px;
+}
+
+.description-box {
+    background: #f4f6f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.detail-actions {
+    margin-top: 20px;
+}
+
+.resolve-btn {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: none;
+    background: #2ecc71;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.resolve-btn:hover {
+    background: #27ae60;
+}
+
+/* ===== Case File Styling ===== */
+
+.case-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.case-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 13px;
+}
+
+.status.pending {
+    background: #f39c12;
+}
+
+.status.progress {
+    background: #3498db;
+}
+
+.status.resolved {
+    background: #2ecc71;
+}
+
+.case-section {
+    margin-top: 20px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.description-box {
+    background: #f4f6f9;
+    padding: 15px;
+    border-left: 4px solid #3c8dbc;
+    margin-top: 10px;
+}
+
+.image-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.image-placeholder {
+    width: 120px;
+    height: 80px;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.case-actions {
+    margin-top: 25px;
+}
+
+.case-actions button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    background: #3c8dbc;
+    color: white;
+    cursor: pointer;
+}
+
+.case-actions .resolve-btn {
+    margin-left: 10px;
+    background: #2ecc71;
+}
+
+.muted {
+    color: #777;
+    font-size: 12px;
+}
+
+/* ===== User Registry Cards ===== */
+
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.user-card {
+    background: #fdfefe;
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #3c8dbc;
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.user-header h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.user-id {
+    font-size: 12px;
+    background: #ecf0f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.user-body p {
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.user-footer {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #555;
+}
+
+.complaint-count {
+    background: #eaf4ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
